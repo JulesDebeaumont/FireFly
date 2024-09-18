@@ -244,8 +244,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183460966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.71, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -410,21 +410,33 @@ PrefabInstance:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 4667074}
+    - target: {fileID: 2642445527324142496, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642445527324142496, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642445527324142496, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3663414365157268907, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3663414365157268907, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.66659737
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3663414365157268907, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1100445
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3663414365157268907, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.49999952
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3663414365157268907, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -454,6 +466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106711565168299418, guid: edb1fd3b7ba8a2c4db95994df481bbc6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

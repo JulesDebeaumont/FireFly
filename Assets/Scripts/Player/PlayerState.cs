@@ -17,14 +17,15 @@ public class PlayerState : MonoBehaviour
         RUN,
         SWIM,
         JUMP,
-        TAKING_DAMAGE,
+        KNOCKED_BACK,
         ATTACK,
         CLIMB,
-        SILENT,
         PROTECTING,
         LOOTING,
         TALKING,
-        PUSHING
+        PUSHING,
+        ROLLING,
+        LOOKING
     }
 
     public enum ECollectAnimation

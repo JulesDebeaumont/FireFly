@@ -1,82 +1,164 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerAction : MonoBehaviour
 {
     public Player Player;
-    private readonly float RunSpeedRatio = 7f;
+
+    private readonly float _rotationSpeed = 5f;
+    private readonly float _runSpeedRatio = 7f;
+
+    [SerializeField]
     private float SpeedRatio = 1f;
-    private float HorizontalInput = 0f;
-    private float VerticalInput = 0f;
 
-    void Start()
+
+    [SerializeField]
+    private Vector2 LeftStickInput;
+
+    [SerializeField]
+    private Vector2 RightStickInput;
+
+    private PlayerControl PlayerControl;
+
+    [SerializeField]
+    private float Angle = 0f;
+
+    private readonly PlayerState.EPlayerState[] FreeActionState = {
+        PlayerState.EPlayerState.STAND,
+        PlayerState.EPlayerState.WALK,
+        PlayerState.EPlayerState.RUN
+    };
+
+    void Awake()
     {
-
+        ReadInput();
     }
 
     void Update()
     {
-        ReadInput();
-        Move();
-        Roll();
+        if (CanRotate())
+        {
+            Rotate();
+        }
+        if (CanStand())
+        {
+            Stand();
+        }
+        if (CanMove())
+        {
+            Move();
+        }
+        if (CanRoll())
+        {
+            Roll();
+        }
     }
 
     private void ReadInput()
     {
-        this.HorizontalInput = Input.GetAxis("Horizontal");
-        this.VerticalInput = Input.GetAxis("Vertical");
+        this.PlayerControl = new PlayerControl();
+
+        this.PlayerControl.Gameplay.LeftStick.Enable();
+        this.PlayerControl.Gameplay.LeftStick.performed += context => { 
+            this.LeftStickInput = context.ReadValue<Vector2>();
+        };
+        this.PlayerControl.Gameplay.LeftStick.canceled += context => this.LeftStickInput = Vector2.zero;
+    }
+
+    private void Stand()
+    {
+        if (this.SpeedRatio > 1f)
+        {
+            this.SpeedRatio = this.SpeedRatio / 1.7f;
+            this.Player.transform.Translate(Vector3.forward * Time.deltaTime * this.LeftStickInput.y * this.SpeedRatio);
+            this.Player.transform.Translate(Vector3.right * Time.deltaTime * this.LeftStickInput.x * this.SpeedRatio);
+        }
+        else
+        {
+            this.SpeedRatio = 1f;
+            this.Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+        }
     }
 
     private void Move()
     {
-        if (IsWalking())
-        {
-            SetIsWalking();
-        }
-        else if (IsRunning())
+        if (CanRun())
         {
             SetIsRunning();
         }
-        this.Player.transform.Translate(Vector3.forward * Time.deltaTime * this.VerticalInput * this.SpeedRatio);
-        this.Player.transform.Translate(Vector3.right * Time.deltaTime * this.HorizontalInput * this.SpeedRatio);
+        else if (CanWalk())
+        {
+            SetIsWalking();
+        }
+        this.Player.transform.Translate(Vector3.forward * Time.deltaTime * this.LeftStickInput.y * this.SpeedRatio);
+        this.Player.transform.Translate(Vector3.right * Time.deltaTime * this.LeftStickInput.x * this.SpeedRatio);
     }
 
     private void Roll()
     {
-
+        this.Player.PlayerState.State = PlayerState.EPlayerState.ROLLING;
+        // anim
+        // boost speed
+        // bonk hitbox
+        this.Player.PlayerState.State = PlayerState.EPlayerState.STAND;
     }
 
-    private void SetIsWalking()
+    private void Rotate()
     {
-        this.SpeedRatio = this.WalkSpeedRatio; // dynamic instead ? depending on control stick
-        this.Player.PlayerState.State = PlayerState.EPlayerState.WALK;
+        Vector3 forward = this.Player.PlayerCamera.MainCamera.transform.forward;
+        Vector3 right = this.Player.PlayerCamera.MainCamera.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+        Vector3 movementDirection = (forward * this.LeftStickInput.y + right * this.LeftStickInput.x).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+        this.Player.transform.rotation = Quaternion.Slerp(this.Player.transform.rotation, targetRotation, this._rotationSpeed * Time.deltaTime);
     }
 
     private void SetIsRunning()
     {
-        this.SpeedRatio = this.RunSpeedRatio;
+        this.SpeedRatio = this._runSpeedRatio;
         this.Player.PlayerState.State = PlayerState.EPlayerState.RUN;
-
     }
 
-    private void SetIsStanding()
+    private void SetIsWalking()
     {
-        this.Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+        float highestAnalogInput = Math.Abs(this.LeftStickInput.y) > Math.Abs(this.LeftStickInput.x) ? Math.Abs(this.LeftStickInput.y) : Math.Abs(this.LeftStickInput.x);
+        this.SpeedRatio = highestAnalogInput * 10;
+        this.Player.PlayerState.State = PlayerState.EPlayerState.WALK;
     }
 
-    private bool IsWalking()
+    private bool CanRun()
     {
-        return this.VerticalInput < 0.6 || this.HorizontalInput < 0.6; // TODO between -1 and 1, with 0 for neutral
+        return (this.LeftStickInput.y > 0.5f || this.LeftStickInput.y < -0.5f || this.LeftStickInput.x > 0.5f || this.LeftStickInput.x < -0.5f);
     }
 
-    private bool IsRunning()
+    private bool CanWalk()
     {
-        return this.VerticalInput < 500f || this.HorizontalInput < 500f;  // TODO
+        return ((this.LeftStickInput.y < 0.5f && this.LeftStickInput.y > 0.02f) || (this.LeftStickInput.y > -0.5f && this.LeftStickInput.y < -0.02f) ||
+        (this.LeftStickInput.x < 0.5f && this.LeftStickInput.x > 0.02f) || (this.LeftStickInput.x > -0.5f && this.LeftStickInput.x < -0.02f));
     }
 
-    private bool IsStanding()
+    private bool CanStand()
     {
-        return this.VerticalInput < 100f && this.HorizontalInput < 100f;  // TODO
+        return Array.Exists(this.FreeActionState, element => element == this.Player.PlayerState.State) && this.LeftStickInput.y < 0.02f && this.LeftStickInput.y > -0.02f && this.LeftStickInput.x < 0.02f && this.LeftStickInput.x > -0.02f;
+    }
+
+    private bool CanMove()
+    {
+        return Array.Exists(this.FreeActionState, element => element == this.Player.PlayerState.State);
+    }
+
+    private bool CanRoll()
+    {
+        return this.CanMove() && this.CanRun() && Input.GetKeyDown(KeyCode.H); // TODO new input system
+    }
+
+    private bool CanRotate()
+    {
+        return Array.Exists(this.FreeActionState, element => element == this.Player.PlayerState.State) && (this.LeftStickInput.y != 0f || this.LeftStickInput.x != 0f);
     }
 }
