@@ -13,14 +13,14 @@ abstract public class Enemy : Actor
     {
         get
         {
-            return this.InvincibilityTimer > 0;
+            return InvincibilityTimer > 0;
         }
     }
     public bool IsAlive
     {
         get
         {
-            return this.Health > 0;
+            return Health > 0;
         }
     }
     protected static readonly DamageTable DamageTable = new DamageTable
@@ -49,7 +49,7 @@ abstract public class Enemy : Actor
     // Update is called once per frame
     protected void Update()
     {
-        if (!this.IsAlive && this.HasStartedDying == false)
+        if (!IsAlive && HasStartedDying == false)
         {
             Die();
         }
@@ -58,7 +58,7 @@ abstract public class Enemy : Actor
 
     protected void Die()
     {
-        this.HasStartedDying = true;
+        HasStartedDying = true;
         // death anim
         DropItem();
         Destroy(this.gameObject);
@@ -72,7 +72,7 @@ abstract public class Enemy : Actor
         }
         var damage = DamageTable.Data[damageType];
         damage *= multiplier;
-        this.Health -= damage;
+        Health -= damage;
         StartInvincibilityTimer();
     }
 

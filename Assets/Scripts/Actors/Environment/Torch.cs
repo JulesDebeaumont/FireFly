@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Torch : EnvironmentActor
 {
-    private readonly int MilliSecondTimer = 5000;
+    private readonly int _milliSecondTimer = 5000;
     public bool IsLit = false;
     public int Timer = 0;
 
@@ -24,10 +24,10 @@ public class Torch : EnvironmentActor
         // if fire is near
         if (FireIsClose())
         {
-            this.IsLit = true;
+            IsLit = true;
             StartTimer();
         }
-        if (this.IsLit == true && this.Timer == 0)
+        if (IsLit == true && Timer == 0)
         {
             Unlit();
         }
@@ -35,13 +35,13 @@ public class Torch : EnvironmentActor
 
     private void StartTimer()
     {
-        this.Timer = this.MilliSecondTimer;
+        Timer = _milliSecondTimer;
     }
 
     private void Unlit()
     {
-        this.IsLit = false;
-        this.Timer = 0;
+        IsLit = false;
+        Timer = 0;
     }
 
     private bool FireIsClose()

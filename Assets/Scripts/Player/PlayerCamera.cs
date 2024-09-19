@@ -7,269 +7,317 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private readonly float _firstPersonCameraSpeed = 0.4f;
-    private readonly Vector2 _firstPersonXAxisClamp = new Vector2(-70f, 90f);
+  public Player Player;
+  public Camera MainCamera;
 
-    public Player Player;
-    public Camera MainCamera;
+  private readonly float _firstPersonCameraSpeed = 0.4f;
+  private readonly Vector2 _firstPersonXAxisClamp = new Vector2(-70f, 90f);
+  private readonly float _camSmoothDampTime = 0.1f;
 
-    [SerializeField]
-    private ECameraState CameraState = ECameraState.STANDARD;
-
-    private Vector3 PlayerOffset;
-
-    [SerializeField]
-    private Vector3 LookAt;
-
-    private Vector3 TargetPosition;
-    private Vector3 SavedRigToGoal;
-    private Vector3 VelocityCamSmooth = Vector3.zero;
-    private float CamSmoothDampTime = 0.1f;
-    private CameraPosition FirstPersonCameraPosition;
-    private PlayerControl PlayerControl;
+  private Vector3 _targetPosition;
+  private Vector3 _savedRigToGoal;
+  private Vector3 _velocityCamSmooth = Vector3.zero;
+  private CameraPosition _firstPersonCameraPosition;
+  private PlayerControl _playerControl;
+  private Vector3 _playerOffset;
 
 
-    [SerializeField]
-    private float xAxisRot = 0.0f;
+  [SerializeField]
+  private ECameraState _cameraState = ECameraState.STANDARD;
 
-    [SerializeField]
-    private float lookWeight = 0f;
+  [SerializeField]
+  private Vector3 _lookAt;
 
-    [SerializeField]
-    private float DistanceUp;
+  [SerializeField]
+  private float _xAxisRot = 0.0f;
 
-    [SerializeField]
-    private bool HasStartedFocus = false;
+  [SerializeField]
+  private float _lookWeight = 0f;
 
-    [SerializeField]
-    private bool HasStartedUnfocus = false;
+  [SerializeField]
+  private readonly float _distanceUp;
 
-    [SerializeField]
-    private bool HasBlackBar = false;
+  [SerializeField]
+  private bool _hasStartedFocus = false;
 
-    [SerializeField]
-    private bool ZPress = false;
+  [SerializeField]
+  private bool _hasStartedUnfocus = false;
 
-    [SerializeField]
-    private Vector2 LeftStickInput = Vector2.zero;
+  [SerializeField]
+  private bool _hasBlackBar = false;
 
-    [SerializeField]
-    private Vector2 RightStickInput = Vector2.zero;
+  [SerializeField]
+  private bool _zPress = false;
 
-    void Awake()
+  [SerializeField]
+  private Vector2 _leftStickInput = Vector2.zero;
+
+  [SerializeField]
+  private Vector2 _rightStickInput = Vector2.zero;
+
+  void Awake()
+  {
+    ReadInput();
+  }
+
+  // Start is called before the first frame update
+  void Start() // put in awake ?
+  {
+    _firstPersonCameraPosition = new CameraPosition();
+    _firstPersonCameraPosition.Init
+        (
+            "First person camera",
+            new Vector3(0f, 1.6f, 0f),
+            new GameObject().transform,
+            Player.transform
+        );
+    _playerOffset = Player.transform.position + new Vector3(0f, _distanceUp, 0f);
+    _savedRigToGoal = RigToGoalDirection();
+  }
+
+  // Update is called once per frame
+  void LateUpdate()
+  {
+    SetupVectors();
+    SetupCameraMode();
+    ActionByCameraMode();
+  }
+
+  private void ReadInput()
+  {
+    _playerControl = new PlayerControl();
+
+    _playerControl.Gameplay.LeftStick.Enable();
+    _playerControl.Gameplay.LeftStick.performed += context => _leftStickInput = context.ReadValue<Vector2>();
+    _playerControl.Gameplay.LeftStick.canceled += context => _leftStickInput = Vector2.zero;
+
+    _playerControl.Gameplay.RightStick.Enable();
+    _playerControl.Gameplay.RightStick.performed += context => _rightStickInput = context.ReadValue<Vector2>();
+    _playerControl.Gameplay.RightStick.canceled += context => _rightStickInput = Vector2.zero;
+
+    _playerControl.Gameplay.Z.Enable();
+    _playerControl.Gameplay.Z.performed += context => _zPress = true;
+    _playerControl.Gameplay.Z.canceled += context => _zPress = false;
+  }
+
+  private void SetupVectors()
+  {
+    _playerOffset = Player.transform.position + (_distanceUp * Player.transform.up);
+    _lookAt = _playerOffset;
+    _targetPosition = Vector3.zero;
+  }
+
+  private void SetupCameraMode()
+  {
+    if (_zPress == true)
     {
-        ReadInput();
+      _cameraState = ECameraState.FOCUS;
+      if (_hasBlackBar == false && _hasStartedFocus == false)
+      {
+        EnableFocusMode();
+      }
+      return;
+    }
+    if (_hasBlackBar == true && _hasStartedUnfocus == false)
+    {
+      DisableFocusMode();
+    }
+    if (CPositionEligibleForFirstPersonMode() && _cameraState != ECameraState.FIRST_PERSON &&
+        _cameraState != ECameraState.FREE && Player.PlayerState.State == PlayerState.EPlayerState.STAND)
+    {
+      _cameraState = ECameraState.FIRST_PERSON;
+      Player.PlayerState.State = PlayerState.EPlayerState.LOOKING;
+      _xAxisRot = 0f;
+      _lookWeight = 0f;
+      return;
+    }
+    if (CPositionEligibleForFreeMode() && _cameraState != ECameraState.FREE && _cameraState != ECameraState.FIRST_PERSON)
+    {
+      _cameraState = ECameraState.FREE;
+      _savedRigToGoal = Vector3.zero;
+      return;
+    }
+  }
+
+  private void ActionByCameraMode()
+  {
+    switch (_cameraState)
+    {
+      case ECameraState.FOCUS:
+        //RunFocusMode();
+        break;
+
+      case ECameraState.FREE:
+        RunFreeMode();
+        break;
+
+      case ECameraState.FIRST_PERSON:
+        RunFirstPersonMode();
+        break;
+
+      case ECameraState.STANDARD:
+        //RunStandardMode();
+        break;
+    }
+    //CompensateForWalls();
+    SmoothPosition(MainCamera.transform.position, _targetPosition);
+    MainCamera.transform.LookAt(_lookAt);
+  }
+
+  private void SmoothPosition(Vector3 fromPosition, Vector3 toPosition)
+  {
+    MainCamera.transform.position = Vector3.SmoothDamp(fromPosition, toPosition, ref _velocityCamSmooth, _camSmoothDampTime);
+  }
+
+  private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)
+  {
+
+  }
+
+  private void RunFirstPersonMode()
+  {
+    _xAxisRot += _leftStickInput.y * 0.5f * _firstPersonCameraSpeed;
+    _xAxisRot = Mathf.Clamp(_xAxisRot, _firstPersonXAxisClamp.x, _firstPersonXAxisClamp.y);
+    _firstPersonCameraPosition.Transform.localRotation = Quaternion.Euler(_xAxisRot, 0f, 0f);
+
+    Quaternion rotationShift = Quaternion.FromToRotation(MainCamera.transform.forward, _firstPersonCameraPosition.Transform.forward);
+    MainCamera.transform.rotation = rotationShift * MainCamera.transform.rotation;
+
+    _lookWeight = Mathf.Lerp(_lookWeight, 1.0f, Time.deltaTime * _firstPersonCameraSpeed);
+
+    Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, 120f * (_leftStickInput.x < 0f ? -1f : 1f), 0f), Mathf.Abs(_leftStickInput.x));
+    Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
+    Player.transform.rotation = Player.transform.rotation * deltaRotation;
+
+    _targetPosition = _firstPersonCameraPosition.Transform.position;
+
+    _lookAt = Vector3.Lerp(_targetPosition + Player.transform.forward, MainCamera.transform.position + MainCamera.transform.forward, 0.1f * Time.deltaTime);
+    _lookAt = Vector3.Lerp(MainCamera.transform.position + MainCamera.transform.forward, _lookAt, Vector3.Distance(MainCamera.transform.position, _firstPersonCameraPosition.Transform.position));
+  }
+
+  private void RunFreeMode()
+  {/*
+    this.lookWeight = Mathf.Lerp(this.lookWeight, 0.0f, Time.deltaTime * firstPersonLookSpeed);
+
+    Vector3 rigToGoal = characterOffset - cameraXform.position;
+    rigToGoal.y = 0f;
+    Debug.DrawRay(cameraXform.transform.position, rigToGoal, Color.red);
+
+    // Panning in and out
+    // If statement works for positive values; don't tween if stick not increasing in either direction; also don't tween if user is rotating
+    // Checked against rightStickThreshold because very small values for rightY mess up the Lerp function
+    if (rightY < lastStickMin && rightY < -1f * rightStickThreshold && rightY <= rightStickPrevFrame.y && Mathf.Abs(rightX) < rightStickThreshold)
+    {
+      // Zooming out
+      distanceUpFree = Mathf.Lerp(distanceUp, distanceUp * distanceUpMultiplier, Mathf.Abs(rightY));
+      distanceAwayFree = Mathf.Lerp(distanceAway, distanceAway * distanceAwayMultipler, Mathf.Abs(rightY));
+      targetPosition = characterOffset + followXform.up * distanceUpFree - RigToGoalDirection * distanceAwayFree;
+      lastStickMin = rightY;
+    }
+    else if (rightY > rightStickThreshold && rightY >= rightStickPrevFrame.y && Mathf.Abs(rightX) < rightStickThreshold)
+    {
+      // Zooming in
+      // Subtract height of camera from height of player to find Y distance
+      distanceUpFree = Mathf.Lerp(Mathf.Abs(transform.position.y - characterOffset.y), camMinDistFromChar.y, rightY);
+      // Use magnitude function to find X distance	
+      distanceAwayFree = Mathf.Lerp(rigToGoal.magnitude, camMinDistFromChar.x, rightY);
+      targetPosition = characterOffset + followXform.up * distanceUpFree - RigToGoalDirection * distanceAwayFree;
+      lastStickMin = float.PositiveInfinity;
     }
 
-    // Start is called before the first frame update
-    void Start() // put in awake ?
+    // Store direction only if right stick inactive
+    if (rightX != 0 || rightY != 0)
     {
-        this.FirstPersonCameraPosition = new CameraPosition();
-        this.FirstPersonCameraPosition.Init
-            (
-                new Vector3(0f, 1.6f, 0f),
-                new GameObject().transform,
-                this.Player.transform
-            );
-        this.PlayerOffset = this.Player.transform.position + new Vector3(0f, this.DistanceUp, 0f);
-        this.SavedRigToGoal = RigToGoalDirection();
+      savedRigToGoal = RigToGoalDirection;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+
+    // Rotating around character
+    cameraXform.RotateAround(characterOffset, followXform.up, freeRotationDegreePerSecond * (Mathf.Abs(rightX) > rightStickThreshold ? rightX : 0f));
+
+    // Still need to track camera behind player even if they aren't using the right stick; achieve this by saving distanceAwayFree every frame
+    if (targetPosition == Vector3.zero)
     {
-        SetupVectors();
-        SetupCameraMode();
-        ActionByCameraMode();
-    }
+      targetPosition = characterOffset + followXform.up * distanceUpFree - savedRigToGoal * distanceAwayFree;
+    }*/
+  }
 
-    private void ReadInput()
-    {
-        this.PlayerControl = new PlayerControl();
+  public void FadeToBlack()
+  {
+    // https://discussions.unity.com/t/free-basic-camera-fade-in-script/686081
+  }
 
-        this.PlayerControl.Gameplay.LeftStick.Enable();
-        this.PlayerControl.Gameplay.LeftStick.performed += context => this.LeftStickInput = context.ReadValue<Vector2>();
-        this.PlayerControl.Gameplay.LeftStick.canceled += context => this.LeftStickInput = Vector2.zero;
+  public void FadeFromBlack()
+  {
 
-        this.PlayerControl.Gameplay.RightStick.Enable();
-        this.PlayerControl.Gameplay.RightStick.performed += context => this.RightStickInput = context.ReadValue<Vector2>();
-        this.PlayerControl.Gameplay.RightStick.canceled += context => this.RightStickInput = Vector2.zero;
+  }
 
-        this.PlayerControl.Gameplay.Z.Enable();
-        this.PlayerControl.Gameplay.Z.performed += context => this.ZPress = true;
-        this.PlayerControl.Gameplay.Z.canceled += context => this.ZPress = false;
-    }
+  public void AllBlack()
+  {
 
-    private void SetupVectors()
-    {
-        this.PlayerOffset = this.Player.transform.position + (this.DistanceUp * this.Player.transform.up);
-        this.LookAt = this.PlayerOffset;
-        this.TargetPosition = Vector3.zero;
-    }
+  }
 
-    private void SetupCameraMode()
-    {
-        if (this.ZPress == true)
-        {
-            this.CameraState = ECameraState.FOCUS;
-            if (this.HasBlackBar == false && this.HasStartedFocus == false)
-            {
-                EnableFocusMode();
-            }
-            return;
-        }
-        if (this.HasBlackBar == true && this.HasStartedUnfocus == false)
-        {
-            DisableFocusMode();
-        }
-        if (CPositionEligibleForFirstPersonMode() && this.CameraState != ECameraState.FIRST_PERSON &&
-            this.CameraState != ECameraState.FREE && this.Player.PlayerState.State == PlayerState.EPlayerState.STAND)
-        {
-            this.CameraState = ECameraState.FIRST_PERSON;
-            this.Player.PlayerState.State = PlayerState.EPlayerState.LOOKING;
-            this.xAxisRot = 0f;
-            this.lookWeight = 0f;
-            return;
-        }
-        if (CPositionEligibleForFreeMode() && this.CameraState != ECameraState.FREE && this.CameraState != ECameraState.FIRST_PERSON)
-        {
-            this.CameraState = ECameraState.FREE;
-            this.SavedRigToGoal = Vector3.zero;
-            return;
-        }
-    }
+  public void EnableFocusMode()
+  {
+    _hasStartedFocus = true;
+    // appear black bar
+    _hasBlackBar = true;
+    _hasStartedFocus = false;
+  }
 
-    private void ActionByCameraMode()
-    {
-        switch (this.CameraState)
-        {
-            case ECameraState.FOCUS:
-                //RunFocusMode();
-                break;
+  public void DisableFocusMode()
+  {
+    _hasStartedUnfocus = true;
+    // remove black bar
+    _hasBlackBar = false;
+    _hasStartedUnfocus = false;
+  }
 
-            case ECameraState.FREE:
-                //RunFreeMode();
-                break;
+  private Vector3 RigToGoalDirection()
+  {
+    Vector3 rigToGoalDirection = Vector3.Normalize(_playerOffset - MainCamera.transform.position);
+    rigToGoalDirection.y = 0f;
+    return rigToGoalDirection;
+  }
 
-            case ECameraState.FIRST_PERSON:
-                RunFirstPersonMode();
-                break;
+  private void ResetCamera()
+  {
+    _lookWeight = Mathf.Lerp(_lookWeight, 0f, Time.deltaTime * _firstPersonCameraSpeed);
+    MainCamera.transform.localRotation = Quaternion.Lerp(MainCamera.transform.localRotation, Quaternion.identity, Time.deltaTime);
+  }
 
-            case ECameraState.STANDARD:
-                //RunStandardMode();
-                break;
-        }
-        //CompensateForWalls();
-        SmoothPosition(this.MainCamera.transform.position, this.TargetPosition);
-        this.MainCamera.transform.LookAt(this.LookAt);
-    }
+  private bool CPositionEligibleForFirstPersonMode()
+  {
+    return _rightStickInput.x < 0.1f && _rightStickInput.x > -0.1f && _rightStickInput.y > 0.3f;
+  }
 
-    private void SmoothPosition(Vector3 fromPosition, Vector3 toPosition)
-    {
-        this.MainCamera.transform.position = Vector3.SmoothDamp(fromPosition, toPosition, ref this.VelocityCamSmooth, this.CamSmoothDampTime);
-    }
+  private bool CPositionEligibleForFreeMode()
+  {
+    return _rightStickInput.x > 0.1f || _rightStickInput.x < -0.1f || (_rightStickInput.y > 0.1f && _rightStickInput.y < 0.4f) || _rightStickInput.y < -0.1f;
+  }
 
-    private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)
-    {
-
-    }
-
-    private void RunFirstPersonMode()
-    {
-        this.xAxisRot += (this.LeftStickInput.y * 0.5f * this._firstPersonCameraSpeed);
-        this.xAxisRot = Mathf.Clamp(this.xAxisRot, this._firstPersonXAxisClamp.x, this._firstPersonXAxisClamp.y);
-        this.FirstPersonCameraPosition.Transform.localRotation = Quaternion.Euler(this.xAxisRot, 0f, 0f);
-
-        Quaternion rotationShift = Quaternion.FromToRotation(this.MainCamera.transform.forward, this.FirstPersonCameraPosition.Transform.forward);
-        this.MainCamera.transform.rotation = rotationShift * this.MainCamera.transform.rotation;
-
-        this.lookWeight = Mathf.Lerp(this.lookWeight, 1.0f, Time.deltaTime * this._firstPersonCameraSpeed);
-
-        Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, 120f * (this.LeftStickInput.x < 0f ? -1f : 1f), 0f), Mathf.Abs(this.LeftStickInput.x));
-        Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
-        this.Player.transform.rotation = (this.Player.transform.rotation * deltaRotation);
-
-        this.TargetPosition = this.FirstPersonCameraPosition.Transform.position;
-
-        this.LookAt = Vector3.Lerp(this.TargetPosition + this.Player.transform.forward, this.MainCamera.transform.position + this.MainCamera.transform.forward, 0.1f * Time.deltaTime);
-        this.LookAt = (Vector3.Lerp(this.MainCamera.transform.position + this.MainCamera.transform.forward, this.LookAt, Vector3.Distance(this.MainCamera.transform.position, this.FirstPersonCameraPosition.Transform.position)));
-    }
-
-    public void FadeToBlack()
-    {
-        // https://discussions.unity.com/t/free-basic-camera-fade-in-script/686081
-    }
-
-    public void FadeFromBlack()
-    {
-
-    }
-
-    public void AllBlack()
-    {
-
-    }
-
-    public void EnableFocusMode()
-    {
-        this.HasStartedFocus = true;
-        // appear black bar
-        this.HasBlackBar = true;
-        this.HasStartedFocus = false;
-    }
-
-    public void DisableFocusMode()
-    {
-        this.HasStartedUnfocus = true;
-        // remove black bar
-        this.HasBlackBar = false;
-        this.HasStartedUnfocus = false;
-    }
-
-    private Vector3 RigToGoalDirection()
-    {
-        Vector3 rigToGoalDirection = Vector3.Normalize(this.PlayerOffset - this.MainCamera.transform.position);
-        rigToGoalDirection.y = 0f;
-        return rigToGoalDirection;
-    }
-
-    private void ResetCamera()
-    {
-        this.lookWeight = Mathf.Lerp(this.lookWeight, 0f, Time.deltaTime * this._firstPersonCameraSpeed);
-        this.MainCamera.transform.localRotation = Quaternion.Lerp(this.MainCamera.transform.localRotation, Quaternion.identity, Time.deltaTime);
-    }
-
-    private bool CPositionEligibleForFirstPersonMode()
-    {
-        return this.RightStickInput.x < 0.1f && this.RightStickInput.x > -0.1f && this.RightStickInput.y > 0.3f;
-    }
-
-    private bool CPositionEligibleForFreeMode()
-    {
-        return this.RightStickInput.x > 0.1f || this.RightStickInput.x < -0.1f || (this.RightStickInput.y > 0.1f && this.RightStickInput.y < 0.4f) || this.RightStickInput.y < -0.1f;
-    }
-
-    private enum ECameraState
-    {
-        STANDARD,
-        FOCUS,
-        FREE,
-        FIRST_PERSON
-    }
+  private enum ECameraState
+  {
+    STANDARD,
+    FOCUS,
+    FREE,
+    FIRST_PERSON
+  }
 
 }
 
 struct CameraPosition
 {
-    public Vector3 Position { get; set; }
-    public Transform Transform { get; set; }
+  public Vector3 Position { get; set; }
+  public Transform Transform { get; set; }
 
-    public void Init(Vector3 position, Transform transform, Transform parent)
-    {
-        Position = position;
-        Transform = transform;
-        Transform.localPosition = Vector3.zero;
-        Transform.localPosition = position;
-        Transform.parent = parent;
-    }
+  public void Init(string gameObjectName, Vector3 position, Transform transform, Transform parent)
+  {
+    Position = position;
+    Transform = transform;
+    Transform.name = gameObjectName;
+    Transform.localPosition = Vector3.zero;
+    Transform.localPosition = position;
+    Transform.parent = parent;
+  }
 }

@@ -6,7 +6,7 @@ public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance { get; private set; }
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {

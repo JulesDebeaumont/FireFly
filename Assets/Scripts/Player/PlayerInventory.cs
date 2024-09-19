@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
             Item = Item,
             Count = Count
         };
-        this.Items.Add(itemToAdd);
+        Items.Add(itemToAdd);
     }
 
     private void LoadInventory()

@@ -7,12 +7,12 @@ public class Collectible : EnvironmentActor
     public CollectibleItem CollectibleItem;
     public int Flag = 0;
     public bool HopAtSpawn = false;
-    private bool HasHop = false;
+    private bool _hasHop = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (this.Flag != 0 && SceneManager.Instance.IsFlagSet(this.Flag))
+        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
         {
             Destroy(this.gameObject);
             return;
@@ -21,13 +21,13 @@ public class Collectible : EnvironmentActor
 
     void Update()
     {
-        if (this.HopAtSpawn == false)
+        if (HopAtSpawn == false)
         {
             StandAndRotate();
         }
         else
         {
-            if (this.HasHop == false)
+            if (_hasHop == false)
             {
                 Hop();
             }
@@ -59,11 +59,11 @@ public class Collectible : EnvironmentActor
         }
         this.CollectibleItem.Collect();
         */
-        if (this.Flag != 0)
+        if (Flag != 0)
         {
             SetFlag();
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     private void StandAndRotate()
@@ -73,13 +73,13 @@ public class Collectible : EnvironmentActor
 
     private void SetFlag()
     {
-        SceneManager.Instance.SetFlag(this.Flag);
+        SceneManager.Instance.SetFlag(Flag);
     }
 
     private void Hop()
     {
         // TODO
-        this.HasHop = true;
+        _hasHop = true;
     }
 
 }

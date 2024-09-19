@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    private List<int> Flags = new List<int>();
     public static SceneManager Instance { get; private set; }
+    private List<int> _flags = new List<int>();
 
     private void Awake()
     {
@@ -21,15 +21,15 @@ public class SceneManager : MonoBehaviour
 
     public bool IsFlagSet(int flag)
     {
-        return this.Flags.Contains(flag);
+        return _flags.Contains(flag);
     }
 
     public void SetFlag(int flag)
     {
-        if (this.Flags.Contains(flag))
+        if (_flags.Contains(flag))
         {
             return;
         }
-        this.Flags.Add(flag);
+        _flags.Add(flag);
     }
 }

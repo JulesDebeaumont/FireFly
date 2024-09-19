@@ -12,7 +12,7 @@ public class RoomEnemyClear : EnvironmentActor
     // Start is called before the first frame update
     void Awake()
     {
-        if (this.Flag != 0 && SceneManager.Instance.IsFlagSet(this.Flag))
+        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
         {
             DestroyEnemies();
             Destroy(this.gameObject);
@@ -23,15 +23,15 @@ public class RoomEnemyClear : EnvironmentActor
     // Update is called once per frame
     void Update()
     {
-        if (!this.EnemyList.Any(EnemyList => EnemyList != null))
+        if (!EnemyList.Any(EnemyList => EnemyList != null))
         {
-            SceneManager.Instance.SetFlag(this.Flag);
+            SceneManager.Instance.SetFlag(Flag);
         }
     }
 
     private void DestroyEnemies()
     {
-        foreach (Enemy? enemy in this.EnemyList)
+        foreach (Enemy? enemy in EnemyList)
         {
             if (enemy == null)
             {

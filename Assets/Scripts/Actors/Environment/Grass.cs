@@ -11,7 +11,7 @@ public class Grass : EnvironmentActor
     public int Flag = 0;
     public bool HasBreak = false;
     public bool IsBeingLift = false;
-    private static readonly DropTable DropTable = new DropTable
+    private static readonly DropTable _dropTable = new DropTable
     {
         Data = new Dictionary<Type, int>
         {
@@ -23,7 +23,7 @@ public class Grass : EnvironmentActor
     // Update is called once per frame
     void Update()
     {
-        if (false && this.HasBreak == false)
+        if (false && HasBreak == false)
         {
             Break();
         }
@@ -31,8 +31,8 @@ public class Grass : EnvironmentActor
 
     private void Break()
     {
-        this.HasBreak = true;
-        Item? ItemToSpawn = DropTable.Pick();
+        HasBreak = true;
+        Item? ItemToSpawn = _dropTable.Pick();
         if (ItemToSpawn != null)
         {
             Instantiate(new Collectible
@@ -42,11 +42,11 @@ public class Grass : EnvironmentActor
                     Item = ItemToSpawn
                 },
                 HopAtSpawn = true
-            }, this.transform.position, Quaternion.Euler(0,0,0));
+            }, transform.position, Quaternion.Euler(0,0,0));
         }
         // anim
         // wait for anim to end
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
 }

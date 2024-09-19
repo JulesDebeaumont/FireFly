@@ -11,9 +11,9 @@ public class Chest : EnvironmentActor
     // Start is called before the first frame update
     void Start()
     {
-        if (this.Flag != 0 && SceneManager.Instance.IsFlagSet(this.Flag))
+        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
         {
-            this.HasBeenLooted = true;
+            HasBeenLooted = true;
         }
     }
 

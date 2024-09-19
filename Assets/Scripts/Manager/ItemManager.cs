@@ -6,7 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance { get; private set; }
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {

@@ -12,14 +12,14 @@ public class DropTable
 
     public Item? Pick()
     {
-        int nullChancePercentage = 100 - this.Data.Values.Sum();
+        int nullChancePercentage = 100 - Data.Values.Sum();
         int randomValue = UnityEngine.Random.Range(0, 100);
         if (randomValue < nullChancePercentage)
         {
             return null;
         }
         randomValue -= nullChancePercentage;
-        foreach (var entry in this.Data)
+        foreach (var entry in Data)
         {
             randomValue -= entry.Value;
             if (randomValue < 0)

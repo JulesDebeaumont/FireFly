@@ -1,12 +1,13 @@
 public static class EntranceTable
 {
-    private static int NextSceneId = 0;
-    private static int NextSpawnId = 0;
+  // TODO Monobehvior ?
+    private static int _sNextSceneId = 0;
+    private static int _sNextSpawnId = 0;
 
     public static void SetupNextSpawn(int sceneId, int spawnId)
     {
-        NextSceneId = sceneId;
-        NextSpawnId = spawnId;
+        _sNextSceneId = sceneId;
+        _sNextSpawnId = spawnId;
     }
 
     // TODO table
