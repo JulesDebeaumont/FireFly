@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Rigidbody Rigidbody;
     public PlayerState PlayerState;
     public PlayerInventory PlayerInventory;
     public PlayerEnergy PlayerEnergy;

@@ -268,17 +268,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2196539401983902741}
   MainCamera: {fileID: 3493489691370286816}
-  CameraState: 0
-  LookAt: {x: 0, y: 0, z: 0}
-  xAxisRot: 0
-  lookWeight: 0
-  DistanceUp: 0
-  HasStartedFocus: 0
-  HasStartedUnfocus: 0
-  HasBlackBar: 0
-  ZPress: 0
-  LeftStickInput: {x: 0, y: 0}
-  RightStickInput: {x: 0, y: 0}
+  _cameraState: 0
+  _lookAt: {x: 0, y: 0, z: 0}
+  _xAxisRot: 0
+  _lookDirection: {x: 0, y: 0, z: 0}
+  _currentLookDirection: {x: 0, y: 0, z: 0}
+  _hasStartedFocus: 0
+  _hasStartedUnfocus: 0
+  _hasBlackBar: 0
+  _zPress: 0
+  _distanceUpFree: 0
+  _distanceAwayFree: 0
+  _savedRigToGoal: {x: 0, y: 0, z: 0}
+  _lastStickMin: Infinity
+  _leftStickInput: {x: 0, y: 0}
+  _rightStickInput: {x: 0, y: 0}
 --- !u!1 &5524842967768020305
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +294,8 @@ GameObject:
   - component: {fileID: 2642445527324142496}
   - component: {fileID: 6106711565168299418}
   - component: {fileID: 2929889310567536727}
-  - component: {fileID: 2587032631382138618}
+  - component: {fileID: 5216034069896111649}
+  - component: {fileID: 4990591078042252743}
   - component: {fileID: 2196539401983902741}
   m_Layer: 0
   m_Name: Player
@@ -307,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5524842967768020305}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.116597354, y: -0.5300445, z: -0.49999952}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,8 +369,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2587032631382138618
-BoxCollider:
+--- !u!136 &5216034069896111649
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -382,9 +387,38 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.42668733
+  m_Height: 1.8889816
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0.46218526, z: -0.045558244}
+--- !u!54 &4990591078042252743
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524842967768020305}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &2196539401983902741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98efea74584cf0d4fbf1d91c729826fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 4990591078042252743}
   PlayerState: {fileID: 8679405090335022471}
   PlayerInventory: {fileID: 9197164055371073475}
   PlayerEnergy: {fileID: 5061604892908232968}
@@ -495,10 +530,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2196539401983902741}
-  SpeedRatio: 1
-  LeftStickInput: {x: 0, y: 0}
-  RightStickInput: {x: 0, y: 0}
-  Angle: 0
+  _moveSpeed: 1
+  _leftStickInput: {x: 0, y: 0}
+  _rightStickInput: {x: 0, y: 0}
+  _playerAngle: 0
 --- !u!1 &8315681449015267438
 GameObject:
   m_ObjectHideFlags: 0

@@ -765,9 +765,6 @@
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>C:\Users\debju\Firefly\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Popcron.InputDevices.GameCubeController">
-        <HintPath>C:\Users\debju\Firefly\Library\ScriptAssemblies\Popcron.InputDevices.GameCubeController.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
         <HintPath>C:\Users\debju\Firefly\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>

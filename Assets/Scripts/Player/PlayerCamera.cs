@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// https://github.com/jm991/UnityThirdPersonTutorial/blob/master/Assets/Scripts/ThirdPersonCamera.cs#L303
-
-
 public class PlayerCamera : MonoBehaviour
 {
   public Player Player;
@@ -13,47 +10,52 @@ public class PlayerCamera : MonoBehaviour
   private readonly float _firstPersonCameraSpeed = 0.4f;
   private readonly Vector2 _firstPersonXAxisClamp = new Vector2(-70f, 90f);
   private readonly float _camSmoothDampTime = 0.1f;
+  private readonly float _rightStickThreshold = 0.3f;
+  private readonly float _distanceUp = 1.15f;
+  private readonly float _distanceUpMultiplier = 2.5f;
+  private readonly float _distanceAway = 3.5f;
+  private readonly float _distanceAwayMultiplier = 2f;
+  private readonly Vector2 _camMinDistanceFromPlayer = new Vector2(1f, -0.5f);
+  private readonly float _freeRotationDegreePerSecond = -0.2f;
+	private readonly float _lookDirDampTime = 0.1f;
 
   private Vector3 _targetPosition;
-  private Vector3 _savedRigToGoal;
   private Vector3 _velocityCamSmooth = Vector3.zero;
   private CameraPosition _firstPersonCameraPosition;
   private PlayerControl _playerControl;
   private Vector3 _playerOffset;
+  private Vector2 _rightStickPrevFrame = Vector2.zero;
+  private Vector3 _velocityLookDir = Vector3.zero;
 
+  [SerializeField] private ECameraState _cameraState = ECameraState.STANDARD;
 
-  [SerializeField]
-  private ECameraState _cameraState = ECameraState.STANDARD;
+  [SerializeField] private Vector3 _lookAt;
 
-  [SerializeField]
-  private Vector3 _lookAt;
+  [SerializeField] private float _xAxisRot = 0.0f;
 
-  [SerializeField]
-  private float _xAxisRot = 0.0f;
+  [SerializeField] private Vector3 _lookDirection;
 
-  [SerializeField]
-  private float _lookWeight = 0f;
+  [SerializeField] private Vector3 _currentLookDirection;
 
-  [SerializeField]
-  private readonly float _distanceUp;
+  [SerializeField] private bool _hasStartedFocus = false;
 
-  [SerializeField]
-  private bool _hasStartedFocus = false;
+  [SerializeField] private bool _hasStartedUnfocus = false;
 
-  [SerializeField]
-  private bool _hasStartedUnfocus = false;
+  [SerializeField] private bool _hasBlackBar = false;
 
-  [SerializeField]
-  private bool _hasBlackBar = false;
+  [SerializeField] private bool _zPress = false;
 
-  [SerializeField]
-  private bool _zPress = false;
+  [SerializeField] private float _distanceUpFree;
 
-  [SerializeField]
-  private Vector2 _leftStickInput = Vector2.zero;
+  [SerializeField] private float _distanceAwayFree;
 
-  [SerializeField]
-  private Vector2 _rightStickInput = Vector2.zero;
+  [SerializeField] private Vector3 _savedRigToGoal;
+
+  [SerializeField] private float _lastStickMin = float.PositiveInfinity;
+
+  [SerializeField] private Vector2 _leftStickInput = Vector2.zero;
+
+  [SerializeField] private Vector2 _rightStickInput = Vector2.zero;
 
   void Awake()
   {
@@ -61,8 +63,10 @@ public class PlayerCamera : MonoBehaviour
   }
 
   // Start is called before the first frame update
-  void Start() // put in awake ?
+  void Start()
   {
+    _lookDirection = Player.transform.forward;
+    _currentLookDirection = Player.transform.forward;
     _firstPersonCameraPosition = new CameraPosition();
     _firstPersonCameraPosition.Init
         (
@@ -72,6 +76,8 @@ public class PlayerCamera : MonoBehaviour
             Player.transform
         );
     _playerOffset = Player.transform.position + new Vector3(0f, _distanceUp, 0f);
+    _distanceUpFree = _distanceUp;
+    _distanceAwayFree = _distanceAway;
     _savedRigToGoal = RigToGoalDirection();
   }
 
@@ -128,7 +134,6 @@ public class PlayerCamera : MonoBehaviour
       _cameraState = ECameraState.FIRST_PERSON;
       Player.PlayerState.State = PlayerState.EPlayerState.LOOKING;
       _xAxisRot = 0f;
-      _lookWeight = 0f;
       return;
     }
     if (CPositionEligibleForFreeMode() && _cameraState != ECameraState.FREE && _cameraState != ECameraState.FIRST_PERSON)
@@ -144,7 +149,7 @@ public class PlayerCamera : MonoBehaviour
     switch (_cameraState)
     {
       case ECameraState.FOCUS:
-        //RunFocusMode();
+        RunFocusMode();
         break;
 
       case ECameraState.FREE:
@@ -156,7 +161,7 @@ public class PlayerCamera : MonoBehaviour
         break;
 
       case ECameraState.STANDARD:
-        //RunStandardMode();
+        RunStandardMode();
         break;
     }
     //CompensateForWalls();
@@ -171,7 +176,56 @@ public class PlayerCamera : MonoBehaviour
 
   private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)
   {
-
+		RaycastHit wallHit = new RaycastHit();		
+		if (Physics.Linecast(fromObject, toTarget, out wallHit)) 
+		{
+			toTarget = wallHit.point;
+		}		
+		/*
+		Vector3 camPosCache = GetComponent<Camera>().transform.position;
+		GetComponent<Camera>().transform.position = toTarget;
+		viewFrustum = DebugDraw.CalculateViewFrustum(GetComponent<Camera>(), ref nearClipDimensions);
+		
+		for (int i = 0; i < (viewFrustum.Length / 2); i++)
+		{
+			RaycastHit cWHit = new RaycastHit();
+			RaycastHit cCWHit = new RaycastHit();
+			
+			// Cast lines in both directions around near clipping plane bounds
+			while (Physics.Linecast(viewFrustum[i], viewFrustum[(i + 1) % (viewFrustum.Length / 2)], out cWHit) ||
+			       Physics.Linecast(viewFrustum[(i + 1) % (viewFrustum.Length / 2)], viewFrustum[i], out cCWHit))
+			{
+				Vector3 normal = wallHit.normal;
+				if (wallHit.normal == Vector3.zero)
+				{
+					// If there's no available wallHit, use normal of geometry intersected by LineCasts instead
+					if (cWHit.normal == Vector3.zero)
+					{
+						if (cCWHit.normal == Vector3.zero)
+						{
+							Debug.LogError("No available geometry normal from near clip plane LineCasts. Something must be amuck.", this);
+						}
+						else
+						{
+							normal = cCWHit.normal;
+						}
+					}	
+					else
+					{
+						normal = cWHit.normal;
+					}
+				}
+				
+				toTarget += (compensationOffset * normal);
+				GetComponent<Camera>().transform.position += toTarget;
+				
+				// Recalculate positions of near clip plane
+				viewFrustum = DebugDraw.CalculateViewFrustum(GetComponent<Camera>(), ref nearClipDimensions);
+			}
+		}
+		
+		GetComponent<Camera>().transform.position = camPosCache;
+		viewFrustum = DebugDraw.CalculateViewFrustum(GetComponent<Camera>(), ref nearClipDimensions);*/
   }
 
   private void RunFirstPersonMode()
@@ -182,8 +236,6 @@ public class PlayerCamera : MonoBehaviour
 
     Quaternion rotationShift = Quaternion.FromToRotation(MainCamera.transform.forward, _firstPersonCameraPosition.Transform.forward);
     MainCamera.transform.rotation = rotationShift * MainCamera.transform.rotation;
-
-    _lookWeight = Mathf.Lerp(_lookWeight, 1.0f, Time.deltaTime * _firstPersonCameraSpeed);
 
     Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, 120f * (_leftStickInput.x < 0f ? -1f : 1f), 0f), Mathf.Abs(_leftStickInput.x));
     Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
@@ -196,50 +248,54 @@ public class PlayerCamera : MonoBehaviour
   }
 
   private void RunFreeMode()
-  {/*
-    this.lookWeight = Mathf.Lerp(this.lookWeight, 0.0f, Time.deltaTime * firstPersonLookSpeed);
-
-    Vector3 rigToGoal = characterOffset - cameraXform.position;
+  {
+    Vector3 rigToGoal = _playerOffset - MainCamera.transform.position;
     rigToGoal.y = 0f;
-    Debug.DrawRay(cameraXform.transform.position, rigToGoal, Color.red);
 
-    // Panning in and out
-    // If statement works for positive values; don't tween if stick not increasing in either direction; also don't tween if user is rotating
-    // Checked against rightStickThreshold because very small values for rightY mess up the Lerp function
-    if (rightY < lastStickMin && rightY < -1f * rightStickThreshold && rightY <= rightStickPrevFrame.y && Mathf.Abs(rightX) < rightStickThreshold)
+    if (_rightStickInput.y < float.PositiveInfinity && _rightStickInput.y < -1f * _rightStickThreshold && _rightStickInput.y <= _rightStickPrevFrame.y && Mathf.Abs(_rightStickInput.x) < _rightStickThreshold)
     {
-      // Zooming out
-      distanceUpFree = Mathf.Lerp(distanceUp, distanceUp * distanceUpMultiplier, Mathf.Abs(rightY));
-      distanceAwayFree = Mathf.Lerp(distanceAway, distanceAway * distanceAwayMultipler, Mathf.Abs(rightY));
-      targetPosition = characterOffset + followXform.up * distanceUpFree - RigToGoalDirection * distanceAwayFree;
-      lastStickMin = rightY;
+      _distanceUpFree = Mathf.Lerp(_distanceUp, _distanceUp * _distanceUpMultiplier, Mathf.Abs(_rightStickInput.y));
+      _distanceAwayFree = Mathf.Lerp(_distanceAway, _distanceAway * _distanceAwayMultiplier, Mathf.Abs(_rightStickInput.y));
+      _targetPosition = _playerOffset + Player.transform.up * _distanceUpFree - RigToGoalDirection() * _distanceAwayFree;
+      _lastStickMin = _rightStickInput.y;
     }
-    else if (rightY > rightStickThreshold && rightY >= rightStickPrevFrame.y && Mathf.Abs(rightX) < rightStickThreshold)
+    else if (_rightStickInput.y > _rightStickThreshold && _rightStickInput.y >= _rightStickPrevFrame.y && Mathf.Abs(_rightStickInput.x) < _rightStickThreshold)
     {
-      // Zooming in
-      // Subtract height of camera from height of player to find Y distance
-      distanceUpFree = Mathf.Lerp(Mathf.Abs(transform.position.y - characterOffset.y), camMinDistFromChar.y, rightY);
-      // Use magnitude function to find X distance	
-      distanceAwayFree = Mathf.Lerp(rigToGoal.magnitude, camMinDistFromChar.x, rightY);
-      targetPosition = characterOffset + followXform.up * distanceUpFree - RigToGoalDirection * distanceAwayFree;
-      lastStickMin = float.PositiveInfinity;
+      _distanceUpFree = Mathf.Lerp(Mathf.Abs(MainCamera.transform.position.y - _playerOffset.y), _camMinDistanceFromPlayer.y, _rightStickInput.y);
+      _distanceAwayFree = Mathf.Lerp(rigToGoal.magnitude, _camMinDistanceFromPlayer.x, _rightStickInput.y);
+      _targetPosition = _playerOffset + Player.transform.up * _distanceUpFree - RigToGoalDirection() * _distanceAwayFree;
+      _lastStickMin = float.PositiveInfinity;
     }
 
-    // Store direction only if right stick inactive
-    if (rightX != 0 || rightY != 0)
+    if (_rightStickInput.x != 0 || _rightStickInput.y != 0)
     {
-      savedRigToGoal = RigToGoalDirection;
+      _savedRigToGoal = RigToGoalDirection();
     }
 
+    MainCamera.transform.RotateAround(_playerOffset, Player.transform.up, _freeRotationDegreePerSecond * (Mathf.Abs(_rightStickInput.x) > _rightStickThreshold ? _rightStickInput.x : 0f));
 
-    // Rotating around character
-    cameraXform.RotateAround(characterOffset, followXform.up, freeRotationDegreePerSecond * (Mathf.Abs(rightX) > rightStickThreshold ? rightX : 0f));
-
-    // Still need to track camera behind player even if they aren't using the right stick; achieve this by saving distanceAwayFree every frame
-    if (targetPosition == Vector3.zero)
+    if (_targetPosition == Vector3.zero)
     {
-      targetPosition = characterOffset + followXform.up * distanceUpFree - savedRigToGoal * distanceAwayFree;
-    }*/
+      _targetPosition = _playerOffset + Player.transform.up * _distanceUpFree - _savedRigToGoal * _distanceAwayFree;
+    }
+  }
+
+  private void RunStandardMode()
+  {
+    ResetCamera();
+    _lookDirection = Vector3.Lerp(Player.transform.right * (_leftStickInput.x < 0 ? 1f : -1f), Player.transform.forward * (_leftStickInput.y < 0 ? -1f : 1f), Mathf.Abs(Vector3.Dot(MainCamera.transform.forward, Player.transform.forward)));
+    _currentLookDirection = Vector3.Normalize(_playerOffset - MainCamera.transform.position);
+    _currentLookDirection.y = 0;
+    _currentLookDirection = Vector3.SmoothDamp(_currentLookDirection, _lookDirection, ref _velocityLookDir, _lookDirDampTime);
+    _targetPosition = _playerOffset + Player.transform.up * _distanceUp - Vector3.Normalize(_currentLookDirection) * _distanceAway;
+  }
+
+  private void RunFocusMode()
+  {
+    ResetCamera();
+    _lookDirection = Player.transform.forward;
+    _currentLookDirection = Player.transform.forward;
+    _targetPosition = _playerOffset + Player.transform.up * _distanceUp - _lookDirection * _distanceAway;
   }
 
   public void FadeToBlack()
@@ -282,7 +338,6 @@ public class PlayerCamera : MonoBehaviour
 
   private void ResetCamera()
   {
-    _lookWeight = Mathf.Lerp(_lookWeight, 0f, Time.deltaTime * _firstPersonCameraSpeed);
     MainCamera.transform.localRotation = Quaternion.Lerp(MainCamera.transform.localRotation, Quaternion.identity, Time.deltaTime);
   }
 

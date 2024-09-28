@@ -11,10 +11,10 @@ public class PlayerAction : MonoBehaviour
   private readonly float _runSpeedRatio = 7f;
 
   private PlayerControl _playerControl;
-  
+
 
   [SerializeField]
-  private float _speedRatio = 1f;
+  private float _moveSpeed = 1f;
 
   [SerializeField]
   private Vector2 _leftStickInput;
@@ -37,7 +37,7 @@ public class PlayerAction : MonoBehaviour
     ReadInput();
   }
 
-  void Update()
+  void FixedUpdate()
   {
     if (CanRotate())
     {
@@ -71,15 +71,14 @@ public class PlayerAction : MonoBehaviour
 
   private void Stand()
   {
-    if (_speedRatio > 1f)
+    if (_moveSpeed > 1f)
     {
-      _speedRatio = _speedRatio / 1.7f;
-      Player.transform.Translate(Vector3.forward * Time.deltaTime * _leftStickInput.y * _speedRatio);
-      Player.transform.Translate(Vector3.right * Time.deltaTime * _leftStickInput.x * _speedRatio);
+      _moveSpeed = _moveSpeed / 1.7f;
+      MovePlayerByInputAndCamera();
     }
     else
     {
-      _speedRatio = 1f;
+      _moveSpeed = 1f;
       Player.PlayerState.State = PlayerState.EPlayerState.STAND;
     }
   }
@@ -94,8 +93,7 @@ public class PlayerAction : MonoBehaviour
     {
       SetIsWalking();
     }
-    Player.transform.Translate(Vector3.forward * Time.deltaTime * _leftStickInput.y * _speedRatio);
-    Player.transform.Translate(Vector3.right * Time.deltaTime * _leftStickInput.x * _speedRatio);
+    MovePlayerByInputAndCamera();
   }
 
   private void Roll()
@@ -122,14 +120,14 @@ public class PlayerAction : MonoBehaviour
 
   private void SetIsRunning()
   {
-    _speedRatio = _runSpeedRatio;
+    _moveSpeed = _runSpeedRatio;
     Player.PlayerState.State = PlayerState.EPlayerState.RUN;
   }
 
   private void SetIsWalking()
   {
     float highestAnalogInput = Math.Abs(_leftStickInput.y) > Math.Abs(_leftStickInput.x) ? Math.Abs(_leftStickInput.y) : Math.Abs(_leftStickInput.x);
-    _speedRatio = highestAnalogInput * 10;
+    _moveSpeed = highestAnalogInput * 10;
     Player.PlayerState.State = PlayerState.EPlayerState.WALK;
   }
 
@@ -162,5 +160,21 @@ public class PlayerAction : MonoBehaviour
   private bool CanRotate()
   {
     return Array.Exists(FreeActionState, element => element == Player.PlayerState.State) && (_leftStickInput.y != 0f || _leftStickInput.x != 0f);
+  }
+
+  private void MovePlayerByInputAndCamera()
+  {
+    Vector3 stickDirection = new Vector3(_leftStickInput.x, 0, _leftStickInput.y);
+
+    Vector3 cameraDirection = Player.PlayerCamera.MainCamera.transform.forward;
+    cameraDirection.y = 0.0f;
+    Quaternion referentialShift = Quaternion.FromToRotation(Vector3.forward, Vector3.Normalize(cameraDirection));
+
+    Vector3 moveDirection = referentialShift * stickDirection;
+    if (moveDirection.magnitude > 0.1f)
+    {
+      Vector3 newPosition = Player.Rigidbody.position + moveDirection * _moveSpeed * Time.deltaTime;
+      Player.Rigidbody.MovePosition(newPosition);
+    }
   }
 }
