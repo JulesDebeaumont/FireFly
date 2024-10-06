@@ -81,7 +81,6 @@ public class PlayerCamera : MonoBehaviour
     _savedRigToGoal = RigToGoalDirection();
   }
 
-  // Update is called once per frame
   void LateUpdate()
   {
     SetupVectors();
@@ -171,7 +170,7 @@ public class PlayerCamera : MonoBehaviour
 
   private void SmoothPosition(Vector3 fromPosition, Vector3 toPosition)
   {
-    MainCamera.transform.position = Vector3.SmoothDamp(fromPosition, toPosition, ref _velocityCamSmooth, _camSmoothDampTime);
+    MainCamera.transform.position = Vector3.SmoothDamp(fromPosition, toPosition, ref _velocityCamSmooth, _camSmoothDampTime * Time.deltaTime);
   }
 
   private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)

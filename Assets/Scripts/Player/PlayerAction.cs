@@ -9,6 +9,7 @@ public class PlayerAction : MonoBehaviour
 
   private readonly float _rotationSpeed = 5f;
   private readonly float _runSpeedRatio = 7f;
+  private readonly float _defaultMoveSpeed = 1f;
 
   private PlayerControl _playerControl;
 
@@ -37,16 +38,16 @@ public class PlayerAction : MonoBehaviour
     ReadInput();
   }
 
-  void FixedUpdate()
+  void Update()
   {
     if (CanRotate())
     {
       Rotate();
     }
-    if (CanStand())
-    {
-      Stand();
-    }
+    // if (CanStand())
+    // {
+    //   Stand();
+    // }
     if (CanMove())
     {
       Move();
@@ -54,6 +55,16 @@ public class PlayerAction : MonoBehaviour
     if (CanRoll())
     {
       Roll();
+    }
+  }
+
+  void FixedUpdate()
+  {
+    // TODO remttre le contenu de Update() ici une fois corrigé
+    if (Player.PlayerState.State == PlayerState.EPlayerState.RUN || Player.PlayerState.State == PlayerState.EPlayerState.WALK)
+    {
+      MovePlayerByInputAndCamera();
+
     }
   }
 
@@ -74,7 +85,6 @@ public class PlayerAction : MonoBehaviour
     if (_moveSpeed > 1f)
     {
       _moveSpeed = _moveSpeed / 1.7f;
-      MovePlayerByInputAndCamera();
     }
     else
     {
@@ -93,7 +103,6 @@ public class PlayerAction : MonoBehaviour
     {
       SetIsWalking();
     }
-    MovePlayerByInputAndCamera();
   }
 
   private void Roll()
@@ -173,8 +182,29 @@ public class PlayerAction : MonoBehaviour
     Vector3 moveDirection = referentialShift * stickDirection;
     if (moveDirection.magnitude > 0.1f)
     {
-      Vector3 newPosition = Player.Rigidbody.position + moveDirection * _moveSpeed * Time.deltaTime;
+      Vector3 newPosition = Player.transform.position + (moveDirection * _moveSpeed * Time.deltaTime);
       Player.Rigidbody.MovePosition(newPosition);
     }
+  }
+
+  private void ResetSpeed()
+  {
+    _moveSpeed = _defaultMoveSpeed;
+  }
+
+  public void SetupReadMode() 
+  {
+    Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+    // animation stand
+    ResetSpeed();
+    // camera int
+  }
+
+  public void ExitReadMode()
+  {
+    Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+        // animation stand
+    ResetSpeed();
+    // camera out
   }
 }
