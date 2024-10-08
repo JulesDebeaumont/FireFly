@@ -641,6 +641,17 @@ MonoBehaviour:
   UIDialogBoxImage: {fileID: 2178354959016367042}
   DialogText: {fileID: 5700397033471946438}
   State: 0
+  _animationTimestampFade: 0
+  _animationTimestampScale: 0
+  _writeTextTimestamp: 0
+  _fadeRunning: 0
+  _scaleRunning: 0
+  _writeRunning: 0
+  _writeCurrentIndex: 0
+  _flattenAllText: 
+  _targetColor: {r: 0, g: 0, b: 0, a: 0}
+  _aPress: 0
+  _bPress: 0
 --- !u!1 &7697704125154536916
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +837,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

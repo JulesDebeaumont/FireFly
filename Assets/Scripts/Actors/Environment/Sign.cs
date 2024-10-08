@@ -18,12 +18,11 @@ public class Sign : EnvironmentActor
       //ReadInput(); // TODO mettre dans un manager, on va pas s'amuser à avoir des propriétés dans tout les actors
     }
 
-    void FixedUpdate()
+    void Update()
     {
-      if (Input.GetKeyDown(KeyCode.Space))
+      if (Input.GetKeyDown(KeyCode.Y))
       {
           var dialogFOund = DialogTable.GetDialogById(DialogId);
-          Debug.Log(dialogFOund);
           DialogManager.Instance.SetupDialog(dialogFOund);
       }
       

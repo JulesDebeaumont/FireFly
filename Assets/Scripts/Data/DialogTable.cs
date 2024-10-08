@@ -26,6 +26,24 @@ public static class DialogTable
     };
 
     private readonly static Dialog DefaultDialog = new Dialog();
+    private readonly static Dialog DefaultDialog2 = new Dialog()
+    {
+        PiecesOfText = new List<Dialog.PieceOfText>
+        {
+            new ()
+            {
+                Text = "Hello! sdfgsdfg",
+                Color = Dialog.PieceOfText.EPieceOfTextColor.RED,
+                Animation = Dialog.PieceOfText.EPieceOfTextAnimation.NONE
+            },
+            new ()
+            {
+                Text = " la suite pas animé",
+                Color = Dialog.PieceOfText.EPieceOfTextColor.YELLOW,
+                Animation = Dialog.PieceOfText.EPieceOfTextAnimation.WOOBLE
+            }
+        }
+    };
 }
 
 public class Dialog
@@ -52,7 +70,8 @@ public class Dialog
             RED,
             YELLOW,
             GREEN,
-            BLUE
+            BLUE,
+            TRANSPARENT
         }
 
         public enum EPieceOfTextAnimation
