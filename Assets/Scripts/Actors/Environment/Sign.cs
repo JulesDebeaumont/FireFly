@@ -12,8 +12,21 @@ public class Sign : EnvironmentActor
 
     public int DialogId = 0; // sera dans l'interface, à surcharger
 
+
+    void Awake()
+    {
+      //ReadInput(); // TODO mettre dans un manager, on va pas s'amuser à avoir des propriétés dans tout les actors
+    }
+
     void FixedUpdate()
     {
+      if (Input.GetKeyDown(KeyCode.Space))
+      {
+          var dialogFOund = DialogTable.GetDialogById(DialogId);
+          Debug.Log(dialogFOund);
+          DialogManager.Instance.SetupDialog(dialogFOund);
+      }
+      
         // detect player near and in front of the sign and A press and _isBeingRead == false
         // Read()
 

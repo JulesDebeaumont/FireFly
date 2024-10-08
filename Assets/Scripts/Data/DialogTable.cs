@@ -1,17 +1,26 @@
+#nullable enable
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogTable
+public static class DialogTable
 {
 
-    public Dialog GetDialogById(int dialogId)
+    public static Dialog? GetDialogById(int dialogId)
     {
-        Data.TryGetValue(dialogId, out Dialog dialogFound);
-        return dialogFound;
+      return DefaultDialog; // TODO FIX
+        if (Data.TryGetValue(dialogId, out Dialog dialogFound))
+        {
+          return dialogFound;
+        }
+        else
+        {
+          return null;
+        }
     }
 
-    private Dictionary<int, Dialog> Data = new Dictionary<int, Dialog>
+    private static Dictionary<int, Dialog> Data = new Dictionary<int, Dialog>
     {
         {0, DefaultDialog}
     };

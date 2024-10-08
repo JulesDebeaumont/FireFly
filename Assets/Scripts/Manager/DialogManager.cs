@@ -22,22 +22,22 @@ public class DialogManager : MonoBehaviour
     private readonly float _nextDialogWaitDuration = 0.2f;
     private readonly float _defaultTextSpeed = 0.03f;
     private readonly Vector3 _openingFirstScaleStart = new Vector3(0.5f, 0.5f, 1f);
-    private readonly float _openingSecondScaleStart = 1.5f;
+    private readonly Vector3 _openingSecondScaleStart = new Vector3(1.5f, 1.5f, 1f);
     private readonly float _backgroundAlpha = 0.78f;
     private readonly Color _pendingColor = new Color(0.22f, 0.54f, 1f, 1f);
 
-    private float _animationTimestampFade = Time.time;
-    private float _animationTimestampScale = Time.time;
-    private bool _fadeRunning = false;
-    private bool _scaleRunning = false;
-    private int _writeCurrentIndex = 0;
-    private string _flattenAllText = "";
-    private Dictionary<Dialog.PieceOfText.EPieceOfTextColor, List<int[]>> _coloredTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextColor, List<int[]>> { };
-    private Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> { };
-    private Color _targetColor = new Color(0f, 0f, 0f, 0f);
-    private Dialog? _currentDialog = null;
-    private bool _aPress = false;
-    private bool _bPress = false;
+    [SerializeField] private float _animationTimestampFade;
+    [SerializeField] private float _animationTimestampScale;
+    [SerializeField] private bool _fadeRunning = false;
+    [SerializeField] private bool _scaleRunning = false;
+    [SerializeField] private int _writeCurrentIndex = 0;
+    [SerializeField] private string _flattenAllText = "";
+    [SerializeField] private Dictionary<Dialog.PieceOfText.EPieceOfTextColor, List<int[]>> _coloredTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextColor, List<int[]>> { };
+    [SerializeField] private Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> { };
+    [SerializeField] private Color _targetColor = new Color(0f, 0f, 0f, 0f);
+    [SerializeField] private Dialog? _currentDialog = null;
+    [SerializeField] private bool _aPress = false;
+    [SerializeField] private bool _bPress = false;
     private PlayerControl _playerControl;
 
 
@@ -140,7 +140,7 @@ public class DialogManager : MonoBehaviour
             return;
         }
         var elapsed = Time.time - _animationTimestampScale;
-        UiDialogBoxRectTransform.localScale = Mathf.Lerp(_openingFirstScaleStart, _openingSecondScaleStart, elapsed / _openingFirstScaleDuration);
+        UiDialogBoxRectTransform.localScale = Vector3.Lerp(_openingFirstScaleStart, _openingSecondScaleStart, elapsed / _openingFirstScaleDuration);
         if (elapsed > _openingFirstScaleDuration)
         {
             _scaleRunning = false;
@@ -153,12 +153,12 @@ public class DialogManager : MonoBehaviour
         if (!_scaleRunning)
         {
             _animationTimestampScale = Time.time;
-            UIDialogBox.scale.x = _openingSecondScaleStart; // already set if everything's fine
             _scaleRunning = true;
             return;
         }
         var elapsed = Time.time - _animationTimestampScale;
-        UIDialogBox.scale.x = Mathf.Lerp(_openingSecondScaleStart, 1.0f, elapsed / _openingSecondScaleDuration);
+        UiDialogBoxRectTransform.localScale = Vector3.Lerp(_openingSecondScaleStart, new Vector3(1f ,1f ,1f), elapsed / _openingSecondScaleDuration);
+
         if (elapsed > _openingSecondScaleDuration)
         {
             _scaleRunning = false;
@@ -169,9 +169,9 @@ public class DialogManager : MonoBehaviour
     private void Pending()
     {
         // TODO
-        var color = UIDialogPendingImage.color;
-        color.a = 1f;
-        UIDialogPendingImage.color = color;
+        var pendingColor = UIDialogPendingImage.color;
+        pendingColor.a = 1f;
+        UIDialogPendingImage.color = pendingColor;
         if (!_aPress && !_bPress)
         {
             return;
@@ -204,7 +204,7 @@ public class DialogManager : MonoBehaviour
     {
         _writeCurrentIndex = 0;
         var previousTextEndIndex = 0;
-        for (var i = 0; i <= _currentDialog.PiecesOfText.Count; i++)
+        for (var i = 0; i < _currentDialog.PiecesOfText.Count; i++)
         {
             var endIndex = previousTextEndIndex + _currentDialog.PiecesOfText[i].Text.Length;
             _flattenAllText += _currentDialog.PiecesOfText[i].Text;
@@ -216,7 +216,7 @@ public class DialogManager : MonoBehaviour
             }
             else
             {
-                _animatedTextIndexes.Add(_currentDialog.PiecesOfText[i].Color, new List<int[]> { new int[] { previousTextEndIndex, endIndex } });
+                _coloredTextIndexes.Add(_currentDialog.PiecesOfText[i].Color, new List<int[]> { new int[] { previousTextEndIndex, endIndex } });
             }
 
             // animation
@@ -247,18 +247,17 @@ public class DialogManager : MonoBehaviour
         {
             return;
         }
-        textInfo.characterInfo[_writeCurrentIndex].isVisible = false;
+        textInfo.characterInfo[_writeCurrentIndex].isVisible = true;
         _writeCurrentIndex += 1;
     }
 
     private void ColorText()
     {
+        DialogText.ForceMeshUpdate();
+        var textInfo = DialogText.textInfo;
         foreach (var entry in _coloredTextIndexes)
         {
-            var color = GetColorByPieceOfTextEnumColor(entry.Key);
-
-            DialogText.ForceMeshUpdate();
-            var textInfo = DialogText.textInfo;
+            var color32 = GetColor32ByPieceOfTextEnumColor(entry.Key);
 
             foreach (var arrayIndex in entry.Value)
             {
@@ -269,36 +268,39 @@ public class DialogManager : MonoBehaviour
                     {
                         continue;
                     }
-                    charInfo.colors32[i] = color;
+                    for (int j = 0; j < 4; j++) // 4 vertices
+                    {
+                        textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[j] = color32;
+                    }
                 }
             }
         }
     }
 
-    private Color GetColorByPieceOfTextEnumColor(Dialog.PieceOfText.EPieceOfTextColor color)
+    private Color32 GetColor32ByPieceOfTextEnumColor(Dialog.PieceOfText.EPieceOfTextColor color)
     {
         switch (color)
         {
             case Dialog.PieceOfText.EPieceOfTextColor.WHITE:
-                return new Color(1f, 1f, 1f, 1f);
+                return new Color32(255, 255, 255, 255);
 
             case Dialog.PieceOfText.EPieceOfTextColor.RED:
-                return new Color(0.94f, 0.25f, 0.25f, 1f);
+                return new Color32(240, 64, 64, 255);
 
             case Dialog.PieceOfText.EPieceOfTextColor.YELLOW:
-                return new Color(0.91f, 0.84f, 0.26f, 1f);
+                return new Color32(232, 214, 66, 255);
 
             case Dialog.PieceOfText.EPieceOfTextColor.GREEN:
-                return new Color(0.24f, 0.62f, 0.13f, 1f);
+                return new Color32(61, 158, 33, 255);
 
             case Dialog.PieceOfText.EPieceOfTextColor.BLUE:
-                return new Color(0.13f, 0.33f, 0.73f, 1f);
+                return new Color32(33, 84, 186, 255);
 
             case Dialog.PieceOfText.EPieceOfTextColor.BLACK:
-                return new Color(0.0f, 0.0f, 0.0f, 1f);
+                return new Color32(0, 0, 0, 255);
 
             default:
-                return new Color(1f, 1f, 1f, 1f);
+                return new Color32(255, 255, 255, 255);
         }
     }
 
@@ -349,10 +351,10 @@ public class DialogManager : MonoBehaviour
                     continue;
                 }
                 var vertices = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
-                for (int j = 0; j < 4; j++) // moving the 4 vertices at once
+                for (int j = 0; j < 4; j++) // 4 vertices
                 {
                     var origine = vertices[charInfo.vertexIndex + j];
-                    vertices[charInfo.vertexIndex + j] = origine + new Vector3(0, Mathf.Sin(Time.time * 2.0f + origine.x * 0.01f) * 10.f, 0);
+                    vertices[charInfo.vertexIndex + j] = origine + new Vector3(0, Mathf.Sin(Time.time * 2.0f + origine.x * 0.01f) * 10.0f, 0);
                 }
                 var meshInfo = textInfo.meshInfo[i];
                 meshInfo.mesh.vertices = meshInfo.vertices;
@@ -384,7 +386,9 @@ public class DialogManager : MonoBehaviour
             return;
         }
         var elapsed = Time.time - _animationTimestampFade;
-        UIDialogBoxImage.color.a = Mathf.Lerp(_backgroundAlpha, _targetColor.a, elapsed / _closingFadeDuration);
+        var closeColor = UIDialogPendingImage.color;
+        closeColor.a = Mathf.Lerp(_backgroundAlpha, _targetColor.a, elapsed / _openingFadeDuration);
+        UIDialogBoxImage.color = closeColor;
         if (elapsed > _closingFadeDuration)
         {
             UnsetTextAndIndexes();
@@ -415,10 +419,12 @@ public class DialogManager : MonoBehaviour
 
     private void SetupDialogHeightByRowCount(int rowCount)
     {
-        UIDialogBoxImage.preferredHeight = (rowCount * 25f) + 50f;
+        var nextSize = UiDialogBoxRectTransform.sizeDelta;
+        nextSize.y =  (rowCount * 25f) + 50f;
+        UiDialogBoxRectTransform.sizeDelta = nextSize;
     }
 
-    private void ReadInput()
+    private void ReadInput() // TODO mettre dans un manager singleton
     {
         _playerControl = new PlayerControl();
 

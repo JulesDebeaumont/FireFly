@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -109,6 +109,7 @@ Transform:
   - {fileID: 2642445527324142496}
   - {fileID: 7915369992787092329}
   - {fileID: 1727726722504431902}
+  - {fileID: 4205211152701056164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,8 +142,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4205211152701056164}
+  m_Children: []
   m_Father: {fileID: 3663414365157268907}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,7 +237,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 948848292646846526}
-  m_Father: {fileID: 7915369992787092329}
+  m_Father: {fileID: 3663414365157268907}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -636,8 +636,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIDialogBox: {fileID: 36543687488381416}
-  UIDialogBoxImage: {fileID: 0}
-  DialogText: {fileID: 0}
+  UiDialogBoxRectTransform: {fileID: 948848292646846526}
+  UIDialogPendingImage: {fileID: 2920001082567916779}
+  UIDialogBoxImage: {fileID: 2178354959016367042}
+  DialogText: {fileID: 5700397033471946438}
   State: 0
 --- !u!1 &7697704125154536916
 GameObject:
@@ -748,10 +750,10 @@ RectTransform:
   m_Father: {fileID: 948848292646846526}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: -150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8357151307806494943
 CanvasRenderer:
@@ -781,11 +783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' dfg dfg dg dfg dfg dfgdf gdg dfg d
-
-    sdf sdf sdf sdf sdfsd fs dfsd
-    fsdf sdf sdf fg dfg dfg dfg dfg dg sdf sdf sdf sdfs fsdf sdf sdf sdf sdf sdf
-    sdf '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
