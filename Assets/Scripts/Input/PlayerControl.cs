@@ -55,21 +55,21 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""A"",
+                    ""name"": ""APress"",
                     ""type"": ""Button"",
                     ""id"": ""2d180461-dee7-494d-a78a-2e791f87f1a3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""B"",
+                    ""name"": ""BPress"",
                     ""type"": ""Button"",
                     ""id"": ""c81cb855-da9a-43af-a10e-38f1f21d9f5c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -110,22 +110,22 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d09c1d1a-e4ee-4dff-912c-80f73463b55b"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""APress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""c0b088b8-b775-4622-a1ea-842bcc7f9b54"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""B"",
+                    ""action"": ""BPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -139,8 +139,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Gameplay_LeftStick = m_Gameplay.FindAction("LeftStick", throwIfNotFound: true);
         m_Gameplay_RightStick = m_Gameplay.FindAction("RightStick", throwIfNotFound: true);
         m_Gameplay_Z = m_Gameplay.FindAction("Z", throwIfNotFound: true);
-        m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
-        m_Gameplay_B = m_Gameplay.FindAction("B", throwIfNotFound: true);
+        m_Gameplay_APress = m_Gameplay.FindAction("APress", throwIfNotFound: true);
+        m_Gameplay_BPress = m_Gameplay.FindAction("BPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,8 +205,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_LeftStick;
     private readonly InputAction m_Gameplay_RightStick;
     private readonly InputAction m_Gameplay_Z;
-    private readonly InputAction m_Gameplay_A;
-    private readonly InputAction m_Gameplay_B;
+    private readonly InputAction m_Gameplay_APress;
+    private readonly InputAction m_Gameplay_BPress;
     public struct GameplayActions
     {
         private @PlayerControl m_Wrapper;
@@ -214,8 +214,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @LeftStick => m_Wrapper.m_Gameplay_LeftStick;
         public InputAction @RightStick => m_Wrapper.m_Gameplay_RightStick;
         public InputAction @Z => m_Wrapper.m_Gameplay_Z;
-        public InputAction @A => m_Wrapper.m_Gameplay_A;
-        public InputAction @B => m_Wrapper.m_Gameplay_B;
+        public InputAction @APress => m_Wrapper.m_Gameplay_APress;
+        public InputAction @BPress => m_Wrapper.m_Gameplay_BPress;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -234,12 +234,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Z.started += instance.OnZ;
             @Z.performed += instance.OnZ;
             @Z.canceled += instance.OnZ;
-            @A.started += instance.OnA;
-            @A.performed += instance.OnA;
-            @A.canceled += instance.OnA;
-            @B.started += instance.OnB;
-            @B.performed += instance.OnB;
-            @B.canceled += instance.OnB;
+            @APress.started += instance.OnAPress;
+            @APress.performed += instance.OnAPress;
+            @APress.canceled += instance.OnAPress;
+            @BPress.started += instance.OnBPress;
+            @BPress.performed += instance.OnBPress;
+            @BPress.canceled += instance.OnBPress;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -253,12 +253,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Z.started -= instance.OnZ;
             @Z.performed -= instance.OnZ;
             @Z.canceled -= instance.OnZ;
-            @A.started -= instance.OnA;
-            @A.performed -= instance.OnA;
-            @A.canceled -= instance.OnA;
-            @B.started -= instance.OnB;
-            @B.performed -= instance.OnB;
-            @B.canceled -= instance.OnB;
+            @APress.started -= instance.OnAPress;
+            @APress.performed -= instance.OnAPress;
+            @APress.canceled -= instance.OnAPress;
+            @BPress.started -= instance.OnBPress;
+            @BPress.performed -= instance.OnBPress;
+            @BPress.canceled -= instance.OnBPress;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -281,7 +281,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnLeftStick(InputAction.CallbackContext context);
         void OnRightStick(InputAction.CallbackContext context);
         void OnZ(InputAction.CallbackContext context);
-        void OnA(InputAction.CallbackContext context);
-        void OnB(InputAction.CallbackContext context);
+        void OnAPress(InputAction.CallbackContext context);
+        void OnBPress(InputAction.CallbackContext context);
     }
 }

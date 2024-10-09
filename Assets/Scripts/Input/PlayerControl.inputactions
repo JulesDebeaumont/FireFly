@@ -33,21 +33,21 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "A",
+                    "name": "APress",
                     "type": "Button",
                     "id": "2d180461-dee7-494d-a78a-2e791f87f1a3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "B",
+                    "name": "BPress",
                     "type": "Button",
                     "id": "c81cb855-da9a-43af-a10e-38f1f21d9f5c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 }
             ],
@@ -88,22 +88,22 @@
                 {
                     "name": "",
                     "id": "d09c1d1a-e4ee-4dff-912c-80f73463b55b",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "A",
+                    "action": "APress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c0b088b8-b775-4622-a1ea-842bcc7f9b54",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "B",
+                    "action": "BPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

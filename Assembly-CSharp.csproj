@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Actors\Environment\Collectible.cs" />
      <Compile Include="Assets\Scripts\Manager\SceneManager.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
      <Compile Include="Assets\Scripts\Data\DialogTable.cs" />
      <Compile Include="Assets\Scripts\Actors\Environment\EnvironmentActor.cs" />
      <Compile Include="Assets\Scripts\Player\Items\Heart.cs" />

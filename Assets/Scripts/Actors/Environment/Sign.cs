@@ -10,7 +10,7 @@ public class Sign : EnvironmentActor
 {
     private bool _isBroken = false;
 
-    public int DialogId = 0; // sera dans l'interface, à surcharger
+    public int DialogId = 1; // sera dans l'interface, à surcharger
 
 
     void Awake()

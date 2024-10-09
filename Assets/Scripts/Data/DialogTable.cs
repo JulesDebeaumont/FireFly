@@ -9,21 +9,15 @@ public static class DialogTable
 
     public static Dialog? GetDialogById(int dialogId)
     {
-      return DefaultDialog; // TODO FIX
         if (Data.TryGetValue(dialogId, out Dialog dialogFound))
         {
-          return dialogFound;
+            return dialogFound;
         }
         else
         {
-          return null;
+            return null;
         }
     }
-
-    private static Dictionary<int, Dialog> Data = new Dictionary<int, Dialog>
-    {
-        {0, DefaultDialog}
-    };
 
     private readonly static Dialog DefaultDialog = new Dialog();
     private readonly static Dialog DefaultDialog2 = new Dialog()
@@ -42,19 +36,28 @@ public static class DialogTable
                 Color = Dialog.PieceOfText.EPieceOfTextColor.YELLOW,
                 Animation = Dialog.PieceOfText.EPieceOfTextAnimation.WOOBLE
             }
-        }
+        },
+
+    };
+
+    private static Dictionary<int, Dialog> Data = new Dictionary<int, Dialog>
+    {
+        {0, DefaultDialog},
+        {1, DefaultDialog2}
     };
 }
 
 public class Dialog
 {
     public EDialogBackground Background = EDialogBackground.STANDARD;
-    public bool InstantText = false;
+    public bool InstantText = false; // TODO
+    public bool CanBeSkipped = true; // TODO
     public float TextSpeed = 0.03f;
     public List<PieceOfText> PiecesOfText = new List<PieceOfText> { new PieceOfText() };
-    public int? WorldFlagToSet;
-    public int RowCount = 0;
-    public Dialog? NextDialog;
+    public int? WorldFlagIdToSet = null; // TODO
+    public int RowCount = 1;
+    public Dialog? NextDialog; // TODO
+
     // TODO choices
 
     public class PieceOfText

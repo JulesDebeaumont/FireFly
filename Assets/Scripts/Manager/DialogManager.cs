@@ -19,7 +19,6 @@ public class DialogManager : MonoBehaviour
     private readonly float _openingSecondScaleDuration = 0.1f;
     private readonly float _transitionWaitDuration = 0.5f;
     private readonly float _closingFadeDuration = 0.1f;
-    private readonly float _defaultTextSpeed = 0.03f;
     private readonly Vector3 _openingFirstScaleStart = new Vector3(0.7f, 0.7f, 1f);
     private readonly Vector3 _openingSecondScaleStart = new Vector3(1.05f, 1.05f, 1f);
     private readonly float _backgroundAlpha = 0.78f;
@@ -36,9 +35,6 @@ public class DialogManager : MonoBehaviour
     private Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> { };
     [SerializeField] private Color _targetColor = new Color(0f, 0f, 0f, 0f);
     [SerializeField] private Dialog? _currentDialog = null;
-    [SerializeField] private bool _aPress = false;
-    [SerializeField] private bool _bPress = false;
-    private PlayerControl _playerControl;
 
 
     void Awake()
@@ -51,7 +47,6 @@ public class DialogManager : MonoBehaviour
         {
             Instance = this;
         }
-        ReadInput();
     }
 
     void Start()
@@ -172,7 +167,7 @@ public class DialogManager : MonoBehaviour
         var pendingColor = UIDialogPendingImage.color;
         pendingColor.a = 1f;
         UIDialogPendingImage.color = pendingColor;
-        if (!_aPress && !_bPress)
+        if (!InputManager.Instance.ATap && !InputManager.Instance.BTap)
         {
             return;
         }
@@ -199,7 +194,7 @@ public class DialogManager : MonoBehaviour
         }
 
         var elapsed = Time.time - _writeTextTimestamp;
-        if (elapsed >= _defaultTextSpeed)
+        if (elapsed >= _currentDialog.TextSpeed)
         {
             if (_revealCurrentIndex < DialogText.text.Length)
             {
@@ -434,18 +429,8 @@ public class DialogManager : MonoBehaviour
     private void SetupDialogHeightByRowCount(int rowCount)
     {
         var nextSize = UiDialogBoxRectTransform.sizeDelta;
-        nextSize.y = (rowCount * 25f) + 100f;
+        nextSize.y = (rowCount * 25f) + 50f;
         UiDialogBoxRectTransform.sizeDelta = nextSize;
-    }
-
-    private void ReadInput() // TODO mettre dans un manager singleton
-    {
-        _playerControl = new PlayerControl();
-
-        _playerControl.Gameplay.A.performed += context => _aPress = true;
-        _playerControl.Gameplay.A.canceled += context => _aPress = false;
-        _playerControl.Gameplay.B.performed += context => _bPress = true;
-        _playerControl.Gameplay.B.canceled += context => _bPress = false;
     }
 
     public enum EDialogManagerState

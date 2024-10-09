@@ -375,6 +375,7 @@
 "Assets/Scripts/Data/EntranceTable.cs"
 "Assets/Scripts/Input/PlayerControl.cs"
 "Assets/Scripts/Manager/DialogManager.cs"
+"Assets/Scripts/Manager/InputManager.cs"
 "Assets/Scripts/Manager/InventoryManager.cs"
 "Assets/Scripts/Manager/ItemManager.cs"
 "Assets/Scripts/Manager/PlayerManager.cs"
