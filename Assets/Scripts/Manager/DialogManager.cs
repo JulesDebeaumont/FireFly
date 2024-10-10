@@ -30,11 +30,12 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private bool _fadeRunning = false;
     [SerializeField] private bool _scaleRunning = false;
     [SerializeField] private bool _writeRunning = false;
+    [SerializeField] private bool _transitionRunning = false;
     [SerializeField] private int _revealCurrentIndex = 0;
-    private Dictionary<int, Dialog.PieceOfText.EPieceOfTextColor> _coloredTextIndexes = new Dictionary<int, Dialog.PieceOfText.EPieceOfTextColor> { };
-    private Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> { };
     [SerializeField] private Color _targetColor = new Color(0f, 0f, 0f, 0f);
     [SerializeField] private Dialog? _currentDialog = null;
+    private Dictionary<int, Dialog.PieceOfText.EPieceOfTextColor> _coloredTextIndexes = new Dictionary<int, Dialog.PieceOfText.EPieceOfTextColor> { };
+    private Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new Dictionary<Dialog.PieceOfText.EPieceOfTextAnimation, List<int[]>> { };
 
 
     void Awake()
@@ -47,12 +48,6 @@ public class DialogManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    void Start()
-    {
-
-
     }
 
     void FixedUpdate()
@@ -97,12 +92,17 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void SetupDialog(Dialog dialog)
+    private void SetupDialog(Dialog dialog)
     {
         UnsetDialog();
         _currentDialog = dialog;
         SetupTextAndIndexes();
         SetupDialogHeightByRowCount(_currentDialog.RowCount);
+    }
+
+    public void OpenDialog(Dialog dialog)
+    {
+        SetupDialog(dialog);
         State = EDialogManagerState.OPENING1;
     }
 
@@ -163,29 +163,33 @@ public class DialogManager : MonoBehaviour
 
     private void Pending()
     {
-        // TODO
+        // TODO animation
         var pendingColor = UIDialogPendingImage.color;
         pendingColor.a = 1f;
         UIDialogPendingImage.color = pendingColor;
-        if (!InputManager.Instance.ATap && !InputManager.Instance.BTap)
+        if (InputManager.Instance.ATap || InputManager.Instance.BTap)
         {
-            return;
-        }
-        if (_currentDialog.NextDialog == null)
-        {
-            State = EDialogManagerState.CLOSING;
-        }
-        else
-        {
-            var colorHide = UIDialogPendingImage.color;
-            colorHide.a = 0f;
-            UIDialogPendingImage.color = colorHide;
-            State = EDialogManagerState.TRANSITIONING;
+            if (_currentDialog.NextDialogId == null)
+            {
+                State = EDialogManagerState.CLOSING;
+            }
+            else
+            {
+                var colorHide = UIDialogPendingImage.color;
+                colorHide.a = 0f;
+                UIDialogPendingImage.color = colorHide;
+                State = EDialogManagerState.TRANSITIONING;
+            }
         }
     }
 
     private void DisplayText()
     {
+        if (_currentDialog.InstantText)
+        {
+          InstantText();
+          return;
+        }
         if (!_writeRunning)
         {
             _writeTextTimestamp = Time.time;
@@ -203,15 +207,48 @@ public class DialogManager : MonoBehaviour
             }
             else
             {
+                if (_currentDialog.Choices.Count > 0)
+                {
+                    DisplayChoices();
+                }
                 State = EDialogManagerState.PENDING;
             }
             _writeRunning = false;
         }
     }
 
+    private void DisplayChoices()
+    {
+        // TODO
+    }
+
     private void HandleText()
     {
         AnimateText();
+        WatchForSkipText();
+    }
+
+    private void WatchForSkipText()
+    {
+        if (!_currentDialog.CanBeSkipped)
+        {
+          return;
+        }
+        if (InputManager.Instance.ATap || InputManager.Instance.BTap)
+        {
+          InstantText();
+        }
+    }
+
+    private void InstantText()
+    {
+        for (int i = 0; i < DialogText.text.Length; i++)
+        {
+            ColorText();
+            _revealCurrentIndex = i;
+        }
+        State = EDialogManagerState.PENDING;
+        _writeRunning = false;
     }
 
     private void SetupTextAndIndexes()
@@ -322,10 +359,6 @@ public class DialogManager : MonoBehaviour
                     CreepyAnimationText(entry.Value);
                     break;
 
-                case Dialog.PieceOfText.EPieceOfTextAnimation.SUSPENSE:
-                    SuspenseAnimationText(entry.Value);
-                    break;
-
                 case Dialog.PieceOfText.EPieceOfTextAnimation.WOOBLE:
                     WoobleAnimationText(entry.Value);
                     break;
@@ -336,12 +369,31 @@ public class DialogManager : MonoBehaviour
 
     private void CreepyAnimationText(List<int[]> entries)
     {
+        var textInfo = DialogText.textInfo;
+        foreach (var arrayIndex in entries)
+        {
+            for (int i = arrayIndex[0]; i < arrayIndex[1]; i++)
+            {
+                var charInfo = textInfo.characterInfo[i];
+                if (!charInfo.isVisible)
+                {
+                    continue;
+                }
+                var vertices = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
+                for (int j = 0; j < 4; j++) // 4 vertices
+                {
+                    var origine = vertices[charInfo.vertexIndex + j];
+                    vertices[charInfo.vertexIndex + j] = origine + new Vector3(Mathf.Sin(Time.time * 50f + origine.y * 0.01f + i * 0.2f) * 0.7f, Mathf.Sin(Time.time * 50f + origine.x * 0.01f + i * 0.2f) * 0.3f, 0);
+                }
+            }
 
-    }
-
-    private void SuspenseAnimationText(List<int[]> entries)
-    {
-
+            for (int i = 0; i < textInfo.meshInfo.Length; i++)
+            {
+                var meshInfo = textInfo.meshInfo[i];
+                meshInfo.mesh.vertices = meshInfo.vertices;
+                DialogText.UpdateGeometry(meshInfo.mesh, i);
+            }
+        } 
     }
 
     private void WoobleAnimationText(List<int[]> entries)
@@ -360,7 +412,7 @@ public class DialogManager : MonoBehaviour
                 for (int j = 0; j < 4; j++) // 4 vertices
                 {
                     var origine = vertices[charInfo.vertexIndex + j];
-                    vertices[charInfo.vertexIndex + j] = origine + new Vector3(0, Mathf.Sin(Time.time * 5f + origine.x * 0.01f) * 0.7f, 0);
+                    vertices[charInfo.vertexIndex + j] = origine + new Vector3(0, Mathf.Sin(Time.time * 5f + origine.x * 0.01f + 0.2f * i) * 0.7f, 0);
                 }
             }
 
@@ -375,7 +427,22 @@ public class DialogManager : MonoBehaviour
 
     private void Transitioning()
     {
-
+      if (!_transitionRunning)
+      {
+          var nextDialogId = _currentDialog.NextDialogId;
+          var nextDialog = DialogTable.GetDialogById(nextDialogId.Value);
+          UnsetDialog();
+          SetupDialog(nextDialog);
+          _animationTimestampFade = Time.time;
+          _transitionRunning = true;
+          return;
+      }
+      var elapsed = Time.time - _animationTimestampFade;
+      if (elapsed > _transitionWaitDuration)
+      {
+          State = EDialogManagerState.WRITING;
+          _transitionRunning = false;
+      }
     }
 
     private void UnsetDialog()

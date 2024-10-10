@@ -22,8 +22,8 @@ public class Sign : EnvironmentActor
     {
       if (Input.GetKeyDown(KeyCode.Y))
       {
-          var dialogFOund = DialogTable.GetDialogById(DialogId);
-          DialogManager.Instance.SetupDialog(dialogFOund);
+          var dialogFound = DialogTable.GetDialogById(DialogId);
+          DialogManager.Instance.OpenDialog(dialogFound);
       }
       
         // detect player near and in front of the sign and A press and _isBeingRead == false

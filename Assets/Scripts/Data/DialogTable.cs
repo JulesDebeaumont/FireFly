@@ -28,7 +28,7 @@ public static class DialogTable
             {
                 Text = "Hello! sdfgsdfg",
                 Color = Dialog.PieceOfText.EPieceOfTextColor.RED,
-                Animation = Dialog.PieceOfText.EPieceOfTextAnimation.NONE
+                Animation = Dialog.PieceOfText.EPieceOfTextAnimation.CREEPY
             },
             new ()
             {
@@ -50,20 +50,19 @@ public static class DialogTable
 public class Dialog
 {
     public EDialogBackground Background = EDialogBackground.STANDARD;
-    public bool InstantText = false; // TODO
-    public bool CanBeSkipped = true; // TODO
+    public bool InstantText = false;
+    public bool CanBeSkipped = true;
     public float TextSpeed = 0.03f;
     public List<PieceOfText> PiecesOfText = new List<PieceOfText> { new PieceOfText() };
-    public int? WorldFlagIdToSet = null; // TODO
+    public List<PieceOfTextChoice> Choices = new List<PieceOfTextChoice>{}; // TODO
+    public int? WorldFlagIdToSet = null; // TODO ici ou alors dans l'actor ?
     public int RowCount = 1;
-    public Dialog? NextDialog; // TODO
-
-    // TODO choices
+    public int? NextDialogId = null;
 
     public class PieceOfText
     {
         public string Text = "Hello!";
-        public EPieceOfTextColor Color = EPieceOfTextColor.WHITE;
+        public virtual EPieceOfTextColor Color { get; set;} = EPieceOfTextColor.WHITE;
         public EPieceOfTextAnimation Animation = EPieceOfTextAnimation.NONE;
 
         public enum EPieceOfTextColor
@@ -81,9 +80,14 @@ public class Dialog
         {
             NONE,
             CREEPY,
-            SUSPENSE,
             WOOBLE
         }
+    }
+
+    public class PieceOfTextChoice : PieceOfText
+    {
+        public override EPieceOfTextColor Color { get; set;} = EPieceOfTextColor.GREEN;
+        public int? NextDialogId = null;
     }
 
     public enum EDialogBackground
