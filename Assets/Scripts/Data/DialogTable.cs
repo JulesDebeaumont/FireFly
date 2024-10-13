@@ -81,8 +81,8 @@ public class Dialog
   public class DialogSequence
   {
     public EDialogBackground Background = EDialogBackground.STANDARD;
-    public bool InstantText = false;
-    public bool CanBeSkipped = true;
+    public bool InstantText = false; // TODO a tester
+    public bool CanBeSkipped = true; // TODO a tester
     public float RevealSpeed = 0.03f;
     public PieceOfText[] PiecesOfText = { new PieceOfText() };
     public PieceOfTextChoice[] Choices = { }; // TODO

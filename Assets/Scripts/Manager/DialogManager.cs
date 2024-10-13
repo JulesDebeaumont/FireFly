@@ -99,13 +99,13 @@ public class DialogManager : MonoBehaviour
 
   private void SetupDialog(Dialog dialog)
   {
-    UnsetDialog();
     _currentDialog = dialog;
     SetupSequence();
   }
 
   public void OpenDialog(Dialog dialog)
   {
+    UnsetDialog();
     SetupDialog(dialog);
     State = EDialogManagerState.OPENING1;
   }
