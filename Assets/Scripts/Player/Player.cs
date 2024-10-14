@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public PlayerUpgrade PlayerUpgrade;
     public PlayerAction PlayerAction;
     public PlayerCamera PlayerCamera;
-    public PlayerSave PlayerSave;
+    public PlayerFlag PlayerFlag;
 
     // Start is called before the first frame update
     void Start()

@@ -34,7 +34,7 @@ public class DialogManager : MonoBehaviour
   [SerializeField] private int _revealCurrentIndex = 0;
   [SerializeField] private int _sequenceIndex = 0;
   [SerializeField] private Color _targetColor = new Color(0f, 0f, 0f, 0f);
-  [SerializeField] private Dialog? _currentDialog = null;
+  private Dialog? _currentDialog = null;
   private Dictionary<int, Dialog.EPieceOfTextColor> _coloredTextIndexes = new() { };
   private Dictionary<Dialog.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new() { };
   private Dialog.DialogSequence _currentSequence

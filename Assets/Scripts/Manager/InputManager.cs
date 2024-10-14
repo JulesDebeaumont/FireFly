@@ -5,10 +5,10 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
-    public bool APress = false;
-    public bool ATap = false;
-    public bool BPress = false;
-    public bool BTap = false;
+    public bool APress { get; private set; } = false;
+    public bool ATap { get; private set; } = false;
+    public bool BPress { get; private set; } = false;
+    public bool BTap { get; private set; } = false;
     private PlayerControl _playerControl;
 
     void Awake()

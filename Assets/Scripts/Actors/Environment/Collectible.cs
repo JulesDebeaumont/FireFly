@@ -46,7 +46,7 @@ public class Collectible : EnvironmentActor
 
         // TODO put this in Player.cs
         /*
-        PlayerManager.Instance.PlayerState.State = PlayerState.EPlayerState.LOOTING;
+        PlayerManager.Instance.PlayerState.SetPlayerState(PlayerState.EPlayerState.LOOTING);
         if (this.CollectibleItem.Animation == PlayerState.ECollectAnimation.NONE)
         {
             // SoundManager.Instance.PlaySoundEffect(this.CollectibleItem.SoundEffect);

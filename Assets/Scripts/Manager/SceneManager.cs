@@ -5,9 +5,9 @@ using UnityEngine;
 public class SceneManager : MonoBehaviour
 {
     public static SceneManager Instance { get; private set; }
-    private List<int> _flags = new List<int>();
+    public List<SceneRoom> RoomList = new ();
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -17,19 +17,5 @@ public class SceneManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    public bool IsFlagSet(int flag)
-    {
-        return _flags.Contains(flag);
-    }
-
-    public void SetFlag(int flag)
-    {
-        if (_flags.Contains(flag))
-        {
-            return;
-        }
-        _flags.Add(flag);
     }
 }

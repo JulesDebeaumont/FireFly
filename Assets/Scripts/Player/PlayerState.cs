@@ -4,11 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState
 {
-    public EPlayerState State = EPlayerState.STAND;
-    public bool IsTargeting = false;
-    public Actor? Target;
+    private EPlayerState _state = EPlayerState.STAND;
+    public void SetPlayerState(EPlayerState state)
+    {
+        _state = state;
+    }
+
+    public EPlayerState GetPlayerState()
+    {
+        return _state;
+    }
 
     public enum EPlayerState
     {
@@ -28,7 +35,7 @@ public class PlayerState : MonoBehaviour
         LOOKING
     }
 
-    public enum ECollectAnimation
+    public enum ECollectAnimation // TODO déplacer ailleur wesh
     {
         NONE,
         SMALL,

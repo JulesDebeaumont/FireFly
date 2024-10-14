@@ -128,10 +128,10 @@ public class PlayerCamera : MonoBehaviour
       DisableFocusMode();
     }
     if (CPositionEligibleForFirstPersonMode() && _cameraState != ECameraState.FIRST_PERSON &&
-        _cameraState != ECameraState.FREE && Player.PlayerState.State == PlayerState.EPlayerState.STAND)
+        _cameraState != ECameraState.FREE && Player.PlayerState.GetPlayerState() == PlayerState.EPlayerState.STAND)
     {
       _cameraState = ECameraState.FIRST_PERSON;
-      Player.PlayerState.State = PlayerState.EPlayerState.LOOKING;
+      Player.PlayerState.GetPlayerState() = PlayerState.EPlayerState.LOOKING;
       _xAxisRot = 0f;
       return;
     }

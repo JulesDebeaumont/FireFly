@@ -84,9 +84,9 @@ public class Dialog
     public bool InstantText = false; // TODO a tester
     public bool CanBeSkipped = true; // TODO a tester
     public float RevealSpeed = 0.03f;
+    public bool AutoTransition = false; // TODO
     public PieceOfText[] PiecesOfText = { new PieceOfText() };
     public PieceOfTextChoice[] Choices = { }; // TODO
-    public int? WorldFlagIdToSet = null; // TODO ici ou alors dans l'actor ?
     public int RowCount = 1;
   }
 

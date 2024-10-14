@@ -61,7 +61,7 @@ public class PlayerAction : MonoBehaviour
   void FixedUpdate()
   {
     // TODO remttre le contenu de Update() ici une fois corrigé
-    if (Player.PlayerState.State == PlayerState.EPlayerState.RUN || Player.PlayerState.State == PlayerState.EPlayerState.WALK)
+    if (Player.PlayerState.GetPlayerState() == PlayerState.EPlayerState.RUN || Player.PlayerState.GetPlayerState() == PlayerState.EPlayerState.WALK)
     {
       MovePlayerByInputAndCamera();
 
@@ -89,7 +89,7 @@ public class PlayerAction : MonoBehaviour
     else
     {
       _moveSpeed = 1f;
-      Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+      Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.STAND);
     }
   }
 
@@ -107,11 +107,11 @@ public class PlayerAction : MonoBehaviour
 
   private void Roll()
   {
-    Player.PlayerState.State = PlayerState.EPlayerState.ROLLING;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.ROLLING);
     // anim
     // boost speed
     // bonk hitbox
-    Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.STAND);
   }
 
   private void Rotate()
@@ -130,14 +130,14 @@ public class PlayerAction : MonoBehaviour
   private void SetIsRunning()
   {
     _moveSpeed = _runSpeedRatio;
-    Player.PlayerState.State = PlayerState.EPlayerState.RUN;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.RUN);
   }
 
   private void SetIsWalking()
   {
     float highestAnalogInput = Math.Abs(_leftStickInput.y) > Math.Abs(_leftStickInput.x) ? Math.Abs(_leftStickInput.y) : Math.Abs(_leftStickInput.x);
     _moveSpeed = highestAnalogInput * 10;
-    Player.PlayerState.State = PlayerState.EPlayerState.WALK;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.WALK);
   }
 
   private bool CanRun()
@@ -194,7 +194,7 @@ public class PlayerAction : MonoBehaviour
 
   public void SetupReadMode() 
   {
-    Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.STAND);
     // animation stand
     ResetSpeed();
     // camera int
@@ -202,7 +202,7 @@ public class PlayerAction : MonoBehaviour
 
   public void ExitReadMode()
   {
-    Player.PlayerState.State = PlayerState.EPlayerState.STAND;
+    Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.STAND);
         // animation stand
     ResetSpeed();
     // camera out
