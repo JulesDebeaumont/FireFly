@@ -5,14 +5,14 @@ using UnityEngine;
 public class Collectible : EnvironmentActor
 {
     public CollectibleItem CollectibleItem;
-    public int Flag = 0;
+    public int FlagId = 0;
     public bool HopAtSpawn = false;
     private bool _hasHop = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
+        if (FlagId != 0 && PlayerManager.Instance.Player.PlayerFlag.IsCurrentSceneFlagSet(FlagId))
         {
             Destroy(this.gameObject);
             return;
@@ -59,7 +59,7 @@ public class Collectible : EnvironmentActor
         }
         this.CollectibleItem.Collect();
         */
-        if (Flag != 0)
+        if (FlagId != 0)
         {
             SetFlag();
         }
@@ -73,7 +73,7 @@ public class Collectible : EnvironmentActor
 
     private void SetFlag()
     {
-        SceneManager.Instance.SetFlag(Flag);
+        PlayerManager.Instance.Player.PlayerFlag.SetCurrentSceneFlag(FlagId);
     }
 
     private void Hop()

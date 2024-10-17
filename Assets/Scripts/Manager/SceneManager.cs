@@ -5,7 +5,10 @@ using UnityEngine;
 public class SceneManager : MonoBehaviour
 {
     public static SceneManager Instance { get; private set; }
-    public List<SceneRoom> RoomList = new ();
+    public SceneData CurrentScene;
+    public int CurrentSceneId;
+    public int CurrentSpawnId;
+    public int CurrentSetupId;
 
     void Awake()
     {
@@ -18,4 +21,18 @@ public class SceneManager : MonoBehaviour
             Instance = this;
         }
     }
+
+    public void LoadScene(string sceneName)
+    {
+      // wait a bit before loading for not-too-fast load, keep the odl n64 delay
+      // TODO
+      // https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html
+      // find the SceneData GameObject to put in the CurrentScene variable
+    }
+
+    public void LoadSceneWithRequestedSetup(string sceneName, int setupId)
+    {
+      // TODO
+    }
 }
+

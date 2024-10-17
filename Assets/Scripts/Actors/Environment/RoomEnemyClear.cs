@@ -7,12 +7,12 @@ using System.Linq;
 public class RoomEnemyClear : EnvironmentActor
 {
     public List<Enemy?> EnemyList = new List<Enemy?> {};
-    public int Flag = 0;
+    public int FlagId = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
+        if (FlagId != 0 && PlayerManager.Instance.Player.PlayerFlag.IsCurrentSceneFlagSet(FlagId))
         {
             DestroyEnemies();
             Destroy(this.gameObject);
@@ -25,7 +25,7 @@ public class RoomEnemyClear : EnvironmentActor
     {
         if (!EnemyList.Any(EnemyList => EnemyList != null))
         {
-            SceneManager.Instance.SetFlag(Flag);
+            PlayerManager.Instance.Player.PlayerFlag.SetCurrentSceneFlag(FlagId);
         }
     }
 

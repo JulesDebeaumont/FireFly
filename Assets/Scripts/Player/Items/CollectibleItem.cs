@@ -12,7 +12,7 @@ public class CollectibleItem
 // TODO put this in Player.cs
     public void Collect()
     {
-        PlayerManager.Instance.PlayerInventory.AddToInventory(Item, Count);
+        PlayerManager.Instance.Player.PlayerInventory.AddToInventory(Item, Count);
     }
 
 }

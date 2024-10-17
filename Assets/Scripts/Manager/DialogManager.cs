@@ -6,7 +6,6 @@ using TMPro;
 
 public class DialogManager : MonoBehaviour
 {
-  public static DialogManager Instance { get; private set; }
   public GameObject UIDialogBox;
   public RectTransform UiDialogBoxRectTransform;
   public Image UIDialogPendingImage;
@@ -40,19 +39,6 @@ public class DialogManager : MonoBehaviour
   private Dialog.DialogSequence _currentSequence
   {
     get { return _currentDialog.Sequences[_sequenceIndex]; }
-  }
-
-
-  void Awake()
-  {
-    if (Instance != null && Instance != this)
-    {
-      Destroy(this.gameObject);
-    }
-    else
-    {
-      Instance = this;
-    }
   }
 
   void FixedUpdate()

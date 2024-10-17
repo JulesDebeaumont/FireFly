@@ -131,7 +131,7 @@ public class PlayerCamera : MonoBehaviour
         _cameraState != ECameraState.FREE && Player.PlayerState.GetPlayerState() == PlayerState.EPlayerState.STAND)
     {
       _cameraState = ECameraState.FIRST_PERSON;
-      Player.PlayerState.GetPlayerState() = PlayerState.EPlayerState.LOOKING;
+      Player.PlayerState.SetPlayerState(PlayerState.EPlayerState.LOOKING);
       _xAxisRot = 0f;
       return;
     }
@@ -295,21 +295,6 @@ public class PlayerCamera : MonoBehaviour
     _lookDirection = Player.transform.forward;
     _currentLookDirection = Player.transform.forward;
     _targetPosition = _playerOffset + Player.transform.up * _distanceUp - _lookDirection * _distanceAway;
-  }
-
-  public void FadeToBlack()
-  {
-    // https://discussions.unity.com/t/free-basic-camera-fade-in-script/686081
-  }
-
-  public void FadeFromBlack()
-  {
-
-  }
-
-  public void AllBlack()
-  {
-
   }
 
   public void EnableFocusMode()

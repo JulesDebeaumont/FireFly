@@ -30,14 +30,14 @@ public static class SaveManager
 
     private static string GetSaveFilePath(int index)
     {
-        return Path.Combine(Path.Combine(["Assets", "PlayerSaveFiles"]), $"{index}.json");
+        return Path.Combine("Assets", "PlayerSaveFiles", index.ToString(), ".json");
     }
 
-    public class SaveFileFormat
+    public record SaveFileFormat
     {
         public int Id;
-        public Dictionnary<int, bool[]> SceneFlags = new();
-        public Dictionnary<PlayerFlag.EWorldFlagType, bool> WorldFlags = new();
+        public Dictionary<int, bool[]> SceneFlags = new ();
+        public Dictionary<PlayerFlag.EWorldFlagType, bool> WorldFlags = new();
         public int CurrentSceneId;
         public int CurrentSceneSpawnId;
     }

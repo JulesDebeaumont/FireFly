@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerUpgrade PlayerUpgrade;
     public PlayerAction PlayerAction;
     public PlayerCamera PlayerCamera;
+    public PlayerCameraEffect PlayerCameraEffect;
     public PlayerFlag PlayerFlag;
 
     // Start is called before the first frame update

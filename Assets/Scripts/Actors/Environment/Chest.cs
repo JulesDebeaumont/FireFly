@@ -5,13 +5,13 @@ using UnityEngine;
 public class Chest : EnvironmentActor
 {
     public CollectibleItem CollectibleItem;
-    public int Flag = 0;
+    public int FlagId = 0;
     public bool HasBeenLooted = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Flag != 0 && SceneManager.Instance.IsFlagSet(Flag))
+        if (FlagId != 0 && PlayerManager.Instance.Player.PlayerFlag.IsCurrentSceneFlagSet(FlagId))
         {
             HasBeenLooted = true;
         }

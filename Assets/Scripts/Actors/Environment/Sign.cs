@@ -8,17 +8,17 @@ using System;
 
 public class Sign : EnvironmentActor
 {
-    private TalkingActorUtil _talkingActorUtil;
+    private TalkingActorUtils _talkingActorUtils;
     private bool _isBroken = false;
 
     void Awake()
     {
-        _talkingActorUtil = new TalkingActorUtil();
+        _talkingActorUtils = new TalkingActorUtils();
     }
 
     void Update()
     {
-        if ()
+        
     }
 
     public void Break()

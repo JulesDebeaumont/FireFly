@@ -14,17 +14,13 @@ public class PlayerAction : MonoBehaviour
   private PlayerControl _playerControl;
 
 
-  [SerializeField]
-  private float _moveSpeed = 1f;
+  [SerializeField] private float _moveSpeed = 1f;
 
-  [SerializeField]
-  private Vector2 _leftStickInput;
+  [SerializeField] private Vector2 _leftStickInput;
 
-  [SerializeField]
-  private Vector2 _rightStickInput;
+  [SerializeField] private Vector2 _rightStickInput;
 
-  [SerializeField]
-  private float _playerAngle = 0f;
+  [SerializeField] private float _playerAngle = 0f;
 
 
   private readonly PlayerState.EPlayerState[] FreeActionState = {
@@ -153,12 +149,12 @@ public class PlayerAction : MonoBehaviour
 
   private bool CanStand()
   {
-    return Array.Exists(FreeActionState, element => element == Player.PlayerState.State) && _leftStickInput.y < 0.02f && _leftStickInput.y > -0.02f && _leftStickInput.x < 0.02f && _leftStickInput.x > -0.02f;
+    return Array.Exists(FreeActionState, element => element == Player.PlayerState.GetPlayerState()) && _leftStickInput.y < 0.02f && _leftStickInput.y > -0.02f && _leftStickInput.x < 0.02f && _leftStickInput.x > -0.02f;
   }
 
   private bool CanMove()
   {
-    return Array.Exists(FreeActionState, element => element == Player.PlayerState.State);
+    return Array.Exists(FreeActionState, element => element == Player.PlayerState.GetPlayerState());
   }
 
   private bool CanRoll()
@@ -168,7 +164,7 @@ public class PlayerAction : MonoBehaviour
 
   private bool CanRotate()
   {
-    return Array.Exists(FreeActionState, element => element == Player.PlayerState.State) && (_leftStickInput.y != 0f || _leftStickInput.x != 0f);
+    return Array.Exists(FreeActionState, element => element == Player.PlayerState.GetPlayerState()) && (_leftStickInput.y != 0f || _leftStickInput.x != 0f);
   }
 
   private void MovePlayerByInputAndCamera()

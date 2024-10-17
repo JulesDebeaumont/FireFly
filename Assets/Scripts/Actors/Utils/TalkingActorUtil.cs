@@ -11,6 +11,6 @@ public struct TalkingActorUtils
     public void StartDialog(int dialogId)
     {
         var dialogFound = DialogTable.GetDialogById(dialogId);
-        DialogManager.Instance.OpenDialog(dialogFound);
+        UiManager.Instance.DialogManager.OpenDialog(dialogFound);
     }
 }
