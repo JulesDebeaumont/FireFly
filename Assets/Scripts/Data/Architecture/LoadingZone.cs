@@ -2,43 +2,42 @@ using UnityEngine;
 
 public class LoadingZone : MonoBehaviour
 {
+  [SerializeField] private BoxCollider _boxCollider;
   public int SceneDestinationId = 1;
   public int SceneDestionationSpawnId = 1;
   public ELoadingZoneCameraTransition CameraTransition = ELoadingZoneCameraTransition.FADE_IN_BLACK;
   public bool KeepMusicOn = false;
   private bool _hasBeenTriggered = false;
+  private bool _isLoading = false;
 
   void Update()
   {
-    // TODO player is in box then load
-    if (false)
+    var playerTouchLoadingZone = _boxCollider.bounds.Intersects(PlayerManager.Instance.Player.Collider.bounds);
+    if (playerTouchLoadingZone && !_hasBeenTriggered && !_isLoading)
     {
+      // TODO Lock Camera position, and maybe rotation too
       StartTransition();
+      return;
+    }
+    if (_hasBeenTriggered && !PlayerManager.Instance.Player.PlayerCameraEffect.TransitionIsRunning && !_isLoading)
+    {
+      _isLoading = true;
+      Debug.Log("LOADDDD");
+      //LoadNext();
     }
   }
 
   private void StartTransition()
   { 
-    if (PlayerManager.Instance.Player.PlayerCameraEffect.InBetweenRunning)
-    {
-      LoadNext();
-      return;
-    }
-
-    if (PlayerManager.Instance.Player.PlayerCameraEffect.TransitionInRunning)
-    {
-      return;
-    }
     _hasBeenTriggered = true;
-    // TODO camera may stand where is it, but still focus on the character
     switch (CameraTransition)
     {
       case ELoadingZoneCameraTransition.FADE_IN_BLACK:
-        PlayerManager.Instance.Player.PlayerCameraEffect.FadeInBlack();
+        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_IN_BLACK);
         break;
 
       case ELoadingZoneCameraTransition.FADE_IN_WHITE:
-        PlayerManager.Instance.Player.PlayerCameraEffect.FadeInWhite();
+        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_IN_WHITE);
         break;
     }
   }

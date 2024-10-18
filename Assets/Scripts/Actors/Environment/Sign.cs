@@ -8,6 +8,7 @@ using System;
 
 public class Sign : EnvironmentActor
 {
+    public int DialogId = 1;
     private TalkingActorUtils _talkingActorUtils;
     private bool _isBroken = false;
 
@@ -18,7 +19,10 @@ public class Sign : EnvironmentActor
 
     void Update()
     {
-        
+      if (_talkingActorUtils.PlayerInFrontOfTransform() && Input.GetKey(KeyCode.Y))
+      {
+        _talkingActorUtils.StartDialog(DialogId);
+      }   
     }
 
     public void Break()

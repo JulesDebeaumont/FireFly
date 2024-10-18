@@ -28,33 +28,19 @@ public class PlayerCamera : MonoBehaviour
   private Vector3 _velocityLookDir = Vector3.zero;
 
   [SerializeField] private ECameraState _cameraState = ECameraState.STANDARD;
-
   [SerializeField] private Vector3 _lookAt;
-
   [SerializeField] private float _xAxisRot = 0.0f;
-
   [SerializeField] private Vector3 _lookDirection;
-
   [SerializeField] private Vector3 _currentLookDirection;
-
   [SerializeField] private bool _hasStartedFocus = false;
-
   [SerializeField] private bool _hasStartedUnfocus = false;
-
   [SerializeField] private bool _hasBlackBar = false;
-
   [SerializeField] private bool _zPress = false;
-
   [SerializeField] private float _distanceUpFree;
-
   [SerializeField] private float _distanceAwayFree;
-
   [SerializeField] private Vector3 _savedRigToGoal;
-
   [SerializeField] private float _lastStickMin = float.PositiveInfinity;
-
   [SerializeField] private Vector2 _leftStickInput = Vector2.zero;
-
   [SerializeField] private Vector2 _rightStickInput = Vector2.zero;
 
   void Awake()

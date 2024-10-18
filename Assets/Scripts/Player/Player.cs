@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody Rigidbody;
+    public CapsuleCollider Collider;
     public PlayerState PlayerState;
     public PlayerInventory PlayerInventory;
     public PlayerEnergy PlayerEnergy;

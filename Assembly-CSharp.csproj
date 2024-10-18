@@ -48,6 +48,7 @@
      <Compile Include="Assets/Scripts/Input/PlayerControl.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerCamera.cs" />
      <Compile Include="Assets/Scripts/Data/Tables/EntranceTable.cs" />
+     <Compile Include="Assets/Scripts/Actors/Utils/TalkingActorUtils.cs" />
      <Compile Include="Assets/Scripts/Data/Tables/DialogTable.cs" />
      <Compile Include="Assets/Scripts/Manager/PauseMenuManager.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerUpgrade.cs" />
@@ -67,11 +68,11 @@
      <Compile Include="Assets/Scripts/Actors/Environment/SmallRock.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerEnergy.cs" />
      <Compile Include="Assets/Scripts/Actors/Actor.cs" />
-     <Compile Include="Assets/Scripts/Actors/Utils/TalkingActorUtil.cs" />
      <Compile Include="Assets/Scripts/Data/Architecture/SceneSetup.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Torch.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Chest.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Grass.cs" />
+     <Compile Include="Assets/Scripts/Actors/TestActor.cs" />
      <Compile Include="Assets/Scripts/Manager/SaveManager.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerState.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerInventory.cs" />

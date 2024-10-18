@@ -2,7 +2,13 @@ using UnityEngine;
 
 public struct TalkingActorUtils
 {
-    public bool PlayerInFrontOfTransform(Transform actorTransform)
+    private Transform _actorTransform;
+    public TalkingActorUtils(Transform actorTransform)
+    {
+      _actorTransform = actorTransform;
+    }
+
+    public bool PlayerInFrontOfTransform()
     {
         return true;
         // check for ATap + in front of actor

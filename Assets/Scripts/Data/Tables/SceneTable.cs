@@ -5,7 +5,7 @@ public static class SceneTable
 {
   private static Dictionary<int, string> SceneList = new()
   {
-    {1, "TestScene"}
+    {0, "TestScene"}
   };
 
   public static string GetSceneNameById(int sceneId)

@@ -15,11 +15,8 @@ public class PlayerAction : MonoBehaviour
 
 
   [SerializeField] private float _moveSpeed = 1f;
-
   [SerializeField] private Vector2 _leftStickInput;
-
   [SerializeField] private Vector2 _rightStickInput;
-
   [SerializeField] private float _playerAngle = 0f;
 
 
