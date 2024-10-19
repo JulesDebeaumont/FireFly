@@ -68,6 +68,7 @@
      <Compile Include="Assets/Scripts/Actors/Environment/SmallRock.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerEnergy.cs" />
      <Compile Include="Assets/Scripts/Actors/Actor.cs" />
+     <Compile Include="Assets/Scripts/Data/Architecture/SceneRoomTransition.cs" />
      <Compile Include="Assets/Scripts/Data/Architecture/SceneSetup.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Torch.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Chest.cs" />
@@ -82,7 +83,6 @@
      <Compile Include="Assets/Scripts/Data/Tables/SceneTable.cs" />
      <Compile Include="Assets/Scripts/Data/Architecture/Pathway.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerFlag.cs" />
-     <Compile Include="Assets/Scripts/Data/Architecture/SceneTransition.cs" />
      <Compile Include="Assets/Scripts/Data/Architecture/SceneRoomMesh.cs" />
      <Compile Include="Assets/Scripts/Player/Items/Item.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Fire.cs" />

@@ -3,10 +3,9 @@ using UnityEngine;
 public class LoadingZone : MonoBehaviour
 {
   [SerializeField] private BoxCollider _boxCollider;
-  public int SceneDestinationId = 1;
-  public int SceneDestionationSpawnId = 1;
+  public int SceneDestinationId = 0;
+  public int SceneDestionationSpawnId = 0;
   public ELoadingZoneCameraTransition CameraTransition = ELoadingZoneCameraTransition.FADE_IN_BLACK;
-  public bool KeepMusicOn = false;
   private bool _hasBeenTriggered = false;
   private bool _isLoading = false;
 
@@ -22,8 +21,7 @@ public class LoadingZone : MonoBehaviour
     if (_hasBeenTriggered && !PlayerManager.Instance.Player.PlayerCameraEffect.TransitionIsRunning && !_isLoading)
     {
       _isLoading = true;
-      Debug.Log("LOADDDD");
-      //LoadNext();
+      LoadNext();
     }
   }
 
@@ -44,8 +42,7 @@ public class LoadingZone : MonoBehaviour
 
   private void LoadNext()
   {
-    var sceneToLoad = SceneTable.GetSceneNameById(SceneDestinationId);
-    SceneManager.Instance.LoadScene(sceneToLoad);
+    SceneManager.Instance.LoadScene(SceneDestinationId, SceneDestionationSpawnId);
   }
 
   public enum ELoadingZoneCameraTransition

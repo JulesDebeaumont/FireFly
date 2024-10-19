@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class SceneData : MonoBehaviour
 {
-  public int Id;
   public List<SceneSetup> SceneSetupList = new();
   public List<SceneSpawn> SpawnList = new();
-  public List<LoadingZone> LoadingZoneList = new();
-  public List<SceneRoomMesh> SceneRoomMeshList = new();
-  public List<SceneTransition> SceneTransitionList = new();
+  public LoadingZone[] LoadingZones = new();
+  public List<SceneRoomMesh> SceneRoomMeshes = new();
+  public SceneRoomTransition[] SceneRoomTransitions = new();
   public int WorldMapIndex;
   // TODO Collision
 
-  protected virtual int DetermineSetupIndexToLoad()
+  void Awake()
   {
-    return 0;
-    // Used when loading scene to check which setup to use
-    // Should be inherited
+    // Look for spawn with id from SceneManager
+    var spawn = SpawnList.Find(spawnFind => spawnFind.Id == SceneManager.Instance.CurrentSpawnId);
+
+    // Load RoomMesh prefab with RoomId from spawnId
+    LoadRoomMesh(spawn.SceneRoomId);
+
+    // get sceneSetup prefab
+    var setup = SceneSetupList.Find(setupFind => setupFind.Id == SceneManager.Instance.CurrentSetupId);
+    Instanciate(setup); // TODO
+    Instanciate(spawn); // TODO
   }
 
-  public SceneSetup GetSceneSetup() // Call dans le scene manager après avoir loader la scene, ensuite c'est le setup qui load le reste
+  public void LoadRoomMesh(int roomMeshId)
   {
-    return SceneSetupList[DetermineSetupIndexToLoad()];
+    var roomMesh = SceneRoomMeshes.Find(roomMeshFind => roomMeshFind.Id == roomMeshId);
+     Instanciate(roomMesh); // TODO 
   }
 
-  // TODO attacher le SceneData à une gameobject root dans la scene au même niveau que le MainContext prefab
-  // donc MonoBehaviour ?
+  private SceneSetup GetSceneSetup()
+  {
+    return SceneSetupList.FirstOrDefault(setup => setup.Id == SceneManager.Instance.CurrentSetupId);
+  }
 }

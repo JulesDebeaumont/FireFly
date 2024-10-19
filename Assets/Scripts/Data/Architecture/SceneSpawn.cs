@@ -5,6 +5,7 @@ using UnityEngine;
 public class SceneSpawn : MonoBehaviour
 {
     public int Id;
+    public int SceneRoomId;
     public ESpawnPlayerAnimation SpawnPlayerAnimation;
     public ESpawnUiAnimation SpawnUiAnimation;
 
