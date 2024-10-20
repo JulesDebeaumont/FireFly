@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneRoom : MonoBehaviour
 {
   public int Id;
-  public Actor[] Actors = new();
+  public Actor[] Actors;
   // TODO skybox settings
   // TODO Fog
   // TODO Music

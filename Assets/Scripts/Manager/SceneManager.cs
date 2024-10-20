@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class SceneCustomManager : MonoBehaviour
 {
-    public static SceneManager Instance { get; private set; }
+    public static SceneCustomManager Instance { get; private set; }
     public SceneData CurrentScene;
     public int CurrentSceneId;
-    public int CurrentSetupId;
     public int CurrentSpawnId;
     public int CurrentSceneRoomId;
 
     void Awake()
     {
         if (Instance != null && Instance != this)
-        {is
+        {
             Destroy(this.gameObject);
         }
         else
@@ -25,14 +24,13 @@ public class SceneManager : MonoBehaviour
     }
 
 
-    public void LoadScene(int sceneId, int sceneSpawnId, int setupId = 0)
+    public void LoadScene(int sceneId, int sceneSpawnId)
     {
       var sceneToLoad = SceneTable.GetSceneNameById(sceneId);
-      SceneManagement.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+      SceneManager.LoadScene(sceneToLoad);
       CurrentSceneId = sceneId;
       CurrentSpawnId = sceneSpawnId;
-      CurrentSetupId = setupId;
-      // TODO method to calculate setup, like worldflag or day/night stuff ?
+      // TODO check for world flag, special event redirect
     }
 }
 

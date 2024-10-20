@@ -1,39 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SceneData : MonoBehaviour
 {
-  public List<SceneSetup> SceneSetupList = new();
-  public List<SceneSpawn> SpawnList = new();
-  public LoadingZone[] LoadingZones = new();
-  public List<SceneRoomMesh> SceneRoomMeshes = new();
-  public SceneRoomTransition[] SceneRoomTransitions = new();
+  public List<SceneSpawn> SpawnList;
+  public LoadingZone[] LoadingZones;
+  public List<SceneRoom> SceneRoomList;
+  public SceneRoomTransition[] SceneRoomTransitions;
   public int WorldMapIndex;
   // TODO Collision
+  // https://discussions.unity.com/t/room-system-at-runtime/1539537/4
 
   void Awake()
   {
     // Look for spawn with id from SceneManager
-    var spawn = SpawnList.Find(spawnFind => spawnFind.Id == SceneManager.Instance.CurrentSpawnId);
+    var spawn = SpawnList.Find(spawnFind => spawnFind.Id == SceneCustomManager.Instance.CurrentSpawnId);
 
     // Load RoomMesh prefab with RoomId from spawnId
-    LoadRoomMesh(spawn.SceneRoomId);
+    LoadRoom(spawn.SceneRoomId);
 
     // get sceneSetup prefab
-    var setup = SceneSetupList.Find(setupFind => setupFind.Id == SceneManager.Instance.CurrentSetupId);
-    Instanciate(setup); // TODO
-    Instanciate(spawn); // TODO
+    // Instantiate(spawn); // TODO
   }
 
-  public void LoadRoomMesh(int roomMeshId)
+  public void LoadRoom(int roomId)
   {
-    var roomMesh = SceneRoomMeshes.Find(roomMeshFind => roomMeshFind.Id == roomMeshId);
-     Instanciate(roomMesh); // TODO 
-  }
-
-  private SceneSetup GetSceneSetup()
-  {
-    return SceneSetupList.FirstOrDefault(setup => setup.Id == SceneManager.Instance.CurrentSetupId);
+    var roomMesh = SceneRoomList.Find(roomFind => roomFind.Id == SceneCustomManager.Instance.CurrentSceneRoomId);
+     Instantiate(roomMesh); // TODO 
   }
 }

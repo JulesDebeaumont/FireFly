@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFlag
 {
-  public SceneManager SceneManager;
+  public SceneCustomManager SceneCustomManager;
   public Player Player;
   private Dictionary<int, bool[]> _sceneFlags = new();
   private Dictionary<EWorldFlagType, bool> _worldFlags = new();
@@ -39,17 +39,17 @@ public class PlayerFlag
 
   public bool IsCurrentSceneFlagSet(int index)
   {
-    return _sceneFlags[SceneManager.Instance.CurrentSceneId][index];
+    return _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index];
   }
 
   public void SetCurrentSceneFlag(int index)
   {
-    _sceneFlags[SceneManager.Instance.CurrentSceneId][index] = true;
+    _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index] = true;
   }
 
   public void UnsetCurrentSceneFlag(int index)
   {
-    _sceneFlags[SceneManager.Instance.CurrentSceneId][index] = false;
+    _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index] = false;
   }
 
 

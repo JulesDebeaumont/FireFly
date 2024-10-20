@@ -42,7 +42,7 @@ public class LoadingZone : MonoBehaviour
 
   private void LoadNext()
   {
-    SceneManager.Instance.LoadScene(SceneDestinationId, SceneDestionationSpawnId);
+    SceneCustomManager.Instance.LoadScene(SceneDestinationId, SceneDestionationSpawnId);
   }
 
   public enum ELoadingZoneCameraTransition
