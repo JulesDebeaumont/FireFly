@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public class RoomEnemyClear : EnvironmentActor
+public class RoomEnemyClear : Actor
 {
     public List<Enemy?> EnemyList = new List<Enemy?> {};
     public int FlagId = 0;
@@ -16,7 +16,6 @@ public class RoomEnemyClear : EnvironmentActor
         {
             DestroyEnemies();
             Destroy(this.gameObject);
-            return;
         }
     }
 

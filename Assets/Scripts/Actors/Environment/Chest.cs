@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : EnvironmentActor
+public class Chest : Actor
 {
     public CollectibleItem CollectibleItem;
     public int FlagId = 0;

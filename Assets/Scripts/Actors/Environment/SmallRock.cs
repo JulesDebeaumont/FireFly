@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class SmallRock : EnvironmentActor
+public class SmallRock : Actor
 {
     public int Flag = 0;
     public bool HasBreak = false;

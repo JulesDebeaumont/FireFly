@@ -180,6 +180,12 @@ public class PlayerAction : MonoBehaviour
     }
   }
 
+  public void SpawnAt(Transform transform)
+  {
+    Player.transform.rotation = transform.rotation;
+    Player.transform.position = transform.position;
+  }
+
   private void ResetSpeed()
   {
     _moveSpeed = _defaultMoveSpeed;

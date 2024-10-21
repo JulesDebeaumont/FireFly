@@ -1,8 +1,15 @@
 using UnityEngine;
 
-public class TestActor : MonoBehaviour
+public class TestActor : Actor
 {
   private bool _isRunning = false;
+
+  protected override void OnDisable()
+  {
+    base.OnDisable();
+    _isRunning = false;
+  }
+
   void Update()
   {
     if (Input.GetKey(KeyCode.W) && _isRunning == false)

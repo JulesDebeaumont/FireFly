@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SceneRoom : MonoBehaviour
 {
+  public GameObject GameObject;
   public int Id;
-  public Actor[] Actors;
+
   // TODO skybox settings
   // TODO Fog
   // TODO Music

@@ -87,12 +87,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3663414365157268907}
+  - component: {fileID: 6984948539856739293}
   m_Layer: 0
   m_Name: MainContext
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3663414365157268907
 Transform:
@@ -113,6 +114,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6984948539856739293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700402337792159227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c781a8e25db7b81974f95436f4791a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2763575979312229536
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +740,7 @@ GameObject:
   - component: {fileID: 1254445788090424186}
   - component: {fileID: 8635787468608501955}
   - component: {fileID: 1511320569816423003}
-  - component: {fileID: 2700941172474341516}
+  - component: {fileID: 4180058648526698043}
   - component: {fileID: 1023899012319836821}
   - component: {fileID: 3396717625608800888}
   m_Layer: 0
@@ -735,7 +748,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1727726722504431902
 Transform:
@@ -791,7 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2196539401983902741}
---- !u!114 &2700941172474341516
+--- !u!114 &4180058648526698043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -800,12 +813,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5592880357408613516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab048826fe70384fa29e20ff3cc9f6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 191589bb74ebbd5c492a46438de4bb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentScene: {fileID: 0}
   CurrentSceneId: 0
-  CurrentSetupId: 0
   CurrentSpawnId: 0
   CurrentSceneRoomId: 0
 --- !u!114 &1023899012319836821

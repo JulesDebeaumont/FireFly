@@ -6,27 +6,34 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class Sign : EnvironmentActor
+public class Sign : Actor
 {
-    public int DialogId = 1;
-    private TalkingActorUtils _talkingActorUtils;
-    private bool _isBroken = false;
+  public int DialogId = 1;
+  private TalkingActorUtils _talkingActorUtils;
+  private bool _isBroken = false;
 
-    void Awake()
+  void Awake()
+  {
+    base.Awake();
+    _talkingActorUtils = new TalkingActorUtils();
+  }
+
+  void OnDisable()
+  {
+    base.OnDisable();
+    _isBroken = false;
+  }
+
+  void Update()
+  {
+    if (_talkingActorUtils.PlayerInFrontOfTransform() && Input.GetKey(KeyCode.Y))
     {
-        _talkingActorUtils = new TalkingActorUtils();
+      _talkingActorUtils.StartDialog(DialogId);
     }
+  }
 
-    void Update()
-    {
-      if (_talkingActorUtils.PlayerInFrontOfTransform() && Input.GetKey(KeyCode.Y))
-      {
-        _talkingActorUtils.StartDialog(DialogId);
-      }   
-    }
+  public void Break()
+  {
 
-    public void Break()
-    {
-
-    }
+  }
 }

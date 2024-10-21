@@ -4,18 +4,37 @@ using UnityEngine;
 
 public class SceneSpawn : MonoBehaviour
 {
-    public int Id;
-    public int SceneRoomId;
-    public ESpawnPlayerAnimation SpawnPlayerAnimation;
-    public ESpawnUiAnimation SpawnUiAnimation;
+  public GameObject GameObject;
+  public int Id;
+  public int SceneRoomId;
+  public ESpawnPlayerAnimation SpawnPlayerAnimation;
+  public ESpawnCameraTransition CameraTransition;
+  private bool _hasBeenTriggered = false;
 
-    public enum ESpawnPlayerAnimation
+  void Start()
+  {
+    PlayerManager.Instance.Player.PlayerAction.SpawnAt(transform);
+    switch (CameraTransition)
     {
-        
-    }
+      case ESpawnCameraTransition.FADE_OUT_BLACK:
+        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_OUT_BLACK);
+        break;
 
-    public enum ESpawnUiAnimation
-    {
-
+      case ESpawnCameraTransition.FADE_OUT_WHITE:
+        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_OUT_WHITE);
+        break;
     }
+    _hasBeenTriggered = true;
+  }
+
+  public enum ESpawnPlayerAnimation
+  {
+
+  }
+
+  public enum ESpawnCameraTransition
+  {
+    FADE_OUT_BLACK,
+    FADE_OUT_WHITE
+  }
 }

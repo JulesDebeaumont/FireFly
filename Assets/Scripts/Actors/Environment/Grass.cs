@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class Grass : EnvironmentActor
+public class Grass : Actor
 {
     public int Flag = 0;
     public bool HasBreak = false;
@@ -21,6 +21,14 @@ public class Grass : EnvironmentActor
     }; // TODO Dynamique selon les items déjà dans inventaire (bomb bag? full life ?)
 
     // Update is called once per frame
+
+    protected override void OnDisable()
+    {
+      base.OnDisable();
+      IsBeingLift = false;
+      HasBreak = false;
+    }
+
     void Update()
     {
         if (false && HasBreak == false)

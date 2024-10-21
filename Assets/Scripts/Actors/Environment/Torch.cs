@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torch : EnvironmentActor
+public class Torch : Actor
 {
     private readonly int _milliSecondTimer = 5000;
     public bool IsLit = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Spawned by deku stickn torch, etc..
 // Used to burn/lit stuff
-public class Fire : EnvironmentActor
+public class Fire : Actor
 {
 
     // Update is called once per frame
