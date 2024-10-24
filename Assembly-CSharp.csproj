@@ -68,8 +68,8 @@
      <Compile Include="Assets/Scripts/Actors/Actor.cs" />
      <Compile Include="Assets/Scripts/Data/Architecture/SceneRoomTransition.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Torch.cs" />
-     <Compile Include="Assets/Scripts/Actors/Environment/Chest.cs" />
      <Compile Include="Assets/Scripts/Manager/SceneCustomManager.cs" />
+     <Compile Include="Assets/Scripts/Actors/Environment/Chest.cs" />
      <Compile Include="Assets/Scripts/Actors/Environment/Grass.cs" />
      <Compile Include="Assets/Scripts/Actors/TestActor.cs" />
      <Compile Include="Assets/Scripts/Manager/SaveManager.cs" />
