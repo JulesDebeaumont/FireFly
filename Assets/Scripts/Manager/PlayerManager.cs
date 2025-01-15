@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerManager : MonoBehaviour
+namespace Manager
 {
-    public static PlayerManager Instance { get; private set; }
-    public Player Player;
-
-    private void Awake()
+    public class PlayerManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        [FormerlySerializedAs("Player")] public Player.Player player;
+        public static PlayerManager Instance { get; private set; }
+
+        private void Awake()
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
+            if (Instance != null && Instance != this)
+                Destroy(gameObject);
+            else
+                Instance = this;
         }
     }
 }

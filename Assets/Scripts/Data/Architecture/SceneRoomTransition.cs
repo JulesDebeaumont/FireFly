@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneRoomTransition : MonoBehaviour
+namespace Data.Architecture
 {
-  
+    public class SceneRoomTransition : MonoBehaviour
+    {
+    }
 }

@@ -1,75 +1,76 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Manager;
 
-public class PlayerFlag
+namespace Player
 {
-  public SceneCustomManager SceneCustomManager;
-  public Player Player;
-  private Dictionary<int, bool[]> _sceneFlags = new();
-  private Dictionary<EWorldFlagType, bool> _worldFlags = new();
+    public abstract class PlayerFlag
+    {
+        public enum EWorldFlagType // Move into /tables
+        {
+            OPENING_DONE
+        }
 
-  public PlayerFlag()
-  {
-    LoadFlagFromSave();
-  }
+        private Dictionary<int, bool[]> _sceneFlags = new();
+        private Dictionary<EWorldFlagType, bool> _worldFlags = new();
+        public Player Player;
+        public SceneCustomManager SceneCustomManager;
 
-  private void LoadFlagFromSave()
-  {
-    SaveManager.CreateSaveFile(0); // TODO remove once file is created
-    var saveFile = SaveManager.ReadCurrentSaveFile();
-    _sceneFlags = saveFile.SceneFlags;
-    _worldFlags = saveFile.WorldFlags;
-  }
+        public PlayerFlag()
+        {
+            LoadFlagFromSave();
+        }
 
-  public bool IsSceneFlagSet(int sceneId, int index)
-  {
-    return _sceneFlags[sceneId][index];
-  }
+        private void LoadFlagFromSave()
+        {
+            SaveManager.CreateSaveFile(0); // TODO remove once file is created
+            var saveFile = SaveManager.ReadCurrentSaveFile();
+            _sceneFlags = saveFile.SceneFlags;
+            _worldFlags = saveFile.WorldFlags;
+        }
 
-  public void SetSceneFlag(int sceneId, int index)
-  {
-    _sceneFlags[sceneId][index] = true;
-  }
+        public bool IsSceneFlagSet(int sceneId, int index)
+        {
+            return _sceneFlags[sceneId][index];
+        }
 
-  public void UnsetSceneFlag(int sceneId, int index)
-  {
-    _sceneFlags[sceneId][index] = false;
-  }
+        public void SetSceneFlag(int sceneId, int index)
+        {
+            _sceneFlags[sceneId][index] = true;
+        }
 
-  public bool IsCurrentSceneFlagSet(int index)
-  {
-    return _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index];
-  }
+        public void UnsetSceneFlag(int sceneId, int index)
+        {
+            _sceneFlags[sceneId][index] = false;
+        }
 
-  public void SetCurrentSceneFlag(int index)
-  {
-    _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index] = true;
-  }
+        public bool IsCurrentSceneFlagSet(int index)
+        {
+            return _sceneFlags[SceneCustomManager.Instance.currentSceneId][index];
+        }
 
-  public void UnsetCurrentSceneFlag(int index)
-  {
-    _sceneFlags[SceneCustomManager.Instance.CurrentSceneId][index] = false;
-  }
+        public void SetCurrentSceneFlag(int index)
+        {
+            _sceneFlags[SceneCustomManager.Instance.currentSceneId][index] = true;
+        }
 
+        public void UnsetCurrentSceneFlag(int index)
+        {
+            _sceneFlags[SceneCustomManager.Instance.currentSceneId][index] = false;
+        }
 
-  public void SetWorldFlag(EWorldFlagType type)
-  {
-    _worldFlags[type] = true;
-  }
+        public void SetWorldFlag(EWorldFlagType type)
+        {
+            _worldFlags[type] = true;
+        }
 
-  public void UnsetWorldFlag(EWorldFlagType type)
-  {
-    _worldFlags[type] = false;
-  }
+        public void UnsetWorldFlag(EWorldFlagType type)
+        {
+            _worldFlags[type] = false;
+        }
 
-  public bool IsWorldFlagSet(EWorldFlagType type)
-  {
-    return _worldFlags[type];
-  }
-
-  public enum EWorldFlagType
-  {
-    OPENING_DONE
-  }
+        public bool IsWorldFlagSet(EWorldFlagType type)
+        {
+            return _worldFlags[type];
+        }
+    }
 }

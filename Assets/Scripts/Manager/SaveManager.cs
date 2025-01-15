@@ -1,44 +1,48 @@
-using System.IO;
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Player;
+using UnityEngine;
 
-public static class SaveManager
+namespace Manager
 {
-    public static int CurrentFileLoaded = 0;
-    public static void WriteSaveFile(SaveFileFormat save)
+    public static class SaveManager
     {
-        var jsonPlayerSave = JsonUtility.ToJson(save);
-        File.WriteAllText(GetSaveFilePath(save.Id), jsonPlayerSave);
-    }
+        public static int CurrentFileLoaded = 0;
 
-    public static void CreateSaveFile(int index)
-    {
-        var newFile = new SaveFileFormat() { Id = index };
-        WriteSaveFile(newFile);
-    }
+        public static void WriteSaveFile(SaveFileFormat save)
+        {
+            var jsonPlayerSave = JsonUtility.ToJson(save);
+            File.WriteAllText(GetSaveFilePath(save.Id), jsonPlayerSave);
+        }
 
-    public static SaveFileFormat ReadSaveFile(int index)
-    {
-        return JsonUtility.FromJson<SaveFileFormat>(File.ReadAllText(GetSaveFilePath(index)));
-    }
+        public static void CreateSaveFile(int index)
+        {
+            var newFile = new SaveFileFormat { Id = index };
+            WriteSaveFile(newFile);
+        }
 
-    public static SaveFileFormat ReadCurrentSaveFile()
-    {
-        return ReadSaveFile(CurrentFileLoaded);
-    }
+        public static SaveFileFormat ReadSaveFile(int index)
+        {
+            return JsonUtility.FromJson<SaveFileFormat>(File.ReadAllText(GetSaveFilePath(index)));
+        }
 
-    private static string GetSaveFilePath(int index)
-    {
-        return Path.Combine("Assets", "PlayerSaveFiles", index.ToString(), ".json");
-    }
+        public static SaveFileFormat ReadCurrentSaveFile()
+        {
+            return ReadSaveFile(CurrentFileLoaded);
+        }
 
-    public record SaveFileFormat
-    {
-        public int Id;
-        public Dictionary<int, bool[]> SceneFlags = new ();
-        public Dictionary<PlayerFlag.EWorldFlagType, bool> WorldFlags = new();
-        public int CurrentSceneId;
-        public int CurrentSceneSpawnId;
+        private static string GetSaveFilePath(int index)
+        {
+            return Path.Combine("Assets", "PlayerSaveFiles", index.ToString(), ".json");
+        }
+
+        public record SaveFileFormat
+        {
+            public int CurrentSceneId;
+            public int CurrentSceneSpawnId;
+            public int Id;
+            public Dictionary<int, bool[]> SceneFlags = new();
+            public Dictionary<PlayerFlag.EWorldFlagType, bool> WorldFlags = new();
+        }
     }
 }

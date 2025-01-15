@@ -1,19 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 
-public static class SceneTable
+namespace Data.Tables
 {
-  public static string GetSceneNameById(int sceneId)
-  {
-    if (SceneList.TryGetValue(sceneId, out string sceneName))
+    public static class SceneTable
     {
-      return sceneName;
-    }
-    return SceneList[0];
-  }
+        private static readonly Dictionary<int, string> SceneList = new()
+        {
+            { 0, "TestScene" }
+        };
 
-  private static Dictionary<int, string> SceneList = new()
-  {
-    {0, "TestScene"}
-  };
+        public static string GetSceneNameById(int sceneId)
+        {
+            if (SceneList.TryGetValue(sceneId, out var sceneName)) return sceneName;
+            return SceneList[0];
+        }
+    }
 }

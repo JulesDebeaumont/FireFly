@@ -1,18 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class DamageTable
+namespace Data.Tables
 {
-    public Dictionary<EDamageType, int> Data;
-
-    public enum EDamageType
+    public class DamageTable // TODO refacto en faire en service pour les actors
     {
-        ICE_DAMAGE,
-        FIRE_DAMAGE,
-        SWORD_VERTICAL_SLASH,
-        SWORD_HORIZONTAL_SLASH,
-        JUMPSLASH,
-        ARROW
+        public enum EDamageType
+        {
+            ICE_DAMAGE,
+            FIRE_DAMAGE,
+            SWORD_VERTICAL_SLASH,
+            SWORD_HORIZONTAL_SLASH,
+            JUMPSLASH,
+            ARROW
+        }
+
+        public Dictionary<EDamageType, int> Data;
     }
 }

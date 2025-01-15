@@ -1,88 +1,73 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Data.Tables;
 
-abstract public class Enemy : Actor
+namespace Actors.Enemies
 {
-    protected int INVINCIBILITY_TIMER = 800;
-    protected int Health = 5;
-    protected bool IsTargetable = true;
-    protected bool HasStartedDying = false;
-    protected int InvincibilityTimer = 0;
-    public bool IsInvincibile
+    public abstract class Enemy : Actor
     {
-        get
+        protected static readonly DamageTable DamageTable = new()
         {
-            return InvincibilityTimer > 0;
-        }
-    }
-    public bool IsAlive
-    {
-        get
+            Data = new Dictionary<DamageTable.EDamageType, int>
+            {
+                { DamageTable.EDamageType.ICE_DAMAGE, 10 },
+                { DamageTable.EDamageType.FIRE_DAMAGE, 10 },
+                { DamageTable.EDamageType.SWORD_VERTICAL_SLASH, 3 },
+                { DamageTable.EDamageType.SWORD_HORIZONTAL_SLASH, 3 },
+                { DamageTable.EDamageType.JUMPSLASH, 10 },
+                { DamageTable.EDamageType.ARROW, 5 }
+            }
+        };
+
+        protected bool HasStartedDying;
+        protected int Health = 5;
+        protected int InvincibilityTimer = 0;
+        protected bool IsTargetable = true;
+
+        public bool IsInvincibile => InvincibilityTimer > 0;
+
+        public bool IsAlive => Health > 0;
+        // public DropTable DropTable = new DropTable
+        // {
+        //     { }
+        // }();
+
+        // Start is called before the first frame update
+        protected void Start()
         {
-            return Health > 0;
         }
-    }
-    protected static readonly DamageTable DamageTable = new DamageTable
-    {
-        Data = new Dictionary<DamageTable.EDamageType, int>
+
+        // Update is called once per frame
+        protected void Update()
         {
-            { DamageTable.EDamageType.ICE_DAMAGE, 10 },
-            { DamageTable.EDamageType.FIRE_DAMAGE, 10 },
-            { DamageTable.EDamageType.SWORD_VERTICAL_SLASH, 3},
-            { DamageTable.EDamageType.SWORD_HORIZONTAL_SLASH, 3},
-            { DamageTable.EDamageType.JUMPSLASH, 10},
-            { DamageTable.EDamageType.ARROW, 5}
+            if (!IsAlive && HasStartedDying == false) Die();
+            // detect any damage source and TakeDamage() if !IsInvicible
         }
-    };
-    // public DropTable DropTable = new DropTable
-    // {
-    //     { }
-    // }();
 
-    // Start is called before the first frame update
-    protected void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    protected void Update()
-    {
-        if (!IsAlive && HasStartedDying == false)
+        protected void Die()
         {
-            Die();
+            HasStartedDying = true;
+            // death anim
+            DropItem();
+            Destroy(gameObject);
         }
-        // detect any damage source and TakeDamage() if !IsInvicible
-    }
 
-    protected void Die()
-    {
-        HasStartedDying = true;
-        // death anim
-        DropItem();
-        Destroy(this.gameObject);
-    }
-
-    protected void TakeDamage(DamageTable.EDamageType damageType, int multiplier)
-    {
-        if (!DamageTable.Data.ContainsKey(damageType))
+        protected void TakeDamage(DamageTable.EDamageType damageType, int multiplier)
         {
-            return;
+            if (!DamageTable.Data.ContainsKey(damageType)) return;
+            var damage = DamageTable.Data[damageType];
+            damage *= multiplier;
+            Health -= damage;
+            StartInvincibilityTimer();
         }
-        var damage = DamageTable.Data[damageType];
-        damage *= multiplier;
-        Health -= damage;
-        StartInvincibilityTimer();
-    }
 
-    protected void StartInvincibilityTimer()
-    {
-        // TODO
-    }
+        protected void StartInvincibilityTimer()
+        {
+            // TODO
+        }
 
-    protected void DropItem()
-    {
-        // TODO
+        protected void DropItem()
+        {
+            // TODO
+        }
     }
 }

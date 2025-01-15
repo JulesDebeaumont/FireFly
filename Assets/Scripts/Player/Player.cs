@@ -1,30 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    public Rigidbody Rigidbody;
-    public CapsuleCollider Collider;
-    public PlayerState PlayerState;
-    public PlayerInventory PlayerInventory;
-    public PlayerEnergy PlayerEnergy;
-    public PlayerUpgrade PlayerUpgrade;
-    public PlayerAction PlayerAction;
-    public PlayerCamera PlayerCamera;
-    public PlayerCameraEffect PlayerCameraEffect;
-    public PlayerFlag PlayerFlag;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Player : MonoBehaviour
     {
-
+        public new Rigidbody rigidbody;
+        public new CapsuleCollider collider;
+        public PlayerState playerState;
+        public PlayerInventory playerInventory;
+        public PlayerAction playerAction;
+        public PlayerCamera playerCamera;
+        public PlayerCameraEffect playerCameraEffect;
+        public PlayerFlag PlayerFlag;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 }

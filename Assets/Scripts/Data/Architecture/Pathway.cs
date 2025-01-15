@@ -1,4 +1,6 @@
-public class Pathway
+namespace Data.Architecture
 {
-  
+    public class Pathway
+    {
+    }
 }

@@ -1,33 +1,33 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: /home/jules/Dev/random/firefly/FireFly/Packages/manifest.json
+    m_FilePath: C:/Users/debju/Firefly/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638623231890000000
-    m_Hash: 3437415197
+      ticks: 638685509711753370
+    m_Hash: 2074774109
   m_LockFileStatus:
-    m_FilePath: /home/jules/Dev/random/firefly/FireFly/Packages/packages-lock.json
+    m_FilePath: C:/Users/debju/Firefly/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638623231890000000
-    m_Hash: 3469793679
+      ticks: 638685510013098248
+    m_Hash: 3191196884
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
-m_ProjectPath: /home/jules/Dev/random/firefly/FireFly/Packages
-m_EditorVersion: 2022.3.4f1 (35713cd46cd7)
+m_ProjectPath: C:/Users/debju/Firefly/Packages
+m_EditorVersion: 6000.0.29f1 (9fafe5c9db65)
 m_ResolvedPackages:
-- packageId: com.unity.collab-proxy@2.0.5
+- packageId: com.unity.collab-proxy@2.5.2
   testable: 0
   isDirectDependency: 1
-  version: 2.0.5
+  version: 2.5.2
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.collab-proxy@2.0.5
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.collab-proxy
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -36,11 +36,10 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Editor
-  type: assets
+  type: 
   description: The package gives you the ability to use Unity Version Control in
     the Unity editor. To use Unity Version Control, a subscription is required. Learn
-    more about how you can get started for free by visiting plasticscm.com.
-  status: 0
+    more about how you can get started for free by visiting https://unity.com/solutions/version-control
   errors: []
   versions:
     all:
@@ -119,20 +118,11 @@ m_ResolvedPackages:
     - 2.4.4
     - 2.5.1
     - 2.5.2
+    - 2.6.0
     compatible:
-    - 2.0.5
-    - 2.0.7
-    - 2.1.0-preview.3
-    - 2.1.0-preview.5
-    - 2.1.0-preview.6
-    - 2.1.0
-    - 2.2.0
-    - 2.3.1
-    - 2.4.3
-    - 2.4.4
-    - 2.5.1
     - 2.5.2
-    recommended: 2.0.7
+    - 2.6.0
+    recommended: 2.5.2
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -160,29 +150,43 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638218079810000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.0/manual/index.html
+  datePublishedTicks: 638630364536670000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.5/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: 7f68049e8cae5b51ad0d17cc01b8c6e802bf3866
+    revision: c402e6396d3ea20ecb2d59eac908e7e0a30cd7e6
     path: 
   unityLifecycle:
-    version: 2.0.5
+    version: 2.5.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.feature.development@1.0.1
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixed\n\n- Fix token renewal issue: Can''t obtain
+    a new token (Message: Invalid Refresh Token., Code: 132.104)"}'
+  assetStore:
+    productId: 
+  fingerprint: da7e55b87e08569f31766e7cabc37bc033c9c7f9
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.5.2
+    minimumUnityVersion: 2020.3.48f1
+- packageId: com.unity.feature.development@1.0.2
   testable: 0
   isDirectDependency: 1
-  version: 1.0.1
+  version: 1.0.2
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.feature.development@1.0.1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.feature.development
   assetPath: Packages/com.unity.feature.development
   name: com.unity.feature.development
   displayName: Engineering
@@ -196,21 +200,18 @@ m_ResolvedPackages:
     feature set. Enable support for multiple integrated development environments
     (IDE) for editing your Unity code. Get access to development tools to help you
     test and analyze your project\u2019s performance."
-  status: 0
   errors: []
   versions:
     all:
-    - 1.0.1
+    - 1.0.2
     compatible:
-    - 1.0.1
-    recommended: 1.0.1
+    - 1.0.2
+    recommended: 1.0.2
     deprecated: []
   dependencies:
   - name: com.unity.ide.visualstudio
     version: default
   - name: com.unity.ide.rider
-    version: default
-  - name: com.unity.ide.vscode
     version: default
   - name: com.unity.editorcoroutines
     version: default
@@ -222,25 +223,23 @@ m_ResolvedPackages:
     version: default
   resolvedDependencies:
   - name: com.unity.ide.visualstudio
-    version: 2.0.18
+    version: 2.0.22
   - name: com.unity.test-framework
-    version: 1.1.33
+    version: 1.4.5
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.5
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   - name: com.unity.ide.rider
-    version: 3.0.24
-  - name: com.unity.ide.vscode
-    version: 1.2.5
+    version: 3.0.31
   - name: com.unity.editorcoroutines
     version: 1.0.0
   - name: com.unity.performance.profile-analyzer
     version: 1.2.2
   - name: com.unity.testtools.codecoverage
-    version: 1.2.4
+    version: 1.2.6
   - name: com.unity.settings-manager
     version: 2.0.1
   keywords: []
@@ -253,6 +252,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -263,19 +264,30 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 1.0.1
+    version: 1.0.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.inputsystem@1.6.3
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"quickstart":"https://docs.unity3d.com/Documentation/Manual/DeveloperToolsFeature.html"}'
+  assetStore:
+    productId: 
+  fingerprint: 767aadbc6eb72681a4ca807c8fa248e0230a0cef
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.2
+    minimumUnityVersion: 
+- packageId: com.unity.inputsystem@1.11.2
   testable: 0
   isDirectDependency: 1
-  version: 1.6.3
+  version: 1.11.2
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.inputsystem@1.6.3
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.inputsystem
   assetPath: Packages/com.unity.inputsystem
   name: com.unity.inputsystem
   displayName: Input System
@@ -284,10 +296,9 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: assets
+  type: 
   description: A new input system which can be used as a more extensible and customizable
     alternative to Unity's classic input system in UnityEngine.Input.
-  status: 0
   errors: []
   versions:
     all:
@@ -343,20 +354,8 @@ m_ResolvedPackages:
     - 1.11.1
     - 1.11.2
     compatible:
-    - 1.6.1
-    - 1.6.3
-    - 1.7.0
-    - 1.8.0-pre.1
-    - 1.8.0-pre.2
-    - 1.8.0
-    - 1.8.1
-    - 1.8.2
-    - 1.9.0
-    - 1.10.0
-    - 1.11.0
-    - 1.11.1
     - 1.11.2
-    recommended: 1.6.3
+    recommended: 1.11.2
     deprecated: []
   dependencies:
   - name: com.unity.modules.uielements
@@ -369,6 +368,8 @@ m_ResolvedPackages:
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.hierarchycore
     version: 1.0.0
   keywords:
   - input
@@ -388,192 +389,101 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638251794420000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html
+  datePublishedTicks: 638648557315530000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.11/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/InputSystem.git
-    revision: 0d0891efc00ce912af6f03974eac0b8afd20a8ac
+    revision: c8518694c7fdd2c755755e028e2ec19cdceda19b
     path: 
   unityLifecycle:
-    version: 1.6.1
+    version: 1.11.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.textmeshpro@3.0.6
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixed\n- Fixed touch pointers being released twice
+    causing an index out of bounds error. [ISXB-687](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-687)\n-
+    Fixed `NullReferenceException` from disconnecting and reconnecting a GXDKGamepad.\n-
+    Fixed wrong mapping of Xbox Series S|X and Xbox One wireless controllers \"View\"
+    button on macOS.[ISXB-385](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-385)\n-
+    Fixed \"AnalyticsResult\" errors on consoles [ISXB-1107]\n- Fixed wrong `Display
+    Index` value for touchscreen events.[ISXB-1101](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-1101)\n-
+    Fixed event handling when using Fixed Update processing where WasPressedThisFrame
+    could appear to true for consecutive frames [ISXB-1006](https://issuetracker.unity3d.com/product/unity/issues/guid/ISXB-1006)\n\n###
+    Added\n- Added the display of the device flag `CanRunInBackground` in device
+    debug view.\n- Added analytics for programmatic `InputAction` setup via `InputActionSetupExtensions`
+    when exiting play-mode.\n\n### Fixed\n- Removed a redundant warning when using
+    fallback code to parse a HID descriptor. (UUM-71260)\n\n### Changed\n- Removed
+    the InputManager to InputSystem project-wide asset migration code for performance
+    improvement (ISX-2086)"}'
+  assetStore:
+    productId: 
+  fingerprint: 3c4a97c3950fef77960981e0fe90613de6e512ee
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.11.2
+    minimumUnityVersion: 2019.4.0a1
+- packageId: com.unity.multiplayer.center@1.0.0
   testable: 0
   isDirectDependency: 1
-  version: 3.0.6
-  source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.textmeshpro@3.0.6
-  assetPath: Packages/com.unity.textmeshpro
-  name: com.unity.textmeshpro
-  displayName: TextMeshPro
+  version: 1.0.0
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.multiplayer.center
+  assetPath: Packages/com.unity.multiplayer.center
+  name: com.unity.multiplayer.center
+  displayName: Multiplayer Center
   author:
     name: 
     email: 
     url: 
-  category: Text Rendering
-  type: asset
-  description: 'TextMeshPro is the ultimate text solution for Unity. It''s the perfect
-    replacement for Unity''s UI Text and the legacy Text Mesh.
-
-
-    Powerful and
-    easy to use, TextMeshPro (also known as TMP) uses Advanced Text Rendering techniques
-    along with a set of custom shaders; delivering substantial visual quality improvements
-    while giving users incredible flexibility when it comes to text styling and texturing.
-
-
-    TextMeshPro
-    provides Improved Control over text formatting and layout with features like
-    character, word, line and paragraph spacing, kerning, justified text, Links,
-    over 30 Rich Text Tags available, support for Multi Font & Sprites, Custom Styles
-    and more.
-
-
-    Great performance. Since the geometry created by TextMeshPro
-    uses two triangles per character just like Unity''s text components, this improved
-    visual quality and flexibility comes at no additional performance cost.'
-  status: 0
+  category: 
+  type: 
+  description: The multiplayer center provides a starting point to create multiplayer
+    games. It will recommend specific packages and enable you to easily access integrations,
+    samples and documentation.
   errors: []
   versions:
     all:
-    - 0.1.2
-    - 1.0.21
-    - 1.0.23
-    - 1.0.25
-    - 1.0.26
-    - 1.1.0
-    - 1.2.0
-    - 1.2.1
-    - 1.2.2
-    - 1.2.3
-    - 1.2.4
-    - 1.3.0-preview
-    - 1.3.0
-    - 1.4.0-preview.1b
-    - 1.4.0-preview.2a
-    - 1.4.0-preview.3a
-    - 1.4.0
-    - 1.4.1-preview.1
-    - 1.4.1
-    - 1.5.0-preview.1
-    - 1.5.0-preview.2
-    - 1.5.0-preview.3
-    - 1.5.0-preview.4
-    - 1.5.0-preview.5
-    - 1.5.0-preview.6
-    - 1.5.0-preview.7
-    - 1.5.0-preview.8
-    - 1.5.0-preview.10
-    - 1.5.0-preview.11
-    - 1.5.0-preview.12
-    - 1.5.0-preview.13
-    - 1.5.0-preview.14
-    - 1.5.0
-    - 1.5.1
-    - 1.5.3
-    - 1.5.4
-    - 1.5.5
-    - 1.5.6
-    - 1.6.0-preview.1
-    - 2.0.0
-    - 2.0.1-preview.1
-    - 2.0.1
-    - 2.1.0-preview.1
-    - 2.1.0-preview.2
-    - 2.1.0-preview.3
-    - 2.1.0-preview.4
-    - 2.1.0-preview.5
-    - 2.1.0-preview.7
-    - 2.1.0-preview.8
-    - 2.1.0-preview.10
-    - 2.1.0-preview.11
-    - 2.1.0-preview.12
-    - 2.1.0-preview.13
-    - 2.1.0-preview.14
-    - 2.1.0
-    - 2.1.1
-    - 2.1.3
-    - 2.1.4
-    - 2.1.5
-    - 2.1.6
-    - 2.2.0-preview.1
-    - 2.2.0-preview.2
-    - 2.2.0-preview.3
-    - 3.0.0-preview.1
-    - 3.0.0-preview.3
-    - 3.0.0-preview.4
-    - 3.0.0-preview.5
-    - 3.0.0-preview.7
-    - 3.0.0-preview.8
-    - 3.0.0-preview.10
-    - 3.0.0-preview.11
-    - 3.0.0-preview.12
-    - 3.0.0-preview.13
-    - 3.0.0-preview.14
-    - 3.0.0
-    - 3.0.1
-    - 3.0.3
-    - 3.0.4
-    - 3.0.5
-    - 3.0.6
-    - 3.0.7
-    - 3.0.8
-    - 3.0.9
-    - 3.2.0-pre.1
-    - 3.2.0-pre.2
-    - 3.2.0-pre.3
-    - 3.2.0-pre.4
-    - 3.2.0-pre.5
-    - 3.2.0-pre.6
-    - 3.2.0-pre.7
-    - 3.2.0-pre.8
-    - 3.2.0-pre.9
-    - 3.2.0-pre.10
-    - 4.0.0-pre.1
-    - 4.0.0-pre.2
+    - 0.2.1
+    - 0.3.0
+    - 0.4.0
+    - 1.0.0-pre.1
+    - 1.0.0-pre.2
+    - 1.0.0-pre.3
+    - 1.0.0
     compatible:
-    - 3.0.6
-    - 3.0.7
-    - 3.0.8
-    - 3.0.9
-    - 3.2.0-pre.1
-    - 3.2.0-pre.2
-    - 3.2.0-pre.3
-    - 3.2.0-pre.4
-    - 3.2.0-pre.5
-    - 3.2.0-pre.6
-    - 3.2.0-pre.7
-    - 3.2.0-pre.8
-    - 3.2.0-pre.9
-    - 3.2.0-pre.10
-    - 4.0.0-pre.1
-    - 4.0.0-pre.2
-    recommended: 3.0.9
+    - 1.0.0
+    recommended: 1.0.0
     deprecated: []
   dependencies:
-  - name: com.unity.ugui
+  - name: com.unity.modules.uielements
     version: 1.0.0
   resolvedDependencies:
-  - name: com.unity.ugui
+  - name: com.unity.modules.uielements
     version: 1.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.hierarchycore
+    version: 1.0.0
   keywords:
-  - TextMeshPro
-  - TextMesh Pro
-  - TMP
-  - Text
-  - SDF
+  - Multiplayer
+  - Netcode
+  - Services
+  - Tools
   registry:
     id: main
     name: 
@@ -583,29 +493,407 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 637547111200000000
+  datePublishedTicks: 0
   documentationUrl: 
-  hasRepository: 1
+  hasRepository: 0
   repository:
-    type: git
-    url: https://github.cds.internal.unity3d.com/unity/com.unity.textmeshpro.git
-    revision: 01e57e3b7de18af9dfe9baaa0a0ff5cc4765c899
+    type: 
+    url: 
+    revision: 
     path: 
   unityLifecycle:
-    version: 3.0.6
+    version: 1.0.0
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.timeline@1.7.4
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: f502d8ac613fa076192423e73892fbd89eb4049b
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 6000.0.0a1
+- packageId: com.unity.render-pipelines.universal@17.0.3
   testable: 0
   isDirectDependency: 1
-  version: 1.7.4
+  version: 17.0.3
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.render-pipelines.universal
+  assetPath: Packages/com.unity.render-pipelines.universal
+  name: com.unity.render-pipelines.universal
+  displayName: Universal RP
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: The Universal Render Pipeline (URP) is a prebuilt Scriptable Render
+    Pipeline, made by Unity. URP provides artist-friendly workflows that let you
+    quickly and easily create optimized graphics across a range of platforms, from
+    mobile to high-end consoles and PCs.
+  errors: []
+  versions:
+    all:
+    - 7.0.0
+    - 7.0.1
+    - 7.1.1
+    - 7.1.2
+    - 7.1.5
+    - 7.1.6
+    - 7.1.7
+    - 7.1.8
+    - 7.2.0
+    - 7.2.1
+    - 7.3.1
+    - 7.4.1
+    - 7.4.2
+    - 7.4.3
+    - 7.5.1
+    - 7.5.2
+    - 7.5.3
+    - 7.6.0
+    - 7.7.0
+    - 7.7.1
+    - 8.0.1
+    - 8.1.0
+    - 8.2.0
+    - 8.3.1
+    - 9.0.0-preview.14
+    - 9.0.0-preview.35
+    - 9.0.0-preview.55
+    - 9.0.0-preview.72
+    - 10.0.0-preview.26
+    - 10.1.0
+    - 10.2.0
+    - 10.2.1
+    - 10.2.2
+    - 10.3.1
+    - 10.3.2
+    - 10.4.0
+    - 10.5.0
+    - 10.5.1
+    - 10.6.0
+    - 10.7.0
+    - 10.8.0
+    - 10.8.1
+    - 10.9.0
+    - 10.10.0
+    - 10.10.1
+    - 17.0.3
+    compatible:
+    - 17.0.3
+    recommended: 17.0.3
+    deprecated: []
+  dependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  - name: com.unity.shadergraph
+    version: 17.0.3
+  - name: com.unity.render-pipelines.universal-config
+    version: 17.0.3
+  resolvedDependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.collections
+    version: 2.5.1
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.rendering.light-transport
+    version: 1.0.1
+  - name: com.unity.shadergraph
+    version: 17.0.3
+  - name: com.unity.searcher
+    version: 4.9.2
+  - name: com.unity.render-pipelines.universal-config
+    version: 17.0.3
+  keywords:
+  - graphics
+  - performance
+  - rendering
+  - mobile
+  - render
+  - pipeline
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 17.0.3
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: f1787d0c270e15a3d776eda91ab4d8001d032be6
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 17.0.3
+    minimumUnityVersion: 6000.0.0a1
+- packageId: com.unity.shadergraph@17.0.3
+  testable: 0
+  isDirectDependency: 1
+  version: 17.0.3
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.shadergraph
+  assetPath: Packages/com.unity.shadergraph
+  name: com.unity.shadergraph
+  displayName: Shader Graph
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: The Shader Graph package adds a visual Shader editing tool to Unity.
+    You can use this tool to create Shaders in a visual way instead of writing code.
+    Specific render pipelines can implement specific graph features. Currently, both
+    the High Definition Rendering Pipeline and the Universal Rendering Pipeline support
+    Shader Graph.
+  errors: []
+  versions:
+    all:
+    - 0.1.8
+    - 0.1.9
+    - 0.1.17
+    - 1.0.0-beta
+    - 1.1.1-preview
+    - 1.1.2-preview
+    - 1.1.3-preview
+    - 1.1.4-preview
+    - 1.1.5-preview
+    - 1.1.6-preview
+    - 1.1.8-preview
+    - 1.1.9-preview
+    - 2.0.1-preview
+    - 2.0.3-preview
+    - 2.0.4-preview
+    - 2.0.4-preview.1
+    - 2.0.5-preview
+    - 2.0.6-preview
+    - 2.0.7-preview
+    - 2.0.8-preview
+    - 3.0.0-preview
+    - 3.1.0-preview
+    - 3.3.0-preview
+    - 4.0.0-preview
+    - 4.0.1-preview
+    - 4.1.0-preview
+    - 4.2.0-preview
+    - 4.3.0-preview
+    - 4.6.0-preview
+    - 4.8.0-preview
+    - 4.9.0-preview
+    - 4.10.0-preview
+    - 5.0.0-preview
+    - 5.1.0
+    - 5.2.0
+    - 5.2.1
+    - 5.2.2
+    - 5.2.3
+    - 5.3.1
+    - 5.6.1
+    - 5.7.2
+    - 5.8.2
+    - 5.9.0
+    - 5.10.0
+    - 5.13.0
+    - 5.16.1
+    - 6.5.2
+    - 6.5.3
+    - 6.7.1
+    - 6.9.0
+    - 6.9.1
+    - 6.9.2
+    - 7.0.0
+    - 7.0.1
+    - 7.1.1
+    - 7.1.2
+    - 7.1.5
+    - 7.1.6
+    - 7.1.7
+    - 7.1.8
+    - 7.2.0
+    - 7.2.1
+    - 7.3.1
+    - 7.4.1
+    - 7.4.2
+    - 7.4.3
+    - 7.5.1
+    - 7.5.2
+    - 7.5.3
+    - 7.6.0
+    - 7.7.0
+    - 7.7.1
+    - 8.0.1
+    - 8.1.0
+    - 8.2.0
+    - 8.3.1
+    - 9.0.0-preview.14
+    - 9.0.0-preview.34
+    - 9.0.0-preview.55
+    - 9.0.0-preview.72
+    - 10.0.0-preview.27
+    - 10.1.0
+    - 10.2.0
+    - 10.2.1
+    - 10.2.2
+    - 10.3.1
+    - 10.3.2
+    - 10.4.0
+    - 10.5.0
+    - 10.5.1
+    - 10.6.0
+    - 10.7.0
+    - 10.8.0
+    - 10.8.1
+    - 10.9.0
+    - 10.10.0
+    - 10.10.1
+    - 17.0.3
+    compatible:
+    - 17.0.3
+    recommended: 17.0.3
+    deprecated: []
+  dependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  - name: com.unity.searcher
+    version: 4.9.2
+  resolvedDependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.collections
+    version: 2.5.1
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.rendering.light-transport
+    version: 1.0.1
+  - name: com.unity.searcher
+    version: 4.9.2
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 17.0.3
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: e6e0df3c9e43d268733e3882298a59923bdf76d3
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 17.0.3
+    minimumUnityVersion: 6000.0.0a1
+- packageId: com.unity.timeline@1.8.7
+  testable: 0
+  isDirectDependency: 1
+  version: 1.8.7
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.timeline@1.7.4
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.timeline
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -614,10 +902,9 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Use Unity Timeline to create cinematic content, game-play sequences,
     audio sequences, and complex particle effects.
-  status: 0
   errors: []
   versions:
     all:
@@ -708,18 +995,8 @@ m_ResolvedPackages:
     - 1.8.6
     - 1.8.7
     compatible:
-    - 1.7.4
-    - 1.7.5
-    - 1.7.6
-    - 1.8.0
-    - 1.8.1
-    - 1.8.2
-    - 1.8.3
-    - 1.8.4
-    - 1.8.5
-    - 1.8.6
     - 1.8.7
-    recommended: 1.7.6
+    recommended: 1.8.7
     deprecated: []
   dependencies:
   - name: com.unity.modules.audio
@@ -754,29 +1031,52 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638143790870000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.7/manual/index.html
+  datePublishedTicks: 638524833900000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-    revision: 1f458a5d3f2bc66f0c1182feeaa9fcea4e8b1496
+    revision: d6432ca638481c3d0e4c01f87f9cdbe3c4b1d529
     path: 
   unityLifecycle:
-    version: 1.7.4
+    version: 1.8.7
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ugui@1.0.0
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Added\n\n- Released ronl-workflow-custom-marker.md
+    Added a new workflow to the Timeline Workflows documentation:\n- Released ronl-workflow-custom-marker.md
+    The `Create a custom Notes marker` workflow demonstrates how to create a custom
+    marker for adding notes to Timeline instances. This workflow also demonstrates
+    how to change the default appearance of a custom marker with scripting and a
+    Unity Style Sheet (USS).\n\n### Fixed\n\n- Fixed bug where using , and . (<>)
+    to step frames in the Animation Window while the Timeline Window was linked would
+    sometimes not work. [IN-56667](https://unity3d.atlassian.net/servicedesk/customer/portal/2/IN-56667)\n-
+    When the Timeline and Animation windows are linked and the Timeline Window is
+    active, moving the playhead in the Timeline Window will cause the animation window
+    to repaint immediately."}'
+  assetStore:
+    productId: 
+  fingerprint: c58b4ee65782ad38338e29f7ee67787cb6998f04
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.8.7
+    minimumUnityVersion: 2019.3.0a1
+- packageId: com.unity.ugui@2.0.0
   testable: 0
   isDirectDependency: 1
-  version: 1.0.0
+  version: 2.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.ugui@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.ugui
   assetPath: Packages/com.unity.ugui
   name: com.unity.ugui
   displayName: Unity UI
@@ -790,17 +1090,19 @@ m_ResolvedPackages:
     and applications. It is a GameObject-based UI system that uses Components and
     the Game View to arrange, position, and style user interfaces. \u200B You cannot
     use Unity UI to create or change user interfaces in the Unity Editor."
-  status: 0
   errors: []
   versions:
     all:
-    - 1.0.0
+    - 2.0.0
     - 3.0.0-exp.1
     - 3.0.0-exp.3
     - 3.0.0-exp.4
     compatible:
-    - 1.0.0
-    recommended: 1.0.0
+    - 2.0.0
+    - 3.0.0-exp.1
+    - 3.0.0-exp.3
+    - 3.0.0-exp.4
+    recommended: 2.0.0
     deprecated: []
   dependencies:
   - name: com.unity.modules.ui
@@ -817,6 +1119,11 @@ m_ResolvedPackages:
   - ugui
   - Unity UI
   - Canvas
+  - TextMeshPro
+  - TextMesh Pro
+  - Text
+  - TMP
+  - SDF
   registry:
     id: main
     name: 
@@ -826,6 +1133,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -836,19 +1145,30 @@ m_ResolvedPackages:
     revision: 
     path: 
   unityLifecycle:
-    version: 1.0.0
+    version: 2.0.0
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.visualscripting@1.8.0
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: b59254db9e7ca0cf2a9d3b7af4d6cad72c3acf44
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.0
+    minimumUnityVersion: 2019.2.0a1
+- packageId: com.unity.visualscripting@1.9.5
   testable: 0
   isDirectDependency: 1
-  version: 1.8.0
+  version: 1.9.5
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.visualscripting@1.8.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.visualscripting
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -870,7 +1190,6 @@ m_ResolvedPackages:
 
     Visual scripting is compatible with third-party
     APIs, including most packages, assets and custom libraries.'
-  status: 0
   errors: []
   versions:
     all:
@@ -895,13 +1214,10 @@ m_ResolvedPackages:
     - 1.9.1
     - 1.9.2
     - 1.9.4
+    - 1.9.5
     compatible:
-    - 1.8.0
-    - 1.9.0
-    - 1.9.1
-    - 1.9.2
-    - 1.9.4
-    recommended: 1.8.0
+    - 1.9.5
+    recommended: 1.9.5
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -911,7 +1227,7 @@ m_ResolvedPackages:
     version: 1.0.0
   resolvedDependencies:
   - name: com.unity.ugui
-    version: 1.0.0
+    version: 2.0.0
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
@@ -928,29 +1244,115 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638060044680000000
+  datePublishedTicks: 638659692270900000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.visualscripting.git
-    revision: 0de66378b19e990494d98f39ecc2b6aa5ac65351
+    revision: 3621ef0207747a605f195118ba99d1a8bdb19433
     path: 
   unityLifecycle:
-    version: 1.8.0
+    version: 1.9.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixed\n- Fixed \"NullReferenceException\" error
+    when returning to the State Graph from the Script Graph. [UVSB-1905](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-1905)\n-
+    Fixed compilation error when a graph contains a reference to a method with an
+    \"in\" parameter. [UVSB-2544](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2487)\n-
+    Added missing truncate function to Formula node [UVSB-2526](https://issuetracker.unity3d.com/product/unity/issues/guid/UVSB-2525)\n-
+    Fixed an error when creating a Script Graph asset in an empty project\n\n###
+    Changed\n- Updated deprecated EditorAnalytics APIs to new ones"}'
+  assetStore:
+    productId: 
+  fingerprint: 1b53f46e931bea668e53f1feb0ac9138170c9455
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.9.5
+    minimumUnityVersion: 2021.3.0a1
+- packageId: com.unity.modules.accessibility@1.0.0
+  testable: 0
+  isDirectDependency: 1
+  version: 1.0.0
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.accessibility
+  assetPath: Packages/com.unity.modules.accessibility
+  name: com.unity.modules.accessibility
+  displayName: Accessibility
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: module
+  description: 'The Accessibility module includes utilities to facilitate the development
+    of accessible user experiences in Unity. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.AccessibilityModule.html'
+  errors: []
+  versions:
+    all:
+    - 1.0.0
+    compatible:
+    - 1.0.0
+    recommended: 1.0.0
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 1.0.0
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.ai@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.ai@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.ai
   assetPath: Packages/com.unity.modules.ai
   name: com.unity.modules.ai
   displayName: AI
@@ -962,7 +1364,6 @@ m_ResolvedPackages:
   type: module
   description: 'The AI module implements the path finding features in Unity. Scripting
     API: https://docs.unity3d.com/ScriptReference/UnityEngine.AIModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -983,6 +1384,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1000,12 +1403,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.androidjni@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.androidjni@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.androidjni
   assetPath: Packages/com.unity.modules.androidjni
   name: com.unity.modules.androidjni
   displayName: Android JNI
@@ -1016,7 +1430,6 @@ m_ResolvedPackages:
   category: 
   type: module
   description: 'AndroidJNI module allows you to call Java code. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.AndroidJNIModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1037,6 +1450,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1054,12 +1469,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.animation@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.animation@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.animation
   assetPath: Packages/com.unity.modules.animation
   name: com.unity.modules.animation
   displayName: Animation
@@ -1071,7 +1497,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Animation module implements Unity''s animation system. Scripting
     API: https://docs.unity3d.com/ScriptReference/UnityEngine.AnimationModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1092,6 +1517,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1109,12 +1536,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.assetbundle@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.assetbundle@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.assetbundle
   assetPath: Packages/com.unity.modules.assetbundle
   name: com.unity.modules.assetbundle
   displayName: Asset Bundle
@@ -1126,7 +1564,6 @@ m_ResolvedPackages:
   type: module
   description: 'The AssetBundle module implements the AssetBundle class and related
     APIs to load data from AssetBundles. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.AssetBundleModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1147,6 +1584,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1164,12 +1603,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.audio@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.audio@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.audio
   assetPath: Packages/com.unity.modules.audio
   name: com.unity.modules.audio
   displayName: Audio
@@ -1181,7 +1631,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Audio module implements Unity''s audio system. Scripting API:
     https://docs.unity3d.com/ScriptReference/UnityEngine.AudioModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1202,6 +1651,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1219,12 +1670,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.cloth@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.cloth@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.cloth
   assetPath: Packages/com.unity.modules.cloth
   name: com.unity.modules.cloth
   displayName: Cloth
@@ -1236,7 +1698,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Cloth module implements cloth physics simulation through the
     Cloth component. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.ClothModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1261,6 +1722,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1278,12 +1741,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.director@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.director@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.director
   assetPath: Packages/com.unity.modules.director
   name: com.unity.modules.director
   displayName: Director
@@ -1295,7 +1769,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Director module implements the PlayableDirector class. Scripting
     API: https://docs.unity3d.com/ScriptReference/UnityEngine.DirectorModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1324,6 +1797,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1341,12 +1816,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.imageconversion@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.imageconversion@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.imageconversion
   assetPath: Packages/com.unity.modules.imageconversion
   name: com.unity.modules.imageconversion
   displayName: Image Conversion
@@ -1357,9 +1843,7 @@ m_ResolvedPackages:
   category: 
   type: module
   description: 'The ImageConversion module implements the ImageConversion class which
-    provides helper methods to convert images from and to PNG, JPEG or EXR formats.
-    Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.ImageConversionModule.html'
-  status: 0
+    provides helper methods for converting image data. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.ImageConversionModule.html'
   errors: []
   versions:
     all:
@@ -1380,6 +1864,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1397,12 +1883,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.imgui@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.imgui@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.imgui
   assetPath: Packages/com.unity.modules.imgui
   name: com.unity.modules.imgui
   displayName: IMGUI
@@ -1414,7 +1911,6 @@ m_ResolvedPackages:
   type: module
   description: 'The IMGUI module provides Unity''s immediate mode GUI solution for
     creating in-game and editor user interfaces. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.IMGUIModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1435,6 +1931,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1452,12 +1950,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.jsonserialize@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.jsonserialize@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.jsonserialize
   assetPath: Packages/com.unity.modules.jsonserialize
   name: com.unity.modules.jsonserialize
   displayName: JSONSerialize
@@ -1469,7 +1978,6 @@ m_ResolvedPackages:
   type: module
   description: 'The JSONSerialize module provides the JsonUtility class which lets
     you serialize Unity Objects to JSON format. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.JSONSerializeModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1490,6 +1998,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1507,12 +2017,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.particlesystem@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.particlesystem@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.particlesystem
   assetPath: Packages/com.unity.modules.particlesystem
   name: com.unity.modules.particlesystem
   displayName: Particle System
@@ -1524,7 +2045,6 @@ m_ResolvedPackages:
   type: module
   description: 'The ParticleSystem module implements Unity''s Particle System. Scripting
     API: https://docs.unity3d.com/ScriptReference/UnityEngine.ParticleSystemModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1545,6 +2065,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1562,12 +2084,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.physics@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.physics@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.physics
   assetPath: Packages/com.unity.modules.physics
   name: com.unity.modules.physics
   displayName: Physics
@@ -1579,7 +2112,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Physics module implements 3D physics in Unity. Scripting API:
     https://docs.unity3d.com/ScriptReference/UnityEngine.PhysicsModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1600,6 +2132,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1617,12 +2151,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.physics2d@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.physics2d@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.physics2d
   assetPath: Packages/com.unity.modules.physics2d
   name: com.unity.modules.physics2d
   displayName: Physics 2D
@@ -1634,7 +2179,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Physics2d module implements 2D physics in Unity. Scripting API:
     https://docs.unity3d.com/ScriptReference/UnityEngine.Physics2DModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1655,6 +2199,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1672,12 +2218,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.screencapture@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.screencapture@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.screencapture
   assetPath: Packages/com.unity.modules.screencapture
   name: com.unity.modules.screencapture
   displayName: Screen Capture
@@ -1689,7 +2246,6 @@ m_ResolvedPackages:
   type: module
   description: 'The ScreenCapture module provides functionality to take screen shots
     using the ScreenCapture class. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.ScreenCaptureModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1714,6 +2270,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1731,12 +2289,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.terrain@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.terrain@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.terrain
   assetPath: Packages/com.unity.modules.terrain
   name: com.unity.modules.terrain
   displayName: Terrain
@@ -1748,7 +2317,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Terrain module implements Unity''s Terrain rendering engine available
     through the Terrain component. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.TerrainModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1769,6 +2337,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1786,12 +2356,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.terrainphysics@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.terrainphysics@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.terrainphysics
   assetPath: Packages/com.unity.modules.terrainphysics
   name: com.unity.modules.terrainphysics
   displayName: Terrain Physics
@@ -1803,7 +2384,6 @@ m_ResolvedPackages:
   type: module
   description: 'The TerrainPhysics module connects the Terrain and Physics modules
     by implementing the TerrainCollider component. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.TerrainPhysicsModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1832,6 +2412,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1849,12 +2431,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.tilemap@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.tilemap@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.tilemap
   assetPath: Packages/com.unity.modules.tilemap
   name: com.unity.modules.tilemap
   displayName: Tilemap
@@ -1865,7 +2458,6 @@ m_ResolvedPackages:
   category: 
   type: module
   description: 'The Tilemap module implements the Tilemap class. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.TilemapModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1890,6 +2482,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1907,12 +2501,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.ui@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.ui@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.ui
   assetPath: Packages/com.unity.modules.ui
   name: com.unity.modules.ui
   displayName: UI
@@ -1924,7 +2529,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UI module implements basic components required for Unity''s UI
     system Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UIModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1945,6 +2549,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -1962,12 +2568,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.uielements@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.uielements@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.uielements
   assetPath: Packages/com.unity.modules.uielements
   name: com.unity.modules.uielements
   displayName: UIElements
@@ -1979,7 +2596,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UIElements module implements the UIElements retained mode UI
     framework. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UIElementsModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -1995,12 +2611,16 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
+  - name: com.unity.modules.hierarchycore
+    version: 1.0.0
   resolvedDependencies:
   - name: com.unity.modules.ui
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.hierarchycore
     version: 1.0.0
   keywords: []
   registry:
@@ -2012,6 +2632,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2029,12 +2651,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.umbra@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.umbra@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.umbra
   assetPath: Packages/com.unity.modules.umbra
   name: com.unity.modules.umbra
   displayName: Umbra
@@ -2046,7 +2679,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Umbra module implements Unity''s occlusion culling system. Scripting
     API: https://docs.unity3d.com/ScriptReference/UnityEngine.UmbraModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2067,6 +2699,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2084,12 +2718,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unityanalytics@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unityanalytics@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unityanalytics
   assetPath: Packages/com.unity.modules.unityanalytics
   name: com.unity.modules.unityanalytics
   displayName: Unity Analytics
@@ -2099,9 +2744,7 @@ m_ResolvedPackages:
     url: 
   category: 
   type: module
-  description: 'The UnityAnalytics module implements APIs required to use Unity Analytics.
-    Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityAnalyticsModule.html'
-  status: 0
+  description: 
   errors: []
   versions:
     all:
@@ -2130,6 +2773,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2147,12 +2792,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unitywebrequest@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unitywebrequest@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unitywebrequest
   assetPath: Packages/com.unity.modules.unitywebrequest
   name: com.unity.modules.unitywebrequest
   displayName: Unity Web Request
@@ -2164,7 +2820,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UnityWebRequest module lets you communicate with http services.
     Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityWebRequestModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2185,6 +2840,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2202,12 +2859,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unitywebrequestassetbundle@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unitywebrequestassetbundle@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle
   assetPath: Packages/com.unity.modules.unitywebrequestassetbundle
   name: com.unity.modules.unitywebrequestassetbundle
   displayName: Unity Web Request Asset Bundle
@@ -2219,7 +2887,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UnityWebRequestAssetBundle module provides the DownloadHandlerAssetBundle
     class to use UnityWebRequest to download Asset Bundles. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityWebRequestAssetBundleModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2248,6 +2915,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2265,12 +2934,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unitywebrequestaudio@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unitywebrequestaudio@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unitywebrequestaudio
   assetPath: Packages/com.unity.modules.unitywebrequestaudio
   name: com.unity.modules.unitywebrequestaudio
   displayName: Unity Web Request Audio
@@ -2282,7 +2962,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UnityWebRequestAudio module provides the DownloadHandlerAudioClip
     class to use UnityWebRequest to download AudioClips. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityWebRequestAudioModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2311,6 +2990,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2328,12 +3009,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unitywebrequesttexture@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unitywebrequesttexture@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unitywebrequesttexture
   assetPath: Packages/com.unity.modules.unitywebrequesttexture
   name: com.unity.modules.unitywebrequesttexture
   displayName: Unity Web Request Texture
@@ -2345,7 +3037,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UnityWebRequestTexture module provides the DownloadHandlerTexture
     class to use UnityWebRequest to download Textures. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityWebRequestTextureModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2374,6 +3065,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2391,12 +3084,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.unitywebrequestwww@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.unitywebrequestwww@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.unitywebrequestwww
   assetPath: Packages/com.unity.modules.unitywebrequestwww
   name: com.unity.modules.unitywebrequestwww
   displayName: Unity Web Request WWW
@@ -2408,7 +3112,6 @@ m_ResolvedPackages:
   type: module
   description: 'The UnityWebRequestWWW module implements the legacy WWW lets you
     communicate with http services. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.UnityWebRequestWWWModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2453,6 +3156,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2470,12 +3175,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.vehicles@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.vehicles@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.vehicles
   assetPath: Packages/com.unity.modules.vehicles
   name: com.unity.modules.vehicles
   displayName: Vehicles
@@ -2487,7 +3203,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Vehicles module implements vehicle physics simulation through
     the WheelCollider component. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.VehiclesModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2512,6 +3227,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2529,12 +3246,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.video@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.video@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.video
   assetPath: Packages/com.unity.modules.video
   name: com.unity.modules.video
   displayName: Video
@@ -2546,7 +3274,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Video module lets you play back video files in your content.
     Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.VideoModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2579,6 +3306,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2596,12 +3325,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.vr@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.vr@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.vr
   assetPath: Packages/com.unity.modules.vr
   name: com.unity.modules.vr
   displayName: VR
@@ -2613,7 +3353,6 @@ m_ResolvedPackages:
   type: module
   description: 'The VR module implements support for virtual reality devices in Unity.
     Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.VRModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2648,6 +3387,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2665,12 +3406,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.wind@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.wind@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.wind
   assetPath: Packages/com.unity.modules.wind
   name: com.unity.modules.wind
   displayName: Wind
@@ -2682,7 +3434,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Wind module implements the WindZone component which can affect
     terrain rendering and particle simulations. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.WindModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2703,6 +3454,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2720,12 +3473,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.xr@1.0.0
   testable: 0
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.xr@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.xr
   assetPath: Packages/com.unity.modules.xr
   name: com.unity.modules.xr
   displayName: XR
@@ -2737,7 +3501,6 @@ m_ResolvedPackages:
   type: module
   description: 'The XR module contains the VR and AR related platform support functionality.
     Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.XRModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2770,6 +3533,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2787,12 +3552,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
 - packageId: com.unity.modules.subsystems@1.0.0
   testable: 0
   isDirectDependency: 0
   version: 1.0.0
   source: 2
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.modules.subsystems@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.subsystems
   assetPath: Packages/com.unity.modules.subsystems
   name: com.unity.modules.subsystems
   displayName: Subsystems
@@ -2804,7 +3580,6 @@ m_ResolvedPackages:
   type: module
   description: 'The Subsystem module contains the definitions and runtime support
     for general subsystems in Unity. Scripting API: https://docs.unity3d.com/ScriptReference/UnityEngine.SubsystemsModule.html'
-  status: 0
   errors: []
   versions:
     all:
@@ -2829,6 +3604,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 0
   isAssetStorePackage: 0
   datePublishedTicks: 0
   documentationUrl: 
@@ -2846,12 +3623,486 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ide.visualstudio@2.0.18
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
+- packageId: com.unity.modules.hierarchycore@1.0.0
   testable: 0
   isDirectDependency: 0
-  version: 2.0.18
+  version: 1.0.0
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.modules.hierarchycore
+  assetPath: Packages/com.unity.modules.hierarchycore
+  name: com.unity.modules.hierarchycore
+  displayName: Hierarchy Core
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: module
+  description: 'Module that contains a high-performance hierarchy container. Scripting
+    API: https://docs.unity3d.com/ScriptReference/UnityEngine.HierarchyCoreModule.html'
+  errors: []
+  versions:
+    all:
+    - 1.0.0
+    compatible:
+    - 1.0.0
+    recommended: 1.0.0
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 
+- packageId: com.unity.render-pipelines.core@17.0.3
+  testable: 0
+  isDirectDependency: 0
+  version: 17.0.3
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.render-pipelines.core
+  assetPath: Packages/com.unity.render-pipelines.core
+  name: com.unity.render-pipelines.core
+  displayName: Core RP Library
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: SRP Core makes it easier to create or customize a Scriptable Render
+    Pipeline (SRP). SRP Core contains reusable code, including boilerplate code for
+    working with platform-specific graphics APIs, utility functions for common rendering
+    operations, and  shader libraries. The code in SRP Core is use by the High Definition
+    Render Pipeline (HDRP) and Universal Render Pipeline (URP). If you are creating
+    a custom SRP from scratch or customizing a prebuilt SRP, using SRP Core will
+    save you time.
+  errors: []
+  versions:
+    all:
+    - 0.1.21
+    - 0.1.27
+    - 0.1.28
+    - 1.0.0-beta
+    - 1.0.1-beta
+    - 1.1.1-preview
+    - 1.1.2-preview
+    - 1.1.4-preview
+    - 1.1.5-preview
+    - 1.1.8-preview
+    - 1.1.10-preview
+    - 1.1.11-preview
+    - 2.0.1-preview
+    - 2.0.3-preview
+    - 2.0.4-preview
+    - 2.0.4-preview.1
+    - 2.0.5-preview
+    - 2.0.6-preview
+    - 2.0.7-preview
+    - 2.0.8-preview
+    - 3.0.0-preview
+    - 3.1.0-preview
+    - 3.3.0-preview
+    - 4.0.0-preview
+    - 4.0.1-preview
+    - 4.1.0-preview
+    - 4.2.0-preview
+    - 4.3.0-preview
+    - 4.6.0-preview
+    - 4.8.0-preview
+    - 4.9.0-preview
+    - 4.10.0-preview
+    - 5.0.0-preview
+    - 5.1.0
+    - 5.2.0
+    - 5.2.1
+    - 5.2.2
+    - 5.2.3
+    - 5.3.1
+    - 5.6.1
+    - 5.7.2
+    - 5.8.2
+    - 5.9.0
+    - 5.10.0
+    - 5.13.0
+    - 5.16.1
+    - 6.5.2
+    - 6.5.3
+    - 6.7.1
+    - 6.9.0
+    - 6.9.1
+    - 6.9.2
+    - 7.0.0
+    - 7.0.1
+    - 7.1.1
+    - 7.1.2
+    - 7.1.5
+    - 7.1.6
+    - 7.1.7
+    - 7.1.8
+    - 7.2.0
+    - 7.2.1
+    - 7.3.1
+    - 7.4.1
+    - 7.4.2
+    - 7.4.3
+    - 7.5.1
+    - 7.5.2
+    - 7.5.3
+    - 7.6.0
+    - 7.7.0
+    - 7.7.1
+    - 8.0.1
+    - 8.1.0
+    - 8.2.0
+    - 8.3.1
+    - 9.0.0-preview.13
+    - 9.0.0-preview.35
+    - 9.0.0-preview.38
+    - 9.0.0-preview.60
+    - 9.0.0-preview.77
+    - 10.0.0-preview.30
+    - 10.1.0
+    - 10.2.0
+    - 10.2.1
+    - 10.2.2
+    - 10.3.1
+    - 10.3.2
+    - 10.4.0
+    - 10.5.0
+    - 10.5.1
+    - 10.6.0
+    - 10.7.0
+    - 10.8.0
+    - 10.8.1
+    - 10.9.0
+    - 10.10.0
+    - 10.10.1
+    - 17.0.3
+    compatible:
+    - 17.0.3
+    recommended: 17.0.3
+    deprecated: []
+  dependencies:
+  - name: com.unity.burst
+    version: 1.8.14
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.ugui
+    version: 2.0.0
+  - name: com.unity.collections
+    version: 2.4.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.rendering.light-transport
+    version: 1.0.1
+  resolvedDependencies:
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.collections
+    version: 2.5.1
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.rendering.light-transport
+    version: 1.0.1
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 17.0.3
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 6e77ef45087e5aef2fb39b5689587b5c9dfd9ecc
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 17.0.3
+    minimumUnityVersion: 6000.0.0a1
+- packageId: com.unity.searcher@4.9.2
+  testable: 0
+  isDirectDependency: 0
+  version: 4.9.2
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.ide.visualstudio@2.0.18
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.searcher
+  assetPath: Packages/com.unity.searcher
+  name: com.unity.searcher
+  displayName: Searcher
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: General search window for use in the Editor. First target use is for
+    GraphView node search.
+  errors: []
+  versions:
+    all:
+    - 4.0.0-preview
+    - 4.0.0
+    - 4.0.7-preview
+    - 4.0.7
+    - 4.0.8-preview
+    - 4.0.9
+    - 4.1.0-preview
+    - 4.1.0
+    - 4.2.0
+    - 4.3.0
+    - 4.3.1
+    - 4.3.2
+    - 4.6.0-preview
+    - 4.7.0-preview
+    - 4.9.1
+    - 4.9.2
+    compatible:
+    - 4.9.2
+    recommended: 4.9.2
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - search
+  - searcher
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637831252240000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.searcher.git
+    revision: 7f9f75b04e97cf09c8ddc3968d059e74d6a2460a
+    path: 
+  unityLifecycle:
+    version: 4.9.2
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 90d011a70418fd5b0f4b8e86df39444d2af228dd
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 4.9.2
+    minimumUnityVersion: 2019.1.0a1
+- packageId: com.unity.render-pipelines.universal-config@17.0.3
+  testable: 0
+  isDirectDependency: 0
+  version: 17.0.3
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.render-pipelines.universal-config
+  assetPath: Packages/com.unity.render-pipelines.universal-config
+  name: com.unity.render-pipelines.universal-config
+  displayName: Universal RP Config
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Configuration files for the Universal Render Pipeline.
+  errors: []
+  versions:
+    all:
+    - 17.0.3
+    compatible:
+    - 17.0.3
+    recommended: 17.0.3
+    deprecated: []
+  dependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  resolvedDependencies:
+  - name: com.unity.render-pipelines.core
+    version: 17.0.3
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.ugui
+    version: 2.0.0
+  - name: com.unity.modules.ui
+    version: 1.0.0
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.collections
+    version: 2.5.1
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  - name: com.unity.rendering.light-transport
+    version: 1.0.1
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 17.0.3
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: fa63c96d3e1af317d84d171cd6c0e0658ab159df
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 17.0.3
+    minimumUnityVersion: 6000.0.0a1
+- packageId: com.unity.ide.visualstudio@2.0.22
+  testable: 0
+  isDirectDependency: 0
+  version: 2.0.22
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.ide.visualstudio
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -2860,11 +4111,10 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Code editor integration for supporting Visual Studio as code editor
     for unity. Adds support for generating csproj files for intellisense purposes,
     auto discovery of installations, etc.
-  status: 0
   errors: []
   versions:
     all:
@@ -2893,9 +4143,6 @@ m_ResolvedPackages:
     - 2.0.21
     - 2.0.22
     compatible:
-    - 2.0.18
-    - 2.0.20
-    - 2.0.21
     - 2.0.22
     recommended: 2.0.22
     deprecated: []
@@ -2904,9 +4151,9 @@ m_ResolvedPackages:
     version: 1.1.9
   resolvedDependencies:
   - name: com.unity.test-framework
-    version: 1.1.33
+    version: 1.4.5
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.5
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
@@ -2921,29 +4168,47 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638173205920000000
+  datePublishedTicks: 638326061910000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.visualstudio.git
-    revision: 9d3c07127cbe1916b8abbfd18f71fb8d9df8008c
+    revision: 700b44077345e97d37d464ff25507638983aed64
     path: 
   unityLifecycle:
-    version: 2.0.18
+    version: 2.0.22
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ide.rider@3.0.24
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"Integration:\n\n- Add support for `XDG_DATA_DIRS` and
+    `.desktop` files on Linux for `VS Code` discovery.\n- Use compile-time platform-specifics
+    instead of using runtime conditions.\n\nProject generation:\n\n- Suppress `USG0001`
+    warnings.\n- Mark referenced assemblies as private (to not copy extra files to
+    output directory when building).\n- Add Unity capability to SDK-Style projects.\n-
+    Prevent circular dependency errors with SDK-Style projects."}'
+  assetStore:
+    productId: 
+  fingerprint: 8140e851d83e922ca2021b04a89519de94ebe38c
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.22
+    minimumUnityVersion: 2019.4.25f1
+- packageId: com.unity.ide.rider@3.0.31
   testable: 0
   isDirectDependency: 0
-  version: 3.0.24
+  version: 3.0.31
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.ide.rider@3.0.24
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.ide.rider
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -2956,7 +4221,6 @@ m_ResolvedPackages:
   description: The JetBrains Rider Editor package provides an integration for using
     the JetBrains Rider IDE as a code editor for Unity. It adds support for generating
     .csproj files for code completion and auto-discovery of installations.
-  status: 0
   errors: []
   versions:
     all:
@@ -3003,21 +4267,18 @@ m_ResolvedPackages:
     - 3.0.27
     - 3.0.28
     - 3.0.31
+    - 3.0.34
     compatible:
-    - 3.0.24
-    - 3.0.25
-    - 3.0.26
-    - 3.0.27
-    - 3.0.28
     - 3.0.31
-    recommended: 3.0.31
+    - 3.0.34
+    recommended: 3.0.34
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
   resolvedDependencies:
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.5
   keywords: []
   registry:
     id: main
@@ -3028,97 +4289,45 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638221653400000000
+  datePublishedTicks: 638548308080000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: f5decc642e3618ce1c6827d47318260e61d64714
+    revision: ccd778a2275ff09f1a83bc924cfb2fb4d5b63566
     path: 
   unityLifecycle:
-    version: 3.0.24
+    version: 3.0.31
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ide.vscode@1.2.5
-  testable: 0
-  isDirectDependency: 0
-  version: 1.2.5
-  source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.ide.vscode@1.2.5
-  assetPath: Packages/com.unity.ide.vscode
-  name: com.unity.ide.vscode
-  displayName: Visual Studio Code Editor
-  author:
-    name: 
-    email: 
-    url: 
-  category: 
-  type: asset
-  description: Code editor integration for supporting Visual Studio Code as code
-    editor for unity. Adds support for generating csproj files for intellisense purposes,
-    auto discovery of installations, etc.
-  status: 0
-  errors: []
-  versions:
-    all:
-    - 1.0.2
-    - 1.0.3
-    - 1.0.7
-    - 1.1.0
-    - 1.1.2
-    - 1.1.3
-    - 1.1.4
-    - 1.2.0
-    - 1.2.1
-    - 1.2.2
-    - 1.2.3
-    - 1.2.4
-    - 1.2.5
-    compatible:
-    - 1.2.5
-    recommended: 1.2.5
-    deprecated: []
-  dependencies: []
-  resolvedDependencies: []
-  keywords: []
-  registry:
-    id: main
-    name: 
-    url: https://packages.unity.com
-    scopes: []
-    isDefault: 1
-    capabilities: 7
-    configSource: 0
-  hideInEditor: 1
-  isAssetStorePackage: 0
-  datePublishedTicks: 637800255360000000
-  documentationUrl: 
-  hasRepository: 1
-  repository:
-    type: git
-    url: https://github.com/Unity-Technologies/com.unity.ide.vscode.git
-    revision: b0740c80bfc2440527c317109f7c3d9100132722
-    path: 
-  unityLifecycle:
-    version: 1.2.5
-    nextVersion: 
-    recommendedVersion: 
-    isDeprecated: 0
-    deprecationMessage: 
-  isDeprecated: 0
-  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"fix RIDER-104519 Rider is reporting errors in scripts
+    that work fine in Unity when utilizing DOTS - when Player project, by generating
+    projects for all assemblies in \"com.unity.entities\", \"com.unity.collections\"\nfix
+    RIDER-111622 Unity Rider package is not compatible with Rider Dev builds"}'
+  assetStore:
+    productId: 
+  fingerprint: 7921be93db40ec070fcb01ed82d1c3df1bbdddcd
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 3.0.31
+    minimumUnityVersion: 2019.2.6f1
 - packageId: com.unity.editorcoroutines@1.0.0
   testable: 0
   isDirectDependency: 0
   version: 1.0.0
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.editorcoroutines@1.0.0
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.editorcoroutines
   assetPath: Packages/com.unity.editorcoroutines
   name: com.unity.editorcoroutines
   displayName: Editor Coroutines
@@ -3131,7 +4340,6 @@ m_ResolvedPackages:
   description: 'The editor coroutines package allows developers to start constructs
     similar to Unity''s monobehaviour based coroutines within the editor using abitrary
     objects. '
-  status: 0
   errors: []
   versions:
     all:
@@ -3161,6 +4369,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637232611380000000
   documentationUrl: 
@@ -3178,12 +4388,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 7d48783e7b8cfcee5f8ef9ba787ed0d9dad4ebca
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.0
+    minimumUnityVersion: 2018.1.0a1
 - packageId: com.unity.performance.profile-analyzer@1.2.2
   testable: 0
   isDirectDependency: 0
   version: 1.2.2
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.performance.profile-analyzer@1.2.2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.performance.profile-analyzer
   assetPath: Packages/com.unity.performance.profile-analyzer
   name: com.unity.performance.profile-analyzer
   displayName: Profile Analyzer
@@ -3198,7 +4419,6 @@ m_ResolvedPackages:
     in the Profiler.\n\nMain features: \n\u25AA Multi-frame analysis of a single
     set of Profiler CPU data \n\u25AA Comparison of two multi-frame profile scans
     \n\n"
-  status: 0
   errors: []
   versions:
     all:
@@ -3232,6 +4452,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638108624620000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.performance.profile-analyzer@1.2/manual/index.html
@@ -3249,12 +4471,24 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.test-framework@1.1.33
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixed\n\n* Fixed exception thrown when removing
+    marker."}'
+  assetStore:
+    productId: 
+  fingerprint: fe7acfd2717a98ded6ddc33be6b2ebe4459a2add
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.2.2
+    minimumUnityVersion: 2020.3.0a1
+- packageId: com.unity.test-framework@1.4.5
   testable: 0
   isDirectDependency: 0
-  version: 1.1.33
+  version: 1.4.5
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.test-framework@1.1.33
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.test-framework
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -3263,9 +4497,8 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Unity Test Framework
-  type: asset
+  type: assets
   description: Test framework for running Edit mode and Play mode tests in Unity.
-  status: 0
   errors: []
   versions:
     all:
@@ -3323,38 +4556,23 @@ m_ResolvedPackages:
     - 2.0.1-pre.12
     - 2.0.1-pre.18
     compatible:
-    - 1.1.33
-    - 1.3.0
-    - 1.3.1
-    - 1.3.2
-    - 1.3.3
-    - 1.3.4
-    - 1.3.5
-    - 1.3.7
-    - 1.3.8
-    - 1.3.9
-    - 1.4.0
-    - 1.4.1
-    - 1.4.2
-    - 1.4.3
-    - 1.4.4
     - 1.4.5
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
     - 2.0.1-pre.18
-    recommended: 1.1.33
+    recommended: 1.4.5
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.3
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
     version: 1.0.0
   resolvedDependencies:
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.5
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
@@ -3371,29 +4589,69 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637938212700000000
-  documentationUrl: 
+  datePublishedTicks: 638575054880000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.test-framework.git
-    revision: 34a4d423d64926635eb36d3bb86276179cc186e1
+    revision: e50747c90fb18ab9f4f350b60d0fcdcae19bdebc
     path: 
   unityLifecycle:
-    version: 1.1.33
+    version: 1.4.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.testtools.codecoverage@1.2.4
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"- Fixed an issue where batchmode test runs would never
+    finish if a test yielded WaitForEndOfFrame (DSTR-1009).\n- Fixed an issue where
+    the location prompt was required when using the Install all tests in ''build''
+    folder option during test builds.\n- Canceling a PlayMode test run now correctly
+    restores the scene setup, instead of leaving the editor in the test scene.\n-
+    Fixed an issue where UnitySetUp did not fail when nested coroutines threw an
+    exception (DSTR-1007).\n- When selecting multiple tests and running them, the
+    test runner now correctly updates the details of the first selected test (UTF-602).\n-
+    The interaction mode and application idle time settings is now being changes
+    when running tests, resulting in faster test runs if not already in use (applies
+    to 2020.3 and later) (DSTR-690).\n- Fixed an issue where some NUnit attributes
+    caused errors and stopped async test runs (DSTR-1040).\n- Added support for the
+    MaxTime attribute on async and UnityTest methods (DSTR-1040).\n- Fixed a memory
+    leak issue where a large number of domain reloads within the same test could
+    crash the editor (DSTR-1023).\n- Changed to use a progress bar inside the test
+    runner window when running tests. This ensures that the progress bar is not fighting
+    to display when e.g. compiling scripts and also makes it easier to cancel a run.
+    This progress bar is displayed for all types of runs (EditMode, PlayMode and
+    Player). (UTF-596).\n- Fixed an issue where ignored tests with an attributes
+    did not display the ignore reason in the test runner UI.\n- Having multiple tests
+    with the same unique id no longer gives a error with ''An item with the same
+    key has already been added'', but instead logs an warning about the duplicate
+    id.\n- The result icons for test suites should no longer flicker when running
+    tests.\n- Ensured that test results ignored in the editor but run on a player
+    are not overwritten with ignore status when shown in the UI (DSTR-1042).\n- Fixed
+    an issue where the RunStarted event was not invoked correctly during a test run
+    (DSTR-1046).\n- Fixed an issue where TestStarted and TestFinished events were
+    repeated for ignored test fixtures after a domain reload (DSTR-986)."}'
+  assetStore:
+    productId: 
+  fingerprint: 0a21eb82d95cd331643a1e0ce4e8e9a5f18954c8
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.4.5
+    minimumUnityVersion: 2019.4.0a10
+- packageId: com.unity.testtools.codecoverage@1.2.6
   testable: 0
   isDirectDependency: 0
-  version: 1.2.4
+  version: 1.2.6
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.testtools.codecoverage@1.2.4
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.testtools.codecoverage
   assetPath: Packages/com.unity.testtools.codecoverage
   name: com.unity.testtools.codecoverage
   displayName: Code Coverage
@@ -3402,12 +4660,11 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Use this package to export code coverage data and reports from your
     automated tests. Additionally, the Code Coverage package offers a Coverage Recording
     feature which allows capturing coverage data on demand, for manual testing or
     when there are no automated tests in the project.
-  status: 0
   errors: []
   versions:
     all:
@@ -3444,8 +4701,6 @@ m_ResolvedPackages:
     - 1.2.5
     - 1.2.6
     compatible:
-    - 1.2.4
-    - 1.2.5
     - 1.2.6
     recommended: 1.2.6
     deprecated: []
@@ -3456,9 +4711,9 @@ m_ResolvedPackages:
     version: 1.0.1
   resolvedDependencies:
   - name: com.unity.test-framework
-    version: 1.1.33
+    version: 1.4.5
   - name: com.unity.ext.nunit
-    version: 1.0.6
+    version: 2.0.5
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.modules.jsonserialize
@@ -3479,29 +4734,616 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638212235100000000
+  datePublishedTicks: 638575857900000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.testtools.codecoverage@1.2/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.testtools.codecoverage.git
-    revision: a7dd0751db55cd55e3b336723fb51433c1de7244
+    revision: 959db8ff97eedf9b211ad5cf320b87ac01f1e90f
     path: 
   unityLifecycle:
-    version: 1.2.4
+    version: 1.2.6
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixes\n- Documentation: Fixed formatting in [Using
+    Code Coverage in batchmode](https://docs.unity3d.com/Packages/com.unity.testtools.codecoverage@1.2/manual/CoverageBatchmode.html)
+    page (case [COV-40](https://issuetracker.unity3d.com/issues/docs-formatting-in-using-code-coverage-in-batchmode-docs-page-is-incorrect)).\n-
+    Removed the references to the deprecated FindObjectOfType method in the *Asteroids
+    sample project* (case [COV-42](https://issuetracker.unity3d.com/issues/sample-project-is-using-obsolete-findobjectoftype-method-which-causes-multiple-warnings-in-console-when-it-is-imported)).\n-
+    Added missing logs for the ReportGenerator (case [COV-46](https://issuetracker.unity3d.com/issues/code-coverage-package-does-not-report-some-of-the-internal-reportgenerator-errors))."}'
+  assetStore:
+    productId: 
+  fingerprint: 205a02cbcb39584f20b51c49b853047aceb3a3a7
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.2.6
+    minimumUnityVersion: 2019.3.0a1
+- packageId: com.unity.burst@1.8.18
+  testable: 0
+  isDirectDependency: 0
+  version: 1.8.18
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.burst
+  assetPath: Packages/com.unity.burst
+  name: com.unity.burst
+  displayName: Burst
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Burst is a compiler that translates from IL/.NET bytecode to highly
+    optimized native code using LLVM.
+  errors: []
+  versions:
+    all:
+    - 0.2.4-preview.5
+    - 0.2.4-preview.7
+    - 0.2.4-preview.11
+    - 0.2.4-preview.12
+    - 0.2.4-preview.13
+    - 0.2.4-preview.14
+    - 0.2.4-preview.15
+    - 0.2.4-preview.16
+    - 0.2.4-preview.17
+    - 0.2.4-preview.18
+    - 0.2.4-preview.19
+    - 0.2.4-preview.20
+    - 0.2.4-preview.21
+    - 0.2.4-preview.22
+    - 0.2.4-preview.23
+    - 0.2.4-preview.24
+    - 0.2.4-preview.25
+    - 0.2.4-preview.30
+    - 0.2.4-preview.31
+    - 0.2.4-preview.33
+    - 0.2.4-preview.34
+    - 0.2.4-preview.37
+    - 0.2.4-preview.41
+    - 0.2.4-preview.45
+    - 0.2.4-preview.48
+    - 0.2.4-preview.50
+    - 1.1.0-preview.2
+    - 1.1.0-preview.3
+    - 1.1.0-preview.4
+    - 1.1.1
+    - 1.1.2
+    - 1.1.3-preview.3
+    - 1.2.0-preview.1
+    - 1.2.0-preview.5
+    - 1.2.0-preview.6
+    - 1.2.0-preview.8
+    - 1.2.0-preview.9
+    - 1.2.0-preview.10
+    - 1.2.0-preview.11
+    - 1.2.0-preview.12
+    - 1.2.0
+    - 1.2.1
+    - 1.2.2
+    - 1.2.3
+    - 1.3.0-preview.1
+    - 1.3.0-preview.2
+    - 1.3.0-preview.3
+    - 1.3.0-preview.4
+    - 1.3.0-preview.5
+    - 1.3.0-preview.6
+    - 1.3.0-preview.7
+    - 1.3.0-preview.8
+    - 1.3.0-preview.9
+    - 1.3.0-preview.10
+    - 1.3.0-preview.11
+    - 1.3.0-preview.12
+    - 1.3.0-preview.13
+    - 1.3.0
+    - 1.3.1
+    - 1.3.2
+    - 1.3.3
+    - 1.3.4
+    - 1.3.5
+    - 1.3.6
+    - 1.3.7
+    - 1.3.8
+    - 1.3.9
+    - 1.4.0-pre.1
+    - 1.4.0-preview.1
+    - 1.4.0-preview.2
+    - 1.4.0-preview.3
+    - 1.4.0-preview.4
+    - 1.4.0-preview.5
+    - 1.4.1-pre.1
+    - 1.4.1-pre.2
+    - 1.4.1
+    - 1.4.2
+    - 1.4.3
+    - 1.4.4-preview.1
+    - 1.4.4-preview.2
+    - 1.4.4
+    - 1.4.5
+    - 1.4.6
+    - 1.4.7
+    - 1.4.8
+    - 1.4.9
+    - 1.4.11
+    - 1.5.0-pre.3
+    - 1.5.0-pre.4
+    - 1.5.0-pre.5
+    - 1.5.0
+    - 1.5.1
+    - 1.5.2
+    - 1.5.3
+    - 1.5.4
+    - 1.5.5
+    - 1.5.6-preview.1
+    - 1.5.6
+    - 1.6.0-pre.2
+    - 1.6.0-pre.3
+    - 1.6.0-pre.4
+    - 1.6.0
+    - 1.6.1
+    - 1.6.2
+    - 1.6.3
+    - 1.6.4
+    - 1.6.5
+    - 1.6.6
+    - 1.7.0-pre.1
+    - 1.7.0
+    - 1.7.1
+    - 1.7.2
+    - 1.7.3
+    - 1.7.4
+    - 1.8.0-pre.1
+    - 1.8.0-pre.2
+    - 1.8.0
+    - 1.8.1
+    - 1.8.2
+    - 1.8.3
+    - 1.8.4
+    - 1.8.7
+    - 1.8.8
+    - 1.8.9
+    - 1.8.10
+    - 1.8.11
+    - 1.8.12
+    - 1.8.13
+    - 1.8.14
+    - 1.8.15
+    - 1.8.16
+    - 1.8.17
+    - 1.8.18
+    compatible:
+    - 1.8.18
+    recommended: 1.8.18
+    deprecated: []
+  dependencies:
+  - name: com.unity.mathematics
+    version: 1.2.1
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638622972693870000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/burst.git
+    revision: 594a8d8794083be96fa510b2deea0954f971ecc9
+    path: 
+  unityLifecycle:
+    version: 1.8.18
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Added\n- Added the `UNITY_BURST_DISABLE_COMPILATION`
+    environment variable as an alternative to the `--burst-disable-compilation` command-line
+    argument\n\n### Removed\n\n### Changed\n\n### Fixed\n- Static fields used in
+    static constructors were sometimes incorrectly set to read only, despite being
+    written.\n- Fixed a case of the editor getting stuck loading during a domain
+    reload if Burst was set to synchronous compilation\n- Fixed hashing bug that
+    could occur when method signatures differed only by generic parameter count\n-
+    Branches within if (cpufeaturesupported) blocks could cause the transform pass
+    to miss identify which blocks are supporting which features, leading to errors
+    at compile time about intrinsics not being in matching blocks.\n- Fixed ''cannot
+    open input file ucrt.lib'' error when building for Universal Windows Platform
+    and targeting SDK 10.0.26100.0\n\n### Known Issues"}'
+  assetStore:
+    productId: 
+  fingerprint: 616862665d8c8ffe643d505aebb5de2ee73b0ab0
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.8.18
+    minimumUnityVersion: 2020.3.0a1
+- packageId: com.unity.mathematics@1.3.2
+  testable: 0
+  isDirectDependency: 0
+  version: 1.3.2
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.mathematics
+  assetPath: Packages/com.unity.mathematics
+  name: com.unity.mathematics
+  displayName: Mathematics
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: Unity's C# SIMD math library providing vector types and math functions
+    with a shader like syntax.
+  errors: []
+  versions:
+    all:
+    - 0.0.12-preview.2
+    - 0.0.12-preview.5
+    - 0.0.12-preview.8
+    - 0.0.12-preview.10
+    - 0.0.12-preview.11
+    - 0.0.12-preview.13
+    - 0.0.12-preview.17
+    - 0.0.12-preview.19
+    - 0.0.12-preview.20
+    - 1.0.0-preview.1
+    - 1.0.1
+    - 1.1.0-preview.1
+    - 1.1.0
+    - 1.2.1
+    - 1.2.4
+    - 1.2.5
+    - 1.2.6
+    - 1.3.1
+    - 1.3.2
+    compatible:
+    - 1.3.2
+    recommended: 1.3.2
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - unity
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638409134840000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.mathematics@1.3/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/Unity.Mathematics.git
+    revision: 1695a8503482a3131be78cc26308a93f82c05b04
+    path: 
+  unityLifecycle:
+    version: 1.3.2
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Fixed\n* Fixed `math.hash` crash when using IL2CPP
+    builds on Arm 32 bit devices.\n* Fixed obsolete method usage warnings for `MatrixDrawer.CanCacheInspectorGUI`
+    and `PrimitiveVectorDrawer.CanCacheInspectorGUI` in UNITY_2023_2_OR_NEWER.\n*
+    Updated minimum editor version to 2021.3"}'
+  assetStore:
+    productId: 
+  fingerprint: 8017b507cc74bf0a1dd14b18aa860569f807314d
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.3.2
+    minimumUnityVersion: 2021.3.0a1
+- packageId: com.unity.collections@2.5.1
+  testable: 0
+  isDirectDependency: 0
+  version: 2.5.1
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.collections
+  assetPath: Packages/com.unity.collections
+  name: com.unity.collections
+  displayName: Collections
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: A C# collections library providing data structures that can be used
+    in jobs, and optimized by Burst compiler.
+  errors: []
+  versions:
+    all:
+    - 0.0.9-preview.1
+    - 0.0.9-preview.2
+    - 0.0.9-preview.3
+    - 0.0.9-preview.4
+    - 0.0.9-preview.5
+    - 0.0.9-preview.6
+    - 0.0.9-preview.7
+    - 0.0.9-preview.8
+    - 0.0.9-preview.9
+    - 0.0.9-preview.10
+    - 0.0.9-preview.11
+    - 0.0.9-preview.12
+    - 0.0.9-preview.13
+    - 0.0.9-preview.14
+    - 0.0.9-preview.15
+    - 0.0.9-preview.16
+    - 0.0.9-preview.17
+    - 0.0.9-preview.18
+    - 0.0.9-preview.19
+    - 0.0.9-preview.20
+    - 0.1.0-preview
+    - 0.1.1-preview
+    - 0.2.0-preview.13
+    - 0.3.0-preview.0
+    - 0.4.0-preview.6
+    - 0.5.0-preview.9
+    - 0.5.1-preview.11
+    - 0.5.2-preview.8
+    - 0.6.0-preview.9
+    - 0.7.0-preview.2
+    - 0.7.1-preview.3
+    - 0.8.0-preview.5
+    - 0.9.0-preview.5
+    - 0.9.0-preview.6
+    - 0.11.0-preview.17
+    - 0.12.0-preview.13
+    - 0.14.0-preview.16
+    - 0.15.0-preview.21
+    - 0.17.0-preview.18
+    - 1.0.0-pre.3
+    - 1.0.0-pre.5
+    - 1.0.0-pre.6
+    - 1.1.0
+    - 1.2.3-pre.1
+    - 1.2.3
+    - 1.2.4
+    - 1.3.1
+    - 1.4.0
+    - 1.5.1
+    - 2.1.0-exp.4
+    - 2.1.0-pre.2
+    - 2.1.0-pre.6
+    - 2.1.0-pre.11
+    - 2.1.0-pre.18
+    - 2.1.1
+    - 2.1.4
+    - 2.2.0
+    - 2.2.1
+    - 2.3.0-exp.1
+    - 2.3.0-pre.3
+    - 2.4.0-exp.2
+    - 2.4.0-pre.2
+    - 2.4.0-pre.5
+    - 2.4.0
+    - 2.4.1
+    - 2.4.2
+    - 2.4.3
+    - 2.5.0-exp.1
+    - 2.5.0-pre.2
+    - 2.5.1
+    compatible:
+    - 2.5.1
+    recommended: 2.5.1
+    deprecated: []
+  dependencies:
+  - name: com.unity.burst
+    version: 1.8.17
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  resolvedDependencies:
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  keywords:
+  - dots
+  - collections
+  - unity
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638621282722800000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collections@2.5/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/dots.git
+    revision: 5b0dea6b455f5df005c19fa984ddfa237d6cd707
+    path: 
+  unityLifecycle:
+    version: 2.5.1
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Changed\n* Updated Burst dependency to version
+    1.8.17\n* Updated Unity Test Framework dependency to version 1.4.5\n* Updated
+    entities packages dependencies\n\n### Fixed\n* Certain cases would cause an ILPostProcessor
+    to fail, blocking compilation, but no more."}'
+  assetStore:
+    productId: 
+  fingerprint: 56bff8827a7ef6d44fcee4f36e558a74da89c1a0
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.5.1
+    minimumUnityVersion: 2022.3.11f1
+- packageId: com.unity.rendering.light-transport@1.0.1
+  testable: 0
+  isDirectDependency: 0
+  version: 1.0.1
+  source: 2
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.rendering.light-transport
+  assetPath: Packages/com.unity.rendering.light-transport
+  name: com.unity.rendering.light-transport
+  displayName: Unity Light Transport Library
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: Unity Light Transport Library exposes reusable code for writing light
+    transport algorithms such as raytracing or pathtracing
+  errors: []
+  versions:
+    all:
+    - 1.0.1
+    compatible:
+    - 1.0.1
+    recommended: 1.0.1
+    deprecated: []
+  dependencies:
+  - name: com.unity.collections
+    version: 2.2.0
+  - name: com.unity.mathematics
+    version: 1.2.4
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.collections
+    version: 2.5.1
+  - name: com.unity.burst
+    version: 1.8.18
+  - name: com.unity.mathematics
+    version: 1.3.2
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.nuget.mono-cecil
+    version: 1.11.4
+  - name: com.unity.test-framework.performance
+    version: 3.0.3
+  - name: com.unity.modules.terrain
+    version: 1.0.0
+  keywords:
+  - raytracing
+  - pathtracing
+  - monte-carlo
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 0
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 1.0.1
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 307bc27a498fc9cd409bbd426c85d8dc7f140bc1
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.0.1
+    minimumUnityVersion: 2023.3.0b1
 - packageId: com.unity.settings-manager@2.0.1
   testable: 0
   isDirectDependency: 0
   version: 2.0.1
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.settings-manager@2.0.1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.settings-manager
   assetPath: Packages/com.unity.settings-manager
   name: com.unity.settings-manager
   displayName: Settings Manager
@@ -3513,7 +5355,6 @@ m_ResolvedPackages:
   type: asset
   description: A framework for making any serializable field a setting, complete
     with a pre-built settings interface.
-  status: 0
   errors: []
   versions:
     all:
@@ -3541,6 +5382,8 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637744099390000000
   documentationUrl: 
@@ -3558,12 +5401,23 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ext.nunit@1.0.6
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: 56a930affa1e4462d3595b5c19a1c2a4bf2015d2
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.1
+    minimumUnityVersion: 2018.4.0a1
+- packageId: com.unity.ext.nunit@2.0.5
   testable: 0
   isDirectDependency: 0
-  version: 1.0.6
+  version: 2.0.5
   source: 1
-  resolvedPath: /home/jules/Dev/random/firefly/FireFly/Library/PackageCache/com.unity.ext.nunit@1.0.6
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.ext.nunit
   assetPath: Packages/com.unity.ext.nunit
   name: com.unity.ext.nunit
   displayName: Custom NUnit
@@ -3572,10 +5426,9 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Libraries
-  type: asset
-  description: Custom version of the nunit package build to work with Unity. Used
-    by the Unity Test Framework.
-  status: 0
+  type: assets
+  description: A custom version of NUnit used by Unity Test Framework. Based on NUnit
+    version 3.5 and works with all platforms, il2cpp and Mono AOT.
   errors: []
   versions:
     all:
@@ -3590,12 +5443,8 @@ m_ResolvedPackages:
     - 2.0.4
     - 2.0.5
     compatible:
-    - 1.0.6
-    - 2.0.2
-    - 2.0.3
-    - 2.0.4
     - 2.0.5
-    recommended: 1.0.6
+    recommended: 2.0.5
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -3612,20 +5461,249 @@ m_ResolvedPackages:
     capabilities: 7
     configSource: 0
   hideInEditor: 1
+  entitlements:
+    licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637429759280000000
-  documentationUrl: 
+  datePublishedTicks: 638236642220000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.ext.nunit@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ext.nunit.git
-    revision: 29ea4d6504a5f58fb3a6934db839aa80ae6d9d88
+    revision: 469fe0d46bfc26fbb32a53885ca4d12abcdae4ae
     path: 
   unityLifecycle:
-    version: 1.0.6
+    version: 2.0.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"- Fixing bug for InstanceID as struct changes"}'
+  assetStore:
+    productId: 
+  fingerprint: 60ef35ffd3cd5e2f5c8887a4a4ca6148854cd092
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.5
+    minimumUnityVersion: 2019.4.0a1
+- packageId: com.unity.nuget.mono-cecil@1.11.4
+  testable: 0
+  isDirectDependency: 0
+  version: 1.11.4
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.nuget.mono-cecil
+  assetPath: Packages/com.unity.nuget.mono-cecil
+  name: com.unity.nuget.mono-cecil
+  displayName: Mono Cecil
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: library
+  description: 'The mono cecil library from https://www.nuget.org/packages/Mono.Cecil/
+
+
+    This
+    package is intended for internal Unity use only. Most Unity users will be better
+    suite using the existing community tooling.
+
+    To avoid assembly clashes, please
+    use this package if you intend to use Mono.Cecil.'
+  errors: []
+  versions:
+    all:
+    - 0.1.6-preview.2
+    - 1.0.0-preview.1
+    - 1.10.0-preview.1
+    - 1.10.1-preview.1
+    - 1.10.1
+    - 1.10.2
+    - 1.11.4
+    compatible:
+    - 1.11.4
+    recommended: 1.11.4
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637852971930000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.nuget.mono-cecil.git
+    revision: d0133ce672d724694b56bfd20672acf6f8737fec
+    path: 
+  unityLifecycle:
+    version: 1.11.4
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: 
+  assetStore:
+    productId: 
+  fingerprint: d6f9955a5d5f84d45442ff1ad0fb694cc6e2fd62
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 1.11.4
+    minimumUnityVersion: 2018.4.0a1
+- packageId: com.unity.test-framework.performance@3.0.3
+  testable: 0
+  isDirectDependency: 0
+  version: 3.0.3
+  source: 1
+  resolvedPath: C:\Users\debju\Firefly\Library\PackageCache\com.unity.test-framework.performance
+  assetPath: Packages/com.unity.test-framework.performance
+  name: com.unity.test-framework.performance
+  displayName: Performance testing API
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: assets
+  description: Package that extends Unity Test Framework package. Adds performance
+    testing capabilities and collects configuration metadata.
+  errors: []
+  versions:
+    all:
+    - 0.1.27-preview
+    - 0.1.29-preview
+    - 0.1.31-preview
+    - 0.1.33-preview
+    - 0.1.34-preview
+    - 0.1.36-preview
+    - 0.1.37-preview
+    - 0.1.39-preview
+    - 0.1.40-preview
+    - 0.1.41-preview
+    - 0.1.42-preview
+    - 0.1.44-preview
+    - 0.1.45-preview
+    - 0.1.47-preview
+    - 0.1.48-preview
+    - 0.1.49-preview
+    - 0.1.50-preview
+    - 1.0.4-preview
+    - 1.0.6-preview
+    - 1.0.9-preview
+    - 1.1.2-preview
+    - 1.2.0-preview
+    - 1.2.1-preview
+    - 1.2.3-preview
+    - 1.2.5-preview
+    - 1.2.6-preview
+    - 1.3.0-preview
+    - 1.3.1-preview
+    - 1.3.2-preview
+    - 1.3.3-preview
+    - 2.0.1-preview
+    - 2.0.2-preview
+    - 2.0.3-preview
+    - 2.0.6-preview
+    - 2.0.7-preview
+    - 2.0.8-preview
+    - 2.0.9-preview
+    - 2.1.0-preview
+    - 2.2.0-preview
+    - 2.3.1-preview
+    - 2.4.1-preview
+    - 2.5.1-preview
+    - 2.6.0-preview
+    - 2.7.0-preview
+    - 2.8.0-preview
+    - 2.8.1-preview
+    - 3.0.0-pre.1
+    - 3.0.0-pre.2
+    - 3.0.1
+    - 3.0.2
+    - 3.0.3
+    compatible:
+    - 3.0.3
+    recommended: 3.0.3
+    deprecated: []
+  dependencies:
+  - name: com.unity.test-framework
+    version: 1.1.31
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.test-framework
+    version: 1.4.5
+  - name: com.unity.ext.nunit
+    version: 2.0.5
+  - name: com.unity.modules.imgui
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  keywords:
+  - performance
+  - test
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638301960470000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.test-framework.performance@3.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.test-framework.performance.git
+    revision: 10b82691b2d9f4e4aa8385c8d797c7e544bac548
+    path: 
+  unityLifecycle:
+    version: 3.0.3
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"## Fixed \n- Fixed issue where exception in OnTestEnded
+    callback would result in EndTest method not finalising properly\n### Changed\n-
+    Temporarily removed \"Open Script\" from Performance Benchmark Window\n- Some
+    clarifications in documentation were added (\"Extension\" naming changed to \"Package\",
+    Package limitations clarified)"}'
+  assetStore:
+    productId: 
+  fingerprint: fb0dc592af8b524f1a06c50d7caf95552f1bcd2f
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 3.0.3
+    minimumUnityVersion: 2020.3.0a1
+m_BuiltInPackagesHash: 07b6e73e970cc0b45bc9281dcba4aa3dee20287e

@@ -1,71 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using Manager;
 using UnityEngine;
 
 // https://discussions.unity.com/t/room-system-at-runtime/1539537/4
-public class SceneData : MonoBehaviour
+namespace Data.Architecture
 {
-  public int WorldMapIndex;
-  public GameObject SpawnList;
-  public GameObject RoomList;
-
-  void Awake()
-  {
-    var spawns = SpawnList.GetComponentsInChildren<SceneSpawn>(false);
-    int roomIdToLoad = 0;
-    foreach (SceneSpawn spawn in spawns)
+    public class SceneData : MonoBehaviour
     {
-      if (spawn.Id == SceneCustomManager.Instance.CurrentSpawnId)
-      {
-        roomIdToLoad = spawn.SceneRoomId;
-      }
-      else
-      {
-        Destroy(spawn.GameObject);
-      }
-    }
-    UnsetUnusedRoom(roomIdToLoad);
-    SceneCustomManager.Instance.CurrentScene = this;
-    SceneCustomManager.Instance.CurrentSceneRoomId = roomIdToLoad;
-  }
+        public int worldMapIndex;
+        public GameObject spawnList;
+        public GameObject roomList;
 
-  public void LoadRoom(int roomId)
-  {
-    var rooms = RoomList.GetComponentsInChildren<SceneRoom>(false);
-    foreach(SceneRoom room in rooms)
-    {
-      if (room.Id == roomId)
-      {
-        room.GameObject.SetActive(true);
-        return;
-      }
-    }
-  }
+        private void Awake()
+        {
+            var spawns = spawnList.GetComponentsInChildren<SceneSpawn>(false);
+            var roomIdToLoad = 0;
+            foreach (var spawn in spawns)
+                if (spawn.id == SceneCustomManager.Instance.currentSpawnId)
+                    roomIdToLoad = spawn.sceneRoomId;
+                else
+                    Destroy(spawn.gameObject);
 
-  public void UnloadRoom(int roomId)
-  {
-    var rooms = RoomList.GetComponentsInChildren<SceneRoom>(false);
-    foreach(SceneRoom room in rooms)
-    {
-      if (room.Id == roomId)
-      {
-        room.GameObject.SetActive(false);
-        return;
-      }
-    }
-  }
+            UnsetUnusedRoom(roomIdToLoad);
+            SceneCustomManager.Instance.currentScene = this;
+            SceneCustomManager.Instance.currentSceneRoomId = roomIdToLoad;
+        }
 
-  private void UnsetUnusedRoom(int roomIdToKeepActive)
-  {
-    var rooms = RoomList.GetComponentsInChildren<SceneRoom>(false);
-    foreach(SceneRoom room in rooms)
-    {
-      if (room.Id != roomIdToKeepActive)
-      {
-        room.GameObject.SetActive(false);
-      }
-    }
-  }
+        public void LoadRoom(int roomId)
+        {
+            var rooms = roomList.GetComponentsInChildren<SceneRoom>(false);
+            foreach (var room in rooms)
+                if (room.id == roomId)
+                {
+                    room.gameObject.SetActive(true);
+                    return;
+                }
+        }
 
+        public void UnloadRoom(int roomId)
+        {
+            var rooms = roomList.GetComponentsInChildren<SceneRoom>(false);
+            foreach (var room in rooms)
+                if (room.id == roomId)
+                {
+                    room.gameObject.SetActive(false);
+                    return;
+                }
+        }
+
+        private void UnsetUnusedRoom(int roomIdToKeepActive)
+        {
+            var rooms = roomList.GetComponentsInChildren<SceneRoom>(false);
+            foreach (var room in rooms)
+                if (room.id != roomIdToKeepActive)
+                    room.gameObject.SetActive(false);
+        }
+    }
 }

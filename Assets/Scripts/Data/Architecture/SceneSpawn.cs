@@ -1,40 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using Manager;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SceneSpawn : MonoBehaviour
+namespace Data.Architecture
 {
-  public GameObject GameObject;
-  public int Id;
-  public int SceneRoomId;
-  public ESpawnPlayerAnimation SpawnPlayerAnimation;
-  public ESpawnCameraTransition CameraTransition;
-  private bool _hasBeenTriggered = false;
-
-  void Start()
-  {
-    PlayerManager.Instance.Player.PlayerAction.SpawnAt(transform);
-    switch (CameraTransition)
+    public class SceneSpawn : MonoBehaviour
     {
-      case ESpawnCameraTransition.FADE_OUT_BLACK:
-        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_OUT_BLACK);
-        break;
+        public enum ESpawnCameraTransition
+        {
+            FADE_OUT_BLACK,
+            FADE_OUT_WHITE
+        }
 
-      case ESpawnCameraTransition.FADE_OUT_WHITE:
-        PlayerManager.Instance.Player.PlayerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition.FADE_OUT_WHITE);
-        break;
+        public enum ESpawnPlayerAnimation
+        {
+        }
+
+        public GameObject gameObject;
+        public int id;
+        public int sceneRoomId;
+        public ESpawnPlayerAnimation spawnPlayerAnimation;
+        public ESpawnCameraTransition cameraTransition;
+        private bool _hasBeenTriggered;
+
+        private void Start()
+        {
+            PlayerManager.Instance.player.playerAction.SpawnAt(transform);
+            switch (cameraTransition)
+            {
+                case ESpawnCameraTransition.FADE_OUT_BLACK:
+                    PlayerManager.Instance.player.playerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition
+                        .FADE_OUT_BLACK);
+                    break;
+
+                case ESpawnCameraTransition.FADE_OUT_WHITE:
+                    PlayerManager.Instance.player.playerCameraEffect.TriggerTransition(PlayerCameraEffect.ECameraTransition
+                        .FADE_OUT_WHITE);
+                    break;
+            }
+
+            _hasBeenTriggered = true;
+        }
     }
-    _hasBeenTriggered = true;
-  }
-
-  public enum ESpawnPlayerAnimation
-  {
-
-  }
-
-  public enum ESpawnCameraTransition
-  {
-    FADE_OUT_BLACK,
-    FADE_OUT_WHITE
-  }
 }

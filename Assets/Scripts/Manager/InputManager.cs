@@ -1,40 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+namespace Manager
 {
-    public static InputManager Instance { get; private set; }
-    public bool APress { get; private set; } = false;
-    public bool ATap { get; private set; } = false;
-    public bool BPress { get; private set; } = false;
-    public bool BTap { get; private set; } = false;
-    private PlayerControl _playerControl;
-
-    void Awake()
+    public class InputManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        private PlayerControl _playerControl;
+        public static InputManager Instance { get; private set; }
+        public bool APress { get; private set; }
+        public bool ATap { get; private set; } = false;
+        public bool BPress { get; private set; }
+        public bool BTap { get; private set; } = false;
+
+        private void Awake()
         {
-            Destroy(this.gameObject);
+            if (Instance != null && Instance != this)
+                Destroy(gameObject);
+            else
+                Instance = this;
+            ReadInput();
         }
-        else
+
+
+        private void ReadInput()
         {
-            Instance = this;
+            _playerControl = new PlayerControl();
+
+            _playerControl.Gameplay.APress.Enable();
+            _playerControl.Gameplay.APress.performed += _ => APress = true;
+            _playerControl.Gameplay.APress.canceled += _ => APress = false;
+
+            _playerControl.Gameplay.BPress.Enable();
+            _playerControl.Gameplay.BPress.performed += _ => BPress = true;
+            _playerControl.Gameplay.BPress.canceled += _ => BPress = false;
         }
-        ReadInput();
-    }
-
-
-    private void ReadInput()
-    {
-        _playerControl = new PlayerControl();
-
-        _playerControl.Gameplay.APress.Enable();
-        _playerControl.Gameplay.APress.performed += context => APress = true;
-        _playerControl.Gameplay.APress.canceled += context => APress = false;
-
-        _playerControl.Gameplay.BPress.Enable();
-        _playerControl.Gameplay.BPress.performed += context => BPress = true;
-        _playerControl.Gameplay.BPress.canceled += context => BPress = false;
     }
 }

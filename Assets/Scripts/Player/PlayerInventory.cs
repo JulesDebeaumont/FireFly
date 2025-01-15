@@ -1,35 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+namespace Player
 {
-    public int GemCount = 0;
-    public List<ItemInventory> Items = new List<ItemInventory>();
-
-    private void Awake()
+    public class PlayerInventory : MonoBehaviour
     {
-        LoadInventory();
-    }
+        public Player player;
+        private int _gemCount;
+        private int _health;
+        private bool _bowObtained;
+        private int _bowAmmo;
 
-    public void AddToInventory(Item Item, int Count)
-    {
-        // TODO if Items contient déjà le Item, on ++ au count, avec calcul de limit si ammo (exemple quiver 30, pasp lus de 30)
-        ItemInventory itemToAdd = new ItemInventory {
-            Item = Item,
-            Count = Count
-        };
-        Items.Add(itemToAdd);
-    }
+        private void Awake()
+        {
+            LoadInventory();
+        }
 
-    private void LoadInventory()
-    {
-        // TODO check in save file
-    }
+        public void AddAmber(int amount)
+        {
+            // TODO logic with wallets
+            _gemCount += amount;
+        }
 
-    public class ItemInventory
-    {
-        public Item Item;
-        public int Count;
+        public void RemoveGem(int amount)
+        {
+            _gemCount -= amount;
+            if (_gemCount < 0) _gemCount = 0;
+        }
+
+        public void AddHealth(int amount)
+        {
+            _health += amount;
+            // TODO max health calculate with heartpieces
+        }
+
+        public void RemoveHealth(int amount)
+        {
+            _health -= amount;
+            // TODO sound effect
+            // TODO invulnerable timeout
+            if (_health < 0)
+            {
+                _health = 0;
+            }
+            if (_health == 0)
+            {
+                player.playerAction.Die();
+            }
+        }
+
+        private void LoadInventory()
+        {
+            // TODO check in save file
+        }
     }
 }

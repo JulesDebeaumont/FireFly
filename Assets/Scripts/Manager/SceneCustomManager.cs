@@ -1,36 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using Data.Architecture;
+using Data.Tables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
-public class SceneCustomManager : MonoBehaviour
+namespace Manager
 {
-    public static SceneCustomManager Instance { get; private set; }
-    public SceneData CurrentScene;
-    public int CurrentSceneId = 0;
-    public int CurrentSpawnId = 0;
-    public int CurrentSceneRoomId = 0;
-
-    void Awake()
+    public class SceneCustomManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        [FormerlySerializedAs("CurrentScene")] public SceneData currentScene;
+        [FormerlySerializedAs("CurrentSceneId")] public int currentSceneId;
+        [FormerlySerializedAs("CurrentSpawnId")] public int currentSpawnId;
+        [FormerlySerializedAs("CurrentSceneRoomId")] public int currentSceneRoomId;
+        public static SceneCustomManager Instance { get; private set; }
+
+        private void Awake()
         {
-            Destroy(this.gameObject);
+            if (Instance != null && Instance != this)
+                Destroy(gameObject);
+            else
+                Instance = this;
         }
-        else
-        {
-            Instance = this;
-        }
-    }
 
 
-    public void LoadScene(int sceneId, int sceneSpawnId)
-    {
-      var sceneToLoad = SceneTable.GetSceneNameById(sceneId);
-      SceneManager.LoadScene(sceneToLoad);
-      CurrentSceneId = sceneId;
-      CurrentSpawnId = sceneSpawnId;
-      // TODO check for world flag, special event redirect
+        public void LoadScene(int sceneId, int sceneSpawnId)
+        {
+            var sceneToLoad = SceneTable.GetSceneNameById(sceneId);
+            SceneManager.LoadScene(sceneToLoad);
+            currentSceneId = sceneId;
+            currentSpawnId = sceneSpawnId;
+            // TODO check for world flag, special event redirect
+        }
     }
 }
-

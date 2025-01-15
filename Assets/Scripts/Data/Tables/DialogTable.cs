@@ -1,130 +1,127 @@
 #nullable enable
-
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public static class DialogTable
+namespace Data.Tables
 {
-
-  public static Dialog? GetDialogById(int dialogId)
-  {
-    if (Data.TryGetValue(dialogId, out Dialog dialogFound))
+    public static class DialogTable // TODO refacto mettre les dialogs dans les actors / cutscenes
     {
-      return dialogFound;
-    }
-    else
-    {
-      return null;
-    }
-  }
+        private static readonly Dialog DefaultDialog = new();
 
-  private readonly static Dialog DefaultDialog = new Dialog();
-  private readonly static Dialog DefaultDialog2 = new Dialog()
-  {
-    Sequences = new Dialog.DialogSequence[] {
-      new ()
-      {
-        PiecesOfText = new Dialog.PieceOfText[]
+        private static readonly Dialog DefaultDialog2 = new()
         {
-            new () { Text = "Hello! I'm a test !" }
-        },
-      },
-      new ()
-      {
-        PiecesOfText = new Dialog.PieceOfText[]
-        {
-            new ()
+            Sequences = new Dialog.DialogSequence[]
             {
-                Text = "This is woobling oh yeah",
-                Color = Dialog.EPieceOfTextColor.BLUE,
-                Animation = Dialog.EPieceOfTextAnimation.WOOBLE
+                new()
+                {
+                    PiecesOfText = new Dialog.PieceOfText[]
+                    {
+                        new() { Text = "Hello! I'm a test !" }
+                    }
+                },
+                new()
+                {
+                    PiecesOfText = new Dialog.PieceOfText[]
+                    {
+                        new()
+                        {
+                            Text = "This is woobling oh yeah",
+                            Color = Dialog.EPieceOfTextColor.BLUE,
+                            Animation = Dialog.EPieceOfTextAnimation.WOOBLE
+                        }
+                    }
+                },
+                new()
+                {
+                    PiecesOfText = new Dialog.PieceOfText[]
+                    {
+                        new()
+                        {
+                            Text = "You should.. "
+                        }
+                    }
+                },
+                new()
+                {
+                    RevealSpeed = 1f,
+                    PiecesOfText = new Dialog.PieceOfText[]
+                    {
+                        new()
+                        {
+                            Text = "run.",
+                            Color = Dialog.EPieceOfTextColor.RED,
+                            Animation = Dialog.EPieceOfTextAnimation.CREEPY
+                        }
+                    }
+                }
             }
-        },
-      },
-      new ()
-      {
-        PiecesOfText = new Dialog.PieceOfText[]
+        };
+
+        private static readonly Dictionary<int, Dialog> Data = new()
         {
-          new ()
-            {
-                Text = "You should.. "
-            }
-        }
-      },
-      new ()
-      {
-        RevealSpeed = 1f,
-        PiecesOfText = new Dialog.PieceOfText[]
+            { 0, DefaultDialog },
+            { 1, DefaultDialog2 }
+        };
+
+        public static Dialog? GetDialogById(int dialogId)
         {
-          new ()
-          {
-              Text = "run.",
-              Color = Dialog.EPieceOfTextColor.RED,
-              Animation = Dialog.EPieceOfTextAnimation.CREEPY
-          }
+            if (Data.TryGetValue(dialogId, out var dialogFound)) return dialogFound;
+
+            return null;
         }
-      }
     }
-  };
 
-  private static Dictionary<int, Dialog> Data = new Dictionary<int, Dialog>
+    public class Dialog
     {
-        {0, DefaultDialog},
-        {1, DefaultDialog2}
-    };
-}
+        public enum EDialogBackground
+        {
+            STANDARD,
+            NONE,
+            WOOD
+        }
 
-public class Dialog
-{
-  public DialogSequence[] Sequences = { new DialogSequence() };
-  public class DialogSequence
-  {
-    public EDialogBackground Background = EDialogBackground.STANDARD;
-    public bool InstantText = false; // TODO a tester
-    public bool CanBeSkipped = true; // TODO a tester
-    public float RevealSpeed = 0.03f;
-    public bool AutoTransition = false; // TODO
-    public PieceOfText[] PiecesOfText = { new PieceOfText() };
-    public PieceOfTextChoice[] Choices = { }; // TODO
-    public int RowCount = 1;
-  }
+        public enum EPieceOfTextAnimation
+        {
+            NONE,
+            CREEPY,
+            WOOBLE
+        }
 
-  public class PieceOfText
-  {
-    public string Text = "Hello!";
-    public virtual EPieceOfTextColor Color { get; set; } = EPieceOfTextColor.WHITE;
-    public EPieceOfTextAnimation Animation = EPieceOfTextAnimation.NONE;
-  }
+        public enum EPieceOfTextColor
+        {
+            WHITE,
+            BLACK,
+            RED,
+            YELLOW,
+            GREEN,
+            BLUE,
+            TRANSPARENT
+        }
 
-  public enum EPieceOfTextColor
-  {
-    WHITE,
-    BLACK,
-    RED,
-    YELLOW,
-    GREEN,
-    BLUE,
-    TRANSPARENT
-  }
+        public DialogSequence[] Sequences = { new() };
 
-  public enum EPieceOfTextAnimation
-  {
-    NONE,
-    CREEPY,
-    WOOBLE
-  }
+        public class DialogSequence
+        {
+            public bool AutoTransition = false; // TODO
+            public EDialogBackground Background = EDialogBackground.STANDARD;
+            public bool CanBeSkipped = true; // TODO a tester
+            public PieceOfTextChoice[] Choices = { }; // TODO
+            public bool InstantText = false; // TODO a tester
+            public PieceOfText[] PiecesOfText = { new() };
+            public float RevealSpeed = 0.03f;
+            public int RowCount = 1;
+        }
 
-  public class PieceOfTextChoice : PieceOfText
-  {
-    public override EPieceOfTextColor Color { get; set; } = EPieceOfTextColor.GREEN;
-    public int? NextDialogId = null;
-  }
+        public class PieceOfText
+        {
+            public EPieceOfTextAnimation Animation = EPieceOfTextAnimation.NONE;
+            public string Text = "Hello!";
+            public virtual EPieceOfTextColor Color { get; set; } = EPieceOfTextColor.WHITE;
+        }
 
-  public enum EDialogBackground
-  {
-    STANDARD,
-    NONE,
-    WOOD
-  }
+        public class PieceOfTextChoice : PieceOfText
+        {
+            public int? NextDialogId = null;
+            public override EPieceOfTextColor Color { get; set; } = EPieceOfTextColor.GREEN;
+        }
+    }
 }

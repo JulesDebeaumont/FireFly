@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenuManager : MonoBehaviour
+namespace Manager
 {
-
+    public class PauseMenuManager : MonoBehaviour
+    {
+    }
 }

@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SceneRoom : MonoBehaviour
+namespace Data.Architecture
 {
-  public GameObject GameObject;
-  public int Id;
+    public class SceneRoom : MonoBehaviour
+    {
+        public GameObject gameObject;
+        public int id;
 
-  // TODO skybox settings
-  // TODO Fog
-  // TODO Music
+        // TODO skybox settings
+        // TODO Fog
+        // TODO Music
+    }
 }

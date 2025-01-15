@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class UiManager : MonoBehaviour
+namespace Manager
 {
-    public static UiManager Instance { get; private set; }
-    public DialogManager DialogManager;
-    public PauseMenuManager PauseMenuManager;
-    void Awake()
+    public class UiManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        [FormerlySerializedAs("DialogManager")] public DialogManager dialogManager;
+        [FormerlySerializedAs("PauseMenuManager")] public PauseMenuManager pauseMenuManager;
+        public static UiManager Instance { get; private set; }
+
+        private void Awake()
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
+            if (Instance != null && Instance != this)
+                Destroy(gameObject);
+            else
+                Instance = this;
         }
     }
 }
