@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Data.Tables;
+using Data.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,9 +49,9 @@ namespace Manager
         private readonly float _transitionWaitDuration = 0.2f;
         private readonly Dictionary<Dialog.EPieceOfTextAnimation, List<int[]>> _animatedTextIndexes = new();
         private readonly Dictionary<int, Dialog.EPieceOfTextColor> _coloredTextIndexes = new();
-        private Dialog? _currentDialog;
+        private Dialog _currentDialog;
 
-        private Dialog.DialogSequence CurrentSequence => _currentDialog.Sequences[sequenceIndex];
+        private Dialog.DialogSequence CurrentSequence => _currentDialog!.Sequences[sequenceIndex];
 
         private void FixedUpdate()
         {
@@ -173,7 +173,7 @@ namespace Manager
             pendingColor.a = 1f;
             uiDialogPendingImage.color = pendingColor;
             if (!InputManager.Instance.ATap && !InputManager.Instance.BTap && !Input.GetKeyDown(KeyCode.T)) return;
-            if (_currentDialog.Sequences.Length - 1 == sequenceIndex)
+            if (_currentDialog!.Sequences.Length - 1 == sequenceIndex)
             {
                 state = EDialogManagerState.CLOSING;
             }
@@ -258,11 +258,11 @@ namespace Manager
             var previousTextEndIndex = 0;
             foreach (var t in CurrentSequence.PiecesOfText)
             {
-                var endIndex = previousTextEndIndex + t.Text.Length;
-                dialogText.text += t.Text;
+                var endIndex = previousTextEndIndex + Dialog.PieceOfText.Text.Length;
+                dialogText.text += Dialog.PieceOfText.Text;
 
                 // color
-                for (var j = 0; j < t.Text.Length; j++)
+                for (var j = 0; j < Dialog.PieceOfText.Text.Length; j++)
                     _coloredTextIndexes.Add(j + previousTextEndIndex, t.Color);
 
                 // animation
@@ -470,4 +470,5 @@ namespace Manager
             uiDialogBoxRectTransform.sizeDelta = nextSize;
         }
     }
+    
 }

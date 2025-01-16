@@ -1,0 +1,40 @@
+[
+  {
+    "Id": 1,
+    "Sequences": [
+      {
+        "PiecesOfText": [
+          {
+            "Text": "Hello! I'm a test !"
+          }
+        ]
+      },
+      {
+        "PiecesOfText": [
+          {
+            "Text": "this is woobling oh yeah",
+            "Color": "BLUE",
+            "Animation": "WOOBLE"
+          }
+        ]
+      },
+      {
+        "PiecesOfText": [
+          {
+            "Text": "You should.. "
+          }
+        ]
+      },
+      {
+        "RevealSpeed": "1f",
+        "PiecesOfText": [
+          {
+            "Text": "run.",
+            "Color": "RED",
+            "Animation": "CREEPY"
+          }
+        ]
+      }
+    ]
+  }
+]

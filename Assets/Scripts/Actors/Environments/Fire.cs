@@ -1,12 +1,13 @@
+using UnityEngine;
 
-
-// Spawned by deku stickn torch, etc..
-// Used to burn/lit stuff
-namespace Actors.Environment
+namespace Actors.Environments
 {
-    public class Fire : Actor
+    /*
+     * Used to burn/lit stuff
+     * Spawned by deku stickn torch, etc..
+     */
+    public class Fire : MonoBehaviour
     {
-        // Update is called once per frame
         private void Update()
         {
         }

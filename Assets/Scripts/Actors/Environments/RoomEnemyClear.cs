@@ -1,29 +1,26 @@
 using System.Collections.Generic;
-using Actors.Enemies;
-using Manager;
+using Actors.Handlers;
+using UnityEngine;
 
 namespace Actors.Environments
 {
-    public class RoomEnemyClear
+    public class RoomEnemyClear : MonoBehaviour
     {
-        public List<Enemy> enemyList = new();
+        private FlagHandler _flagHandler;
+        public List<MonoBehaviour> enemyList = new();
         public int flagId;
 
-        // Start is called before the first frame update
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-            if (!PlayerManager.Instance.player.PlayerFlag.IsCurrentSceneFlagSet(flagId)) return;
+            _flagHandler = new FlagHandler(flagId);
+            if (_flagHandler.IsCurrentSceneFlagSet()) return;
             DestroyEnemies();
             Destroy(gameObject);
         }
 
-        // Update is called once per frame
         private void Update()
         {
             if (enemyList.Count != 0) return;
-            PlayerManager.Instance.player.PlayerFlag.SetCurrentSceneFlag(flagId);
-            Destroy(gameObject);
         }
 
         private void DestroyEnemies()

@@ -1,18 +1,31 @@
 using Actors.Environments.CollectibleItems;
-using Manager;
+using Actors.Handlers;
+using UnityEngine;
 
-namespace Actors.Environment
+namespace Actors.Environments
 {
-    public class Chest : Actor
+    public class Chest : MonoBehaviour
     {
+        private FlagHandler _flagHandler;
+        private SpawnResetHandler _spawnResetHandler;
         public int flagId;
-        public bool hasBeenLooted;
+        public bool _hasBeenLooted;
         public CollectibleItem CollectibleItem;
 
-        // Start is called before the first frame update
+        private void Awake()
+        {
+            _spawnResetHandler = new SpawnResetHandler(transform);
+            _flagHandler = new FlagHandler(flagId);
+            if (_flagHandler.IsCurrentSceneFlagSet()) _hasBeenLooted = true;
+        }
+
+        private void OnDisable()
+        {
+            _spawnResetHandler.ResetToSpawnPosition(transform);
+        }
+
         private void Start()
         {
-            if (flagId != 0 && PlayerManager.Instance.player.PlayerFlag.IsCurrentSceneFlagSet(flagId)) hasBeenLooted = true;
         }
 
         private void Update()
