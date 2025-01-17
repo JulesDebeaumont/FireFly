@@ -37,9 +37,9 @@ namespace Manager
         [SerializeField] private int revealCurrentIndex;
         [SerializeField] private int sequenceIndex;
         [SerializeField] private Color targetColor = new(0f, 0f, 0f, 0f);
+        
         private readonly float _backgroundAlpha = 0.78f;
         private readonly float _closingFadeDuration = 0.05f;
-
         private readonly float _openingFadeDuration = 0.3f;
         private readonly float _openingFirstScaleDuration = 0.2f;
         private readonly Vector3 _openingFirstScaleStart = new(0.7f, 0.7f, 1f);

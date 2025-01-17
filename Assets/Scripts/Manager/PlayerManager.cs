@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Manager
 {
     public class PlayerManager : MonoBehaviour
     {
-        [FormerlySerializedAs("Player")] public Player.Player player;
+        public Player.Player player;
         public static PlayerManager Instance { get; private set; }
 
         private void Awake()

@@ -10,18 +10,18 @@ namespace Actors.Environments
     {
         public int dialogId = 1;
         private bool _isBroken;
-        private NpcTalkHandler _npcTalkHandler;
+        private TalkableHanlder _talkableHanlder;
         private const string DialogFilename = "wooden_sign";
 
         private void Awake()
         {
-            _npcTalkHandler = new NpcTalkHandler(transform, DialogFilename);
+            _talkableHanlder = new TalkableHanlder(transform, DialogFilename);
         }
 
         private void Update()
         {
-            if (_npcTalkHandler.PlayerInFrontOfNpc() && Input.GetKey(KeyCode.Y))
-                _npcTalkHandler.StartDialog(dialogId);
+            if (_talkableHanlder.PlayerInFrontOfNpc() && Input.GetKey(KeyCode.Y))
+                _talkableHanlder.StartDialog(dialogId);
         }
 
         protected void OnDisable()

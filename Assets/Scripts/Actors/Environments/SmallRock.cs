@@ -39,7 +39,7 @@ namespace Actors.Environments
 
         private void OnDisable()
         {
-            _spawnResetHandler.ResetToSpawnPosition(transform);
+            _spawnResetHandler.ResetToSpawnPosition();
             _isBeingLift = false;
             _hasStartedBeingLift = false;
             _hasBreak = false;

@@ -5,16 +5,18 @@ namespace Actors.Handlers
     public class SpawnResetHandler
     {
         private readonly ActorSpawnPosition _spawnPosition;
+        private readonly Transform _actorTransform;
 
         public SpawnResetHandler(Transform actorTransform)
         {
             _spawnPosition = new ActorSpawnPosition(actorTransform.position, actorTransform.rotation);
+            _actorTransform = actorTransform;
         }
         
-        public void ResetToSpawnPosition(Transform actorTransform)
+        public void ResetToSpawnPosition()
         {
-            actorTransform.position = _spawnPosition.Position;
-            actorTransform.rotation = _spawnPosition.Rotation;
+            _actorTransform.position = _spawnPosition.Position;
+            _actorTransform.rotation = _spawnPosition.Rotation;
         }
 
         private struct ActorSpawnPosition

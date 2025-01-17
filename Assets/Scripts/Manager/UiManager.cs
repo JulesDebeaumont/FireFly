@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Manager
 {
     public class UiManager : MonoBehaviour
     {
-        [FormerlySerializedAs("DialogManager")] public DialogManager dialogManager;
-        [FormerlySerializedAs("PauseMenuManager")] public PauseMenuManager pauseMenuManager;
+        public DialogManager dialogManager;
+        public PauseMenuManager pauseMenuManager;
         public static UiManager Instance { get; private set; }
 
         private void Awake()

@@ -50,7 +50,7 @@ namespace Actors
 
         protected void OnDisable()
         {
-            _spawnResetHandler.ResetToSpawnPosition(transform);
+            _spawnResetHandler.ResetToSpawnPosition();
             _isRunning = false;
         }
     }

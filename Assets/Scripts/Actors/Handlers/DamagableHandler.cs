@@ -1,79 +1,137 @@
-using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Actors.Handlers
 {
     public class DamagableHandler
     {
+        public static readonly List<DamagableEntry> DamagableEntries = new();
+        
+        private static void RegisterEntry(DamagableEntry damagableEntry)
+        {
+            DamagableEntries.Add(damagableEntry);
+        }
+        
+        private static void RemoveEntry(DamagableEntry damagableEntry)
+        {
+            DamagableEntries.Remove(damagableEntry);
+        }
+        
+        
+        
         private DamageTable _damageTable;
         private bool _hasStartedDeathAnimation;
         private int _invincibilityTimer;
-        
-        public int MaxHealth;
-        public int CurrentHealth;
-        public bool IsDead;
-        public bool IsInvincibile => _invincibilityTimer > 0;
-        
-        public event Action OnDeath;
-        public event Action<int> OnHealthChanged;
+        private DamagableEntry _damagableEntry;
+        private bool _isInvincibile = false;
+        private bool _displayVisualHint = false;
 
-        public DamagableHandler(DamageTable damageTable, int maxHealth, int invincibilityTimer)
+        private int _refMaxHealth;
+        private int _refCurrentHealth; // TODO
+        public bool IsDead;
+
+        public DamagableHandler(DamageTable damageTable, Collider collider, ref int refMaxHealth, ref int invincibilityTimer, bool displayVisualHint)
         {
             _damageTable = damageTable;
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;
+            _refMaxHealth = refMaxHealth;
+            _refCurrentHealth = refMaxHealth;
             _invincibilityTimer = invincibilityTimer;
+            _damagableEntry = new DamagableEntry(this, collider);
+            _displayVisualHint = displayVisualHint;
+            RegisterEntry(_damagableEntry);
         }
 
         private void Die()
         {
             IsDead = true;
+            RemoveEntry(_damagableEntry);
         }
 
-        protected void TakeDamage(DamageTable.EDamageType damageType)
+        public void TakeDamage(DamageTable.EDamageType damageType)
         {
-            if (!DamageTable.Data.ContainsKey(damageType)) return;
-            var damage = DamageTable.Data[damageType];
-            damage *= multiplier;
-            MaxHealth -= damage;
-            if (MaxHealth < 0)
+            var damage = _damageTable.GetDamage(damageType);
+            _refMaxHealth -= damage;
+            if (_refMaxHealth < 0)
             {
-                MaxHealth = 0;
+                _refMaxHealth = 0;
             }
 
-            if (MaxHealth == 0)
+            if (_refMaxHealth == 0)
             {
                 Die();
             }
 
             StartInvincibilityTimer();
         }
-
-        protected void StartInvincibilityTimer()
+        
+        public void StartInvincibilityTimer()
         {
-            // TODO
+            // TODO monobehaviour?
         }
         
-        public class 
-
-        public class DamageTable
+        public void SetIsInvincible()
         {
-            public DamageTable(Dictionary<EDamageType, int> damageTypeTable,
-                Dictionary<EDamageType, int> damageMultipliers)
+            _isInvincibile = true;
+            RemoveEntry(_damagableEntry);
+        }
+
+        public void UnsetIsInvincible()
+        {
+            _isInvincibile = false;
+            RegisterEntry(_damagableEntry);
+        }
+
+        public bool IsInvincible()
+        {
+            return _isInvincibile;
+        }
+
+        public class DamagableEntry
+        {
+            private DamagableHandler _damagableHandler;
+            private Collider _collider;
+
+            public DamagableEntry(DamagableHandler damagableHandler, Collider collider)
             {
-                
-            }
-            
-            public int GetDamageByType
-                    
-            public enum EDamageType
-            {
-                ICE_DAMAGE,
-                FIRE_DAMAGE,
-                SWORD_VERTICAL_SLASH,
-                SWORD_HORIZONTAL_SLASH,
-                JUMPSLASH,
-                ARROW
+                _damagableHandler = damagableHandler;
+                _collider = collider;
             }
         }
     }
+    
+    public class DamageTable
+    {
+        private Dictionary<EDamageType, int> _damageTable;
+        private Dictionary<EDamageState, int> _damageMultiplier;
+            
+        public DamageTable(Dictionary<EDamageType, int> damageTypeTable,
+            Dictionary<EDamageState, int> damageMultipliers)
+        {
+            _damageTable = damageTypeTable;
+            _damageMultiplier = damageMultipliers;
+        }
+
+        public int GetDamage(EDamageType damageType)
+        {
+            return _damageTable[damageType];
+            // TODO apply modifiers
+        }
+            
+        public enum EDamageType
+        {
+            ICE_DAMAGE,
+            FIRE_DAMAGE,
+            SWORD_VERTICAL_SLASH,
+            SWORD_HORIZONTAL_SLASH,
+            JUMPSLASH,
+            ARROW
+        }
+
+        public enum EDamageState
+        {
+            FROZEN,
+            STUNNED,
+            BURNING,
+        }
+    }
+}
