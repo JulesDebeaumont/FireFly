@@ -24,20 +24,20 @@ namespace Actors.Handlers
         private int _invincibilityTimer;
         private DamagableEntry _damagableEntry;
         private bool _isInvincibile = false;
-        private bool _displayVisualHint = false;
+        private ETakeDamageVisualType _takeDamageVisualType;
 
         private int _refMaxHealth;
         private int _refCurrentHealth; // TODO
         public bool IsDead;
 
-        public DamagableHandler(DamageTable damageTable, Collider collider, ref int refMaxHealth, ref int invincibilityTimer, bool displayVisualHint)
+        public DamagableHandler(DamageTable damageTable, Collider collider, ref int refMaxHealth, ref int invincibilityTimer, ETakeDamageVisualType takeDamageVisualType)
         {
             _damageTable = damageTable;
             _refMaxHealth = refMaxHealth;
             _refCurrentHealth = refMaxHealth;
             _invincibilityTimer = invincibilityTimer;
             _damagableEntry = new DamagableEntry(this, collider);
-            _displayVisualHint = displayVisualHint;
+            _takeDamageVisualType = takeDamageVisualType;
             RegisterEntry(_damagableEntry);
         }
 
@@ -98,6 +98,13 @@ namespace Actors.Handlers
             }
         }
     }
+
+    public enum ETakeDamageVisualType
+    {
+        NONE,
+        FLASH_RED,
+        PLAIN_RED
+    }
     
     public class DamageTable
     {
@@ -121,13 +128,13 @@ namespace Actors.Handlers
         {
             ICE_DAMAGE,
             FIRE_DAMAGE,
-            SWORD_VERTICAL_SLASH,
+            SWORD_VERTICAL_SLASH,ETakeDamageVisualType
             SWORD_HORIZONTAL_SLASH,
             JUMPSLASH,
             ARROW
         }
 
-        public enum EDamageState
+        public enum EDamageState // TODO see later to have a StateHandler I guess
         {
             FROZEN,
             STUNNED,
