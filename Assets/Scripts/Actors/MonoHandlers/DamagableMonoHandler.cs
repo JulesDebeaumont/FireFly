@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Actors.MonoHandlers
 {
+    /*
+     * TODO try to avoid Func / Action and ask ChatGPT if I can use Unity editor for referencing the health from the monoobehaviour Enemy.cs
+     */
     public class DamagableMonoHandler : MonoBehaviour
     {
         public static readonly List<DamagableEntry> DamagableEntries = new();
@@ -72,7 +75,7 @@ namespace Actors.MonoHandlers
 
         public void TakeDamage(DamageTable.EDamageType damageType)
         {
-            var damage = _damageTable.GetDamage(damageType);
+            var damage = _damageTable.GetDamageAmount(damageType);
             var currentHealth = _getCurrentHealth();
             currentHealth -= damage;
             if (currentHealth < 0)
@@ -175,7 +178,7 @@ namespace Actors.MonoHandlers
             _damageMultiplier = damageMultipliers;
         }
 
-        public int GetDamage(EDamageType damageType)
+        public int GetDamageAmount(EDamageType damageType)
         {
             return _damageTable[damageType];
             // TODO apply modifiers
