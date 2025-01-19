@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Actors.MonoHandlers;
+using Actors.Definitions;
 using UnityEngine;
 
 namespace Actors.Handlers
 {
-    public class BreakablHandler
+    public class BreakableHandler
     {
         public static readonly List<BreakableEntry> BreakabaleEntries = new();
         
@@ -22,13 +22,13 @@ namespace Actors.Handlers
         
         private BreakableTable _breakableTable;
         private BreakableEntry _breakableEntry;
-        private Action<DamageTable.EDamageType> _onBreak;
+        private Action<EDamageType> _onBreak;
         private Action<bool> _setIsBreak;
 
-        public BreakablHandler(
+        public BreakableHandler(
             BreakableTable breakableTable, 
             Collider colliderArg,
-            Action<DamageTable.EDamageType> onBreak,
+            Action<EDamageType> onBreak,
             Action<bool> setIsBreak
             )
         {
@@ -39,7 +39,7 @@ namespace Actors.Handlers
             AddSelfToEntries();
         }
 
-        public void TryBreak(DamageTable.EDamageType damageType)
+        public void TryBreak(EDamageType damageType)
         {
             if (!_breakableTable.CanBreak(damageType)) return;
             RemoveSelfFromEntries();
@@ -59,12 +59,12 @@ namespace Actors.Handlers
         
         public class BreakableEntry
         {
-            private BreakablHandler _breakablHandler;
+            private BreakableHandler _breakableHandler;
             private Collider _collider;
 
-            public BreakableEntry(BreakablHandler breakablHandler, Collider collider)
+            public BreakableEntry(BreakableHandler breakableHandler, Collider collider)
             {
-                _breakablHandler = breakablHandler;
+                _breakableHandler = breakableHandler;
                 _collider = collider;
             }
         }
@@ -72,14 +72,14 @@ namespace Actors.Handlers
 
     public class BreakableTable
     {
-        private DamageTable.EDamageType[] _breakableTable;
+        private EDamageType[] _breakableTable;
 
-        public BreakableTable(DamageTable.EDamageType[] breakableTable)
+        public BreakableTable(EDamageType[] breakableTable)
         {
             _breakableTable = breakableTable;
         }
 
-        public bool CanBreak(DamageTable.EDamageType damageType)
+        public bool CanBreak(EDamageType damageType)
         {
             return _breakableTable.Any(breakDamageType => breakDamageType == damageType);
         }

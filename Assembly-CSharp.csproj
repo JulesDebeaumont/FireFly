@@ -93,7 +93,9 @@
     <Compile Include="Assets/Scripts/Actors/Environments/CollectibleItems/CollectibleItem.cs" />
     <Compile Include="Assets/Scripts/Manager/SceneCustomManager.cs" />
     <Compile Include="Assets/Scripts/Manager/UiManager.cs" />
-    <Compile Include="Assets\Scripts\Actors\Handlers\BreakablHandler.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\EDamageState.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\EDamageType.cs" />
+    <Compile Include="Assets\Scripts\Actors\Handlers\BreakableHandler.cs" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
@@ -993,8 +995,6 @@
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>/home/jules/Dev/random/firefly/FireFly/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

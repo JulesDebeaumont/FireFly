@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Actors.Definitions;
 using Actors.MonoHandlers;
 using UnityEngine;
 
@@ -6,17 +7,17 @@ namespace Actors.Enemies
 {
     public class Stalfos : MonoBehaviour
     {
-        private static DamageTable _damageTable = new (new Dictionary<DamageTable.EDamageType, int>
-            {
-                { DamageTable.EDamageType.SWORD_REGULAR_SLASH , 3}
-            }, 
-            new Dictionary<DamageTable.EDamageState, int>
-            {
-                { DamageTable.EDamageState.STUNNED , 10 }
-            });
-        
         [SerializeField] private DamagableMonoHandler damagableMonoHandler;
         [SerializeField] private new Collider collider; // TODO check if new or not
+        
+        private static DamageTable _damageTable = new (new Dictionary<EDamageType, int>
+            {
+                { EDamageType.SWORD_REGULAR_SLASH , 3}
+            }, 
+            new Dictionary<EDamageState, int>
+            {
+                { EDamageState.STUNNED , 10 }
+            });
 
         private const int MaxHealth = 20;
         private int _currentHealth = MaxHealth;
@@ -46,12 +47,12 @@ namespace Actors.Enemies
             
         }
 
-        private void OnDamageTaken(int damageAmount, DamageTable.EDamageType damageType)
+        private void OnDamageTaken(int damageAmount, EDamageType damageType)
         {
             // TODO
         }
 
-        private void OnDeath(DamageTable.EDamageType damageType)
+        private void OnDeath(EDamageType damageType)
         {
             // TODO
         }

@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Actors.Definitions;
 using UnityEngine;
 
 namespace Actors.MonoHandlers
 {
-    /*
-     * TODO try to avoid Func / Action and ask ChatGPT if I can use Unity editor for referencing the health from the monoobehaviour Enemy.cs
-     */
     public class DamagableMonoHandler : MonoBehaviour
     {
         public static readonly List<DamagableEntry> DamagableEntries = new();
@@ -26,8 +24,8 @@ namespace Actors.MonoHandlers
         private DamageTable _damageTable;
         private DamagableEntry _damagableEntry;
         private ETakeDamageVisualType _takeDamageVisualType;
-        private Action<int, DamageTable.EDamageType> _onDamageTaken;
-        private Action<DamageTable.EDamageType> _onDeath;
+        private Action<int, EDamageType> _onDamageTaken;
+        private Action<EDamageType> _onDeath;
         private Action<bool> _setIsDead;
         private Func<int> _getCurrentHealth;
         private Action<int> _setCurrentHealth;
@@ -40,8 +38,8 @@ namespace Actors.MonoHandlers
             DamageTable damageTable, 
             Collider colliderArg,
             ETakeDamageVisualType takeDamageVisualType,
-            Action<int, DamageTable.EDamageType> onDamageTaken,
-            Action<DamageTable.EDamageType> onDeath,
+            Action<int, EDamageType> onDamageTaken,
+            Action<EDamageType> onDeath,
             Action<bool> setIsDead,
             Func<int> getCurrentHealth,
             Action<int> setCurrentHealth,
@@ -73,7 +71,7 @@ namespace Actors.MonoHandlers
             RemoveSelfFromEntries();
         }
 
-        public void TakeDamage(DamageTable.EDamageType damageType)
+        public void TakeDamage(EDamageType damageType)
         {
             var damage = _damageTable.GetDamageAmount(damageType);
             var currentHealth = _getCurrentHealth();
@@ -90,7 +88,7 @@ namespace Actors.MonoHandlers
 
             /* 
              * TODO apply damage state (ex: if damage type = ice, then spawn an ice block on the transform ONLY if weak to ice
-             * Also, this application would be an Action<EDamageType> called right here
+             * Also, this application would be an Action<EDamageType> called right here ?
              */
             /*
              * TODO apply reaction to player, like electrocute if EDamageType is Sword, freeze player if ice keese etc..
@@ -182,23 +180,6 @@ namespace Actors.MonoHandlers
         {
             return _damageTable[damageType];
             // TODO apply modifiers
-        }
-            
-        public enum EDamageType
-        {
-            ICE_DAMAGE,
-            FIRE_DAMAGE,
-            SWORD_REGULAR_SLASH,
-            JUMPSLASH,
-            ARROW,
-            NEUTRAL
-        }
-
-        public enum EDamageState // TODO see later to have a StateHandler I guess
-        {
-            FROZEN,
-            STUNNED,
-            BURNING,
         }
     }
 }

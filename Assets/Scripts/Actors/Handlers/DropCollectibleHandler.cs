@@ -42,7 +42,7 @@ namespace Actors.Handlers
             // switch ESpawnAnimation
         }
         
-        private class DropTable
+        private class DropTable // TODO make as definiotns, same for enum
         {
             private readonly Dictionary<Type, int> _data;
 
