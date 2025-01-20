@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
 using Actors.Handlers;
+using Actors.MonoHandlers;
 using Manager;
 using UnityEngine;
 
@@ -14,23 +15,25 @@ namespace Actors.Environments
      */
     public class Grass : MonoBehaviour
     {
-        [SerializeField] private new Collider collider; // TODO check if new or not
         
-        private SpawnResetHandler _spawnResetHandler;
-        private BreakableHandler _breakableHandler;
-        private FlagHandler _flagHandler;
-        
-        private static readonly DropCollectibleHandler DropCollectibleHandler = new( new Dictionary<Type, int>
+        private static readonly DropTable DropTable = new ( new Dictionary<Type, int>
         {
             { typeof(Heart), 20 },
             { typeof(SmallAmber), 20 }
-        }, DropCollectibleHandler.EDropModifier.REGULAR);
+        }, EDropModifier.REGULAR );
         private static readonly BreakableTable BreakableTable = new(new []
         {
             EDamageType.SWORD_REGULAR_SLASH,
             EDamageType.JUMPSLASH,
             EDamageType.EXPLOSIVE,
         });
+        
+        [SerializeField] private new Collider collider;
+        
+        private SpawnResetHandler _spawnResetHandler;
+        private BreakableHandler _breakableHandler;
+        private FlagHandler _flagHandler;
+        private readonly DropMonoHandler _dropMonoHandler = new(DropTable);
         private readonly int _trackerPosition = Shader.PropertyToID("_trackerPosition");
 
         public int flagId;
@@ -54,14 +57,13 @@ namespace Actors.Environments
         private void OnDisable()
         {
             _spawnResetHandler.ResetToSpawnPosition();
-            _hasBreak = false;
         }
 
         private void OnBreak(EDamageType damageType)
         {
             _flagHandler.SetCurrentSceneFlag();
             // grass anim
-            DropCollectibleHandler.PickAndSpawn(transform.position, DropCollectibleHandler.ESpawnAnimation.HOP);
+            _dropMonoHandler.PickAndSpawn(transform.position, EDropSpawnAnimation.HOP);
             Destroy(gameObject);
         }
 

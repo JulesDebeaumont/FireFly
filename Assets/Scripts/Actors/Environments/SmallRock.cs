@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Actors.Environment;
+using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
 using Actors.Handlers;
+using Actors.MonoHandlers;
 using UnityEngine;
 
 namespace Actors.Environments
@@ -14,12 +15,12 @@ namespace Actors.Environments
     {
         private SpawnResetHandler _spawnResetHandler;
         private FlagHandler _flagHandler;
-        private static readonly DropCollectibleHandler DropCollectibleHandler = new( new Dictionary<Type, int>
+        private static readonly DropMonoHandler DropMonoHandler = new( new Dictionary<Type, int>
         {
             { typeof(Heart), 20 },
             { typeof(SmallAmber), 20 },
             { typeof(BigAmber), 5}
-        }, DropCollectibleHandler.EDropModifier.REGULAR);
+        }, EDropModifier.REGULAR);
 
         public int flagId;
         private bool _hasBreak = false;
@@ -50,7 +51,7 @@ namespace Actors.Environments
             _hasBreak = true;
             _flagHandler.SetCurrentSceneFlag();
             // explode anim
-            DropCollectibleHandler.PickAndSpawn(transform.position, DropCollectibleHandler.ESpawnAnimation.HOP);
+            DropMonoHandler.PickAndSpawn(transform.position, EDropSpawnAnimation.HOP);
             Destroy(gameObject);
         }
     }

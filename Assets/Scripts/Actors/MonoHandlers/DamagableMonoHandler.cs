@@ -65,7 +65,7 @@ namespace Actors.MonoHandlers
             AddSelfToEntries();
         }
 
-        public void Die()
+        private void Die()
         {
             _setIsDead(true);
             RemoveSelfFromEntries();
@@ -96,12 +96,12 @@ namespace Actors.MonoHandlers
             StartInvincibilityTimer();
         }
 
-        public void RemoveSelfFromEntries()
+        private void RemoveSelfFromEntries()
         {
             RemoveEntry(_damagableEntry);
         }
 
-        public void AddSelfToEntries()
+        private void AddSelfToEntries()
         {
             RegisterEntry(_damagableEntry);
         }
@@ -154,32 +154,6 @@ namespace Actors.MonoHandlers
                 _damagableMonoHandler = damagableMonoHandler;
                 _collider = collider;
             }
-        }
-    }
-
-    public enum ETakeDamageVisualType
-    {
-        NONE,
-        FLASH_RED,
-        PLAIN_RED
-    }
-    
-    public class DamageTable
-    {
-        private Dictionary<EDamageType, int> _damageTable;
-        private Dictionary<EDamageState, int> _damageMultiplier;
-            
-        public DamageTable(Dictionary<EDamageType, int> damageTypeTable,
-            Dictionary<EDamageState, int> damageMultipliers)
-        {
-            _damageTable = damageTypeTable;
-            _damageMultiplier = damageMultipliers;
-        }
-
-        public int GetDamageAmount(EDamageType damageType)
-        {
-            return _damageTable[damageType];
-            // TODO apply modifiers
         }
     }
 }

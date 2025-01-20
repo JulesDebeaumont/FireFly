@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Actors.Definitions;
+using Actors.Environments.CollectibleItems;
 using Actors.MonoHandlers;
 using UnityEngine;
 
@@ -7,10 +9,7 @@ namespace Actors.Enemies
 {
     public class Stalfos : MonoBehaviour
     {
-        [SerializeField] private DamagableMonoHandler damagableMonoHandler;
-        [SerializeField] private new Collider collider; // TODO check if new or not
-        
-        private static DamageTable _damageTable = new (new Dictionary<EDamageType, int>
+        private static readonly DamageTable DamageTable = new (new Dictionary<EDamageType, int>
             {
                 { EDamageType.SWORD_REGULAR_SLASH , 3}
             }, 
@@ -18,7 +17,15 @@ namespace Actors.Enemies
             {
                 { EDamageState.STUNNED , 10 }
             });
+        private static readonly DropTable DropTable = new (new Dictionary<Type, int>
+        {
+            { typeof(SmallAmber), 20 }
+        }, EDropModifier.REGULAR);
 
+        [SerializeField] private DamagableMonoHandler _damagableMonoHandler;
+        [SerializeField] private DropMonoHandler _dropMonoHandler;
+        [SerializeField] private new Collider collider;
+        
         private const int MaxHealth = 20;
         private int _currentHealth = MaxHealth;
         private bool _isDead = false;
@@ -26,8 +33,8 @@ namespace Actors.Enemies
         
         private void Awake()
         {
-            damagableMonoHandler.Initialize(
-                _damageTable,
+            _damagableMonoHandler.Initialize(
+                DamageTable,
                 collider,
                 ETakeDamageVisualType.PLAIN_RED,
                 OnDamageTaken,
@@ -40,6 +47,7 @@ namespace Actors.Enemies
                 GetMaxHealth,
                 200
                 );
+            _dropMonoHandler.Initialize();
         }
 
         private void Update()
@@ -54,7 +62,7 @@ namespace Actors.Enemies
 
         private void OnDeath(EDamageType damageType)
         {
-            // TODO
+            _dropMonoHandler.PickAndSpawn(transform.position, EDropSpawnAnimation.HOP);
         }
 
         private void SetIsDead(bool isDead)
@@ -82,7 +90,7 @@ namespace Actors.Enemies
             _isInvicible = isInvincible;
         }
 
-        private int GetMaxHealth()
+        private static int GetMaxHealth()
         {
             return MaxHealth;
         }

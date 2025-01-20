@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Data/Utils/DialogLoader.cs" />
-    <Compile Include="Assets/Scripts/Actors/Handlers/DropCollectibleHandler.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/SmallRock.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/SceneRoom.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/Collectible.cs" />
@@ -70,22 +69,28 @@
     <Compile Include="Assets/Scripts/Player/PlayerInventory.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/LoadingZone.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerFlag.cs" />
+    <Compile Include="Assets/Scripts/Actors/MonoHandlers/DropMonoHandler.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/Chest.cs" />
     <Compile Include="Assets/Scripts/Actors/Handlers/SpawnResetHandler.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/SceneSpawn.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/Fire.cs" />
     <Compile Include="Assets/Scripts/Manager/PauseMenuManager.cs" />
+    <Compile Include="Assets/Scripts/Actors/Definitions/EDropSpawnAnimation.cs" />
     <Compile Include="Assets/Scripts/Actors/Handlers/DamagerHandler.cs" />
+    <Compile Include="Assets/Scripts/Actors/Definitions/EDropModifier.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerCameraEffect.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/SceneData.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/SceneRoomTransition.cs" />
+    <Compile Include="Assets/Scripts/Actors/Handlers/BreakableHandler.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/Grass.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/WoodenSign.cs" />
     <Compile Include="Assets/Scripts/Manager/SaveManager.cs" />
     <Compile Include="Assets/Scripts/Actors/Enemies/Stalfos.cs" />
     <Compile Include="Assets/Scripts/Data/Architecture/Pathway.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerAction.cs" />
+    <Compile Include="Assets/Scripts/Actors/Definitions/EDamageState.cs" />
     <Compile Include="Assets/Scripts/Player/Player.cs" />
+    <Compile Include="Assets/Scripts/Actors/Definitions/EDamageType.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/CollectibleItems/BigAmber.cs" />
     <Compile Include="Assets/Scripts/Manager/DialogManager.cs" />
     <Compile Include="Assets/Scripts/Actors/Environments/CollectibleItems/SmallAmber.cs" />
@@ -93,9 +98,10 @@
     <Compile Include="Assets/Scripts/Actors/Environments/CollectibleItems/CollectibleItem.cs" />
     <Compile Include="Assets/Scripts/Manager/SceneCustomManager.cs" />
     <Compile Include="Assets/Scripts/Manager/UiManager.cs" />
-    <Compile Include="Assets\Scripts\Actors\Definitions\EDamageState.cs" />
-    <Compile Include="Assets\Scripts\Actors\Definitions\EDamageType.cs" />
-    <Compile Include="Assets\Scripts\Actors\Handlers\BreakableHandler.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\BreakableTable.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\DamageTable.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\DropTable.cs" />
+    <Compile Include="Assets\Scripts\Actors\Definitions\ETakeDamageVisualType.cs" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
@@ -995,6 +1001,8 @@
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
       <HintPath>/home/jules/Dev/random/firefly/FireFly/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
