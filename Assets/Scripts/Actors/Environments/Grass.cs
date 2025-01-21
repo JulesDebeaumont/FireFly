@@ -15,7 +15,6 @@ namespace Actors.Environments
      */
     public class Grass : MonoBehaviour
     {
-        
         private static readonly DropTable DropTable = new ( new Dictionary<Type, int>
         {
             { typeof(Heart), 20 },
@@ -33,7 +32,7 @@ namespace Actors.Environments
         private SpawnResetHandler _spawnResetHandler;
         private BreakableHandler _breakableHandler;
         private FlagHandler _flagHandler;
-        private readonly DropMonoHandler _dropMonoHandler = new(DropTable);
+        private readonly DropMonoHandler _dropMonoHandler;
         private readonly int _trackerPosition = Shader.PropertyToID("_trackerPosition");
 
         public int flagId;

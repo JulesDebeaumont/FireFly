@@ -13,14 +13,20 @@ namespace Actors.Environments
      */
     public class SmallRock : MonoBehaviour
     {
-        private SpawnResetHandler _spawnResetHandler;
-        private FlagHandler _flagHandler;
-        private static readonly DropMonoHandler DropMonoHandler = new( new Dictionary<Type, int>
+        private static readonly DropTable DropTable = new ( new Dictionary<Type, int>
         {
             { typeof(Heart), 20 },
-            { typeof(SmallAmber), 20 },
-            { typeof(BigAmber), 5}
-        }, EDropModifier.REGULAR);
+            { typeof(SmallAmber), 20 }
+        }, EDropModifier.REGULAR );
+        private static readonly BreakableTable BreakableTable = new(new []
+        {
+            EDamageType.EXPLOSIVE,
+        });
+
+        private DropMonoHandler _dropMonoHandler;
+        private SpawnResetHandler _spawnResetHandler;
+        private FlagHandler _flagHandler;
+        private LiftableMonoHandler _liftableMonoHandler;
 
         public int flagId;
         private bool _hasBreak = false;
@@ -29,6 +35,7 @@ namespace Actors.Environments
 
         private void Awake()
         {
+            _dropMonoHandler.Initialize(DropTable);
             _spawnResetHandler = new SpawnResetHandler(transform);
             _flagHandler = new FlagHandler(flagId);
         }
@@ -51,7 +58,7 @@ namespace Actors.Environments
             _hasBreak = true;
             _flagHandler.SetCurrentSceneFlag();
             // explode anim
-            DropMonoHandler.PickAndSpawn(transform.position, EDropSpawnAnimation.HOP);
+            _dropMonoHandler.PickAndSpawn(transform.position, EDropSpawnAnimation.HOP);
             Destroy(gameObject);
         }
     }

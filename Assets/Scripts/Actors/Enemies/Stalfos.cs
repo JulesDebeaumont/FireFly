@@ -47,7 +47,7 @@ namespace Actors.Enemies
                 GetMaxHealth,
                 200
                 );
-            _dropMonoHandler.Initialize();
+            _dropMonoHandler.Initialize(DropTable);
         }
 
         private void Update()

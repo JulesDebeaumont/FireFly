@@ -6,8 +6,9 @@ namespace Player
     {
         public Player player;
         private int _gemCount;
-        private int _health;
+        private int _health = 12;
         private bool _bowObtained;
+        private bool _bombObtained;
         private int _bowAmmo;
 
         private void Awake()
@@ -52,5 +53,11 @@ namespace Player
         {
             // TODO check in save file
         }
+
+        public bool IsLowHealth()
+        {
+            return _health < 4;
+        }
+        
     }
 }

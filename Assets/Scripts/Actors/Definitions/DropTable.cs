@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Actors.Environments.CollectibleItems;
+using Manager;
 using Random = UnityEngine.Random;
 
 namespace Actors.Definitions
@@ -19,20 +20,46 @@ namespace Actors.Definitions
 
         public CollectibleItem Pick()
         {
-            // apply modifier
-            // apply player inventory restrictions (no bomb bag, then rupee chance += bomb chance)
-            // if player full life -> more rupees
-            // if player low life -> more hearts
+            var dataCopy = new Dictionary<Type, int>(_data);
+            ApplyPlayerRestrictions(ref dataCopy);
+            ApplyModifier(ref dataCopy);
             var nullChancePercentage = 100 - _data.Values.Sum();
             var randomValue = Random.Range(0, 100);
             if (randomValue < nullChancePercentage) return null;
             randomValue -= nullChancePercentage;
-            foreach (var entry in _data)
+            foreach (var entry in dataCopy)
             {
                 randomValue -= entry.Value;
                 if (randomValue < 0) return Activator.CreateInstance(entry.Key) as CollectibleItem;
             }
             return null;
+        }
+        
+        private void ApplyPlayerRestrictions(ref Dictionary<Type, int> data)
+        {
+            // TODO
+            // no bomb bag -> NO Bomb Drop BUT + 10 rupees for example
+            // etc...
+        }
+
+        private void ApplyModifier(ref Dictionary<Type, int> data)
+        {
+            switch (_dropModifier)
+            {
+                case EDropModifier.NONE:
+                    return;
+                    
+                case EDropModifier.REGULAR:
+                    if (data.ContainsKey(typeof(Heart)) && PlayerManager.Instance.player.playerInventory.IsLowHealth())
+                    {
+                        data[typeof(Heart)] += 30;
+                    }
+                    if (data.ContainsKey(typeof(SmallAmber)) && !PlayerManager.Instance.player.playerInventory.IsLowHealth())
+                    {
+                        data[typeof(SmallAmber)] += 30;
+                    }
+                    return;
+            }
         }
     }
 }
