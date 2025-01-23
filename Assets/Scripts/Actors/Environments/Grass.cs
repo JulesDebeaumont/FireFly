@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Actors.Ables;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
 using Actors.Handlers;
@@ -29,8 +30,8 @@ namespace Actors.Environments
         
         [SerializeField] private new Collider collider;
         
-        private SpawnResetHandler _spawnResetHandler;
-        private BreakableHandler _breakableHandler;
+        private ISpawnResetable _spawnResetable;
+        private BreakableHandler _breakable;
         private FlagHandler _flagHandler;
         private readonly DropMonoHandler _dropMonoHandler;
         private readonly int _trackerPosition = Shader.PropertyToID("_trackerPosition");
@@ -41,9 +42,9 @@ namespace Actors.Environments
 
         private void Awake()
         {
-            _spawnResetHandler = new SpawnResetHandler(transform);
+            _spawnResetable = new ISpawnResetable(transform);
             _flagHandler = new FlagHandler(flagId);
-            _breakableHandler = new BreakableHandler(BreakableTable, collider, OnBreak, SetHasBreak);
+            _breakable = new BreakableHandler(BreakableTable, collider, OnBreak, SetHasBreak);
             material.SetVector(_trackerPosition,
                 PlayerManager.Instance.player.transform.position);
         }
@@ -55,7 +56,7 @@ namespace Actors.Environments
 
         private void OnDisable()
         {
-            _spawnResetHandler.ResetToSpawnPosition();
+            _spawnResetable.ResetToSpawnPosition();
         }
 
         private void OnBreak(EDamageType damageType)

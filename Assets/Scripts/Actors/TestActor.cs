@@ -1,3 +1,4 @@
+using Actors.Ables;
 using Actors.Handlers;
 using Manager;
 using Player;
@@ -7,12 +8,12 @@ namespace Actors
 {
     public class TestActor : MonoBehaviour
     {
-        private SpawnResetHandler _spawnResetHandler;
+        private ISpawnResetable _spawnResetable;
         private bool _isRunning;
 
         private void Awake()
         {
-            _spawnResetHandler = new SpawnResetHandler(transform);
+            _spawnResetable = new ISpawnResetable(transform);
         }
 
         private void Update()
@@ -50,7 +51,7 @@ namespace Actors
 
         protected void OnDisable()
         {
-            _spawnResetHandler.ResetToSpawnPosition();
+            _spawnResetable.ResetToSpawnPosition();
             _isRunning = false;
         }
     }

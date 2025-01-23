@@ -18,7 +18,7 @@ namespace Actors.Definitions
             _dropModifier = dropModifier;
         }
 
-        public CollectibleItem Pick()
+        public Type Pick() // TODO refacto for returning a type of CollectibleItem
         {
             var dataCopy = new Dictionary<Type, int>(_data);
             ApplyPlayerRestrictions(ref dataCopy);
@@ -30,7 +30,7 @@ namespace Actors.Definitions
             foreach (var entry in dataCopy)
             {
                 randomValue -= entry.Value;
-                if (randomValue < 0) return Activator.CreateInstance(entry.Key) as CollectibleItem;
+                if (randomValue < 0) return entry.Key;
             }
             return null;
         }

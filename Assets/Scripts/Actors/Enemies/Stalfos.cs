@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Actors.Ables;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
 using Actors.MonoHandlers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Actors.Enemies
 {
@@ -22,7 +24,7 @@ namespace Actors.Enemies
             { typeof(SmallAmber), 20 }
         }, EDropModifier.REGULAR);
 
-        [SerializeField] private DamagableMonoHandler _damagableMonoHandler;
+        [FormerlySerializedAs("_damagableMonoHandler")] [SerializeField] private DamagableMonoHandler damagable;
         [SerializeField] private DropMonoHandler _dropMonoHandler;
         [SerializeField] private new Collider collider;
         
@@ -33,7 +35,7 @@ namespace Actors.Enemies
         
         private void Awake()
         {
-            _damagableMonoHandler.Initialize(
+            damagable.Initialize(
                 DamageTable,
                 collider,
                 ETakeDamageVisualType.PLAIN_RED,

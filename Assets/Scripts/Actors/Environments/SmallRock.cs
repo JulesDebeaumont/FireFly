@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Actors.Ables;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
 using Actors.Handlers;
@@ -24,7 +25,7 @@ namespace Actors.Environments
         });
 
         private DropMonoHandler _dropMonoHandler;
-        private SpawnResetHandler _spawnResetHandler;
+        private ISpawnResetable _spawnResetable;
         private FlagHandler _flagHandler;
         private LiftableMonoHandler _liftableMonoHandler;
 
@@ -36,7 +37,7 @@ namespace Actors.Environments
         private void Awake()
         {
             _dropMonoHandler.Initialize(DropTable);
-            _spawnResetHandler = new SpawnResetHandler(transform);
+            _spawnResetable = new ISpawnResetable(transform);
             _flagHandler = new FlagHandler(flagId);
         }
 
@@ -47,7 +48,7 @@ namespace Actors.Environments
 
         private void OnDisable()
         {
-            _spawnResetHandler.ResetToSpawnPosition();
+            _spawnResetable.ResetToSpawnPosition();
             _isBeingLift = false;
             _hasStartedBeingLift = false;
             _hasBreak = false;
