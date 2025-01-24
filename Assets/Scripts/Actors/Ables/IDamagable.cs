@@ -8,78 +8,70 @@ namespace Actors.Ables
     {
         Collider Collider { get; }
         int Health { get; set; }
-        int MaxHealth { get; set; }
-        float InvicibilityDuration { get; set; }
-        bool IsInvincible { get; set; }
+        float InvincibilityDuration { get; set; }
+        float InvincibilityTimeStamp { get; set; }
+        bool HasTakenDamage { get; set; }
         bool IsDead { get; set; }
+        bool IsRegsiteredAsDamagable { get; set; }
         DamageTable DamageTable { get; set; }
+        ETakeDamageVisualType TakeDamageVisualType { get; set; }
         void OnDamageTaken(EDamageType damageType);
         void OnDeath(EDamageType damageType);
         int GetInstanceId();
 
-        void Register()
+        private void Register()
         {
-            DamagableManager.Instance.RegisterEntry(new DamagableManager.DamagableEntry(GetInstanceId(), Collider, ));
+            DamagableManager.Instance.RegisterEntry(this);
+            IsRegsiteredAsDamagable = true;            
         }
 
-        void Unregister()
+        private void Unregister()
         {
-            DamagableManager.Instance.RemoveEntry(GetInstanceId());
+            DamagableManager.Instance.RemoveEntry(this);
+            IsRegsiteredAsDamagable = false;
         }
-    }
-    
-    public class sdfsdf : MonoBehaviour
-    {
-        public void TakeDamage(EDamageType damageType)
-        {
-            var damage = _damageTable.GetDamageAmount(damageType);
-            var currentHealth = _getCurrentHealth();
-            currentHealth -= damage;
-            if (currentHealth < 0)
+
+         void TryTakeDamage(EDamageType damageType)
+         { 
+            if (!IsRegsiteredAsDamagable) Register();
+            var damage = DamageTable.GetDamageAmount(damageType);
+            if (damage == 0) return;
+            Health -= damage;
+            if (Health < 0) Health = 0;
+            if (Health == 0)
             {
-                currentHealth = 0;
+                IsDead = true;
+                Unregister();
+                OnDeath(damageType);
             }
-            _setCurrentHealth(currentHealth);
-            if (currentHealth == 0)
+            else
             {
-                Die();
+                HasTakenDamage = true;
+                InvincibilityTimeStamp = Time.time;
+                OnDamageTaken(damageType);
             }
-
-            /* 
-             * TODO apply damage state (ex: if damage type = ice, then spawn an ice block on the transform ONLY if weak to ice
-             * Also, this application would be an Action<EDamageType> called right here ?
-             */
-            /*
-             * TODO apply reaction to player, like electrocute if EDamageType is Sword, freeze player if ice keese etc..
-             */
-            StartInvincibilityTimer();
         }
 
-        private void RemoveSelfFromEntries()
-        {
-            RemoveEntry(_damagableEntry);
-        }
+         void UpdateDamagable()
+         {
+             if (HasTakenDamage == false) return;
+             switch (TakeDamageVisualType)
+             {
+                 case ETakeDamageVisualType.NONE:
+                     break;
+                 
+                 case ETakeDamageVisualType.FLASH_RED:
+                     // TODO
+                     
+                     break;
 
-        private void AddSelfToEntries()
-        {
-            RegisterEntry(_damagableEntry);
-        }
-
-        private void UpdateVisualFlashRed()
-        {
-            // TODO
-        }
-
-        private void UpdateVisualPlainRed()
-        {
-            // TODO
-        }
-
-        private void StartInvincibilityTimer()
-        {
-            _isInvicibilityRunning = true;
-            _timestampInvicibilityStart = Time.time;
-        }
-        
+                 case ETakeDamageVisualType.PLAIN_RED:
+                     // TODO
+                     break;
+             }
+             var elapsed = Time.time - InvincibilityTimeStamp;
+             if (elapsed < InvincibilityDuration) return;
+             HasTakenDamage = false;
+         }
     }
 }

@@ -14,12 +14,20 @@ namespace Actors.Ables
 
         public void Register()
         {
-            BreakableManager.Instance.RegisterEntry(new BreakableManager.BreakableEntry(GetInstanceID() ,Collider, BreakableTable, OnBreak));
+            BreakableManager.Instance.RegisterEntry(this);
         }
 
         public void Unregister()
         {
-            BreakableManager.Instance.RemoveEntry(GetInstanceID());
+            BreakableManager.Instance.RemoveEntry(this);
+        }
+        
+        public void TryBreak(EDamageType damageType)
+        {
+            if (!BreakableTable.CanBreak(damageType)) return;
+            Unregister();
+            HasBreak = true;
+            OnBreak(damageType);
         }
     }
 }

@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Actors.Definitions;
+using Actors.Ables;
 using UnityEngine;
 
 namespace Manager
@@ -15,40 +14,17 @@ namespace Manager
             Instance = this;
         }
         
-        public List<BreakableEntry> BreakableEntries { get; } = new();
+        public List<IBreakable> BreakableEntries { get; } = new();
         
-        public void RegisterEntry(BreakableEntry breakableEntry)
+        public void RegisterEntry(IBreakable breakable)
         {
-            BreakableEntries.Add(breakableEntry);
+            BreakableEntries.Add(breakable);
         }
         
-        public void RemoveEntry(int breakableEntryInstanceId)
+        public void RemoveEntry(IBreakable breakable)
         {
-            var entryToRemove = BreakableEntries.Single(entry => entry.InstanceID == breakableEntryInstanceId);
+            var entryToRemove = BreakableEntries.Single(entry => entry.GetInstanceID() == breakable.GetInstanceID());
             BreakableEntries.Remove(entryToRemove);
-        }
-        
-        public class BreakableEntry
-        {
-            public Collider Collider { get; }
-            public Action<EDamageType> OnBreak { get; }
-            public BreakableTable BreakableTable { get; }
-            public int InstanceID { get; }
-
-            public BreakableEntry(int instanceId, Collider collider, BreakableTable breakableTable, Action<EDamageType> onBreak)
-            {
-                InstanceID = instanceId;
-                Collider = collider;
-                BreakableTable = breakableTable;
-                OnBreak = onBreak;
-            }
-                        
-            public void TryBreak(EDamageType damageType)
-            {
-                if (!BreakableTable.CanBreak(damageType)) return;
-                Instance.RemoveEntry(InstanceID);
-                OnBreak(damageType);
-            }
         }
     }
 }

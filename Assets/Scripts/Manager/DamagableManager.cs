@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Actors.Ables;
 using UnityEngine;
 
 namespace Manager
@@ -13,52 +14,22 @@ namespace Manager
             Instance = this;
         }
         
-        public List<DamagableEntry> DamagableEntries { get; } = new();
+        public List<IDamagable> DamagableEntries { get; } = new();
         
-        public void RegisterEntry(DamagableEntry damagableEntry)
+        public void RegisterEntry(IDamagable damagable)
         {
-            DamagableEntries.Add(damagableEntry);
+            DamagableEntries.Add(damagable);
         }
         
-        public void RemoveEntry(int damagableEntryId)
+        public void RemoveEntry(IDamagable damagable)
         {
-            var entry = DamagableEntries.Single(entry => entry.InstanceId == damagableEntryId);
+            var entry = DamagableEntries.Single(entry => entry.GetInstanceId() == damagable.GetInstanceId());
             DamagableEntries.Remove(entry);
         }
         
         private void Update()
         {
-            if (_isInvicibilityRunning == false) return;
-            switch (_takeDamageVisualType)
-            {
-                case ETakeDamageVisualType.FLASH_RED:
-                    UpdateVisualFlashRed();
-                    break;
-                
-                case ETakeDamageVisualType.PLAIN_RED:
-                    UpdateVisualPlainRed();
-                    break;
-                
-                case ETakeDamageVisualType.NONE:
-                default: 
-                    break;
-            }
-            var elapsed = Time.time - _timestampInvicibilityStart;
-            if (elapsed < _invicibilityDuration) return;
-            _isInvicibilityRunning = false;
-        }
-        
-        
-        public class DamagableEntry
-        {
-            public int InstanceId { get; }
-            public Collider Collider { get; }
-
-            public DamagableEntry(int instanceId, Collider collider)
-            {
-                InstanceId = instanceId;
-                Collider = collider;
-            }
+            DamagableEntries.ForEach(entry => entry.UpdateDamagable());
         }
     }
 }
