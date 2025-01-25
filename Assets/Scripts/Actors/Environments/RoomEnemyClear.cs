@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Actors.Handlers;
 using UnityEngine;
 
 namespace Actors.Environments

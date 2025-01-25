@@ -1,6 +1,5 @@
 using Actors.Ables;
 using Actors.Environments.CollectibleItems;
-using Actors.Handlers;
 using UnityEngine;
 
 namespace Actors.Environments
@@ -11,7 +10,7 @@ namespace Actors.Environments
         private ISpawnResetable _spawnResetable;
         public int flagId;
         public bool _hasBeenLooted;
-        public CollectibleItem CollectibleItem;
+        public ICollectibleItem CollectibleItem;
 
         private void Awake()
         {

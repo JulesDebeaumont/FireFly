@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Actors.Ables;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
-using Actors.MonoHandlers;
+using Data.Definitions.CollectibleItems;
 using UnityEngine;
 using UnityEngine.Serialization;
 

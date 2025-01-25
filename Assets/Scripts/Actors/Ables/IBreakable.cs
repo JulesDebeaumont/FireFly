@@ -6,26 +6,25 @@ namespace Actors.Ables
 {
     public interface IBreakable
     {
-        bool HasBreak { set; }
+        bool HasBreak { get; set; }
         Collider Collider { get; }
         BreakableTable BreakableTable { get; }
         void OnBreak(EDamageType damageType);
         int GetInstanceID();
 
-        public void Register()
+        public void RegisterToManager()
         {
             BreakableManager.Instance.RegisterEntry(this);
         }
 
-        public void Unregister()
+        public void UnregisterFromManager()
         {
             BreakableManager.Instance.RemoveEntry(this);
         }
         
-        public void TryBreak(EDamageType damageType)
+        public void TryBreakManual(EDamageType damageType)
         {
             if (!BreakableTable.CanBreak(damageType)) return;
-            Unregister();
             HasBreak = true;
             OnBreak(damageType);
         }

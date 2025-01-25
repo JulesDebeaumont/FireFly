@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Actors.Environments.CollectibleItems;
+using Data.Definitions.CollectibleItems;
 using Manager;
 using Random = UnityEngine.Random;
 
@@ -18,7 +19,7 @@ namespace Actors.Definitions
             _dropModifier = dropModifier;
         }
 
-        public Type Pick() // TODO refacto for returning a type of CollectibleItem
+        public Type Pick()
         {
             var dataCopy = new Dictionary<Type, int>(_data);
             ApplyPlayerRestrictions(ref dataCopy);

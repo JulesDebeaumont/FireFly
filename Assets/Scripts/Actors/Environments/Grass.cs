@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Actors.Ables;
 using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
-using Actors.Handlers;
-using Actors.MonoHandlers;
+using Data.Definitions.CollectibleItems;
 using Manager;
 using UnityEngine;
 

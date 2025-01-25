@@ -1,19 +1,20 @@
 using Actors.Ables;
-using Actors.Handlers;
 using Manager;
 using Player;
 using UnityEngine;
 
 namespace Actors
 {
-    public class TestActor : MonoBehaviour
+    public class TestActor : MonoBehaviour, ISpawnResetable
     {
+        public Vector3 SpawnResetPosition { get; set; }
+        public Quaternion SpawnResetRotation { get; set; }
         private ISpawnResetable _spawnResetable;
         private bool _isRunning;
 
         private void Awake()
         {
-            _spawnResetable = new ISpawnResetable(transform);
+            
         }
 
         private void Update()

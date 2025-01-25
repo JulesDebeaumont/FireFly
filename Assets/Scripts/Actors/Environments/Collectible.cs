@@ -1,74 +1,50 @@
+using Actors.Definitions;
 using Actors.Environments.CollectibleItems;
-using Manager;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Actors.Environment
+namespace Actors.Environments
 {
     public class Collectible : MonoBehaviour
     {
         public int flagId;
-        public bool hopAtSpawn;
-        private bool _hasHop;
-        public CollectibleItem CollectibleItem;
+        public EDropSpawnAnimation spawnAnimation = EDropSpawnAnimation.STAND;
+        public ICollectibleItem CollectibleItem; // TODO look for a way to setup in unity inspector
+        public Rigidbody rigidbody;
 
-        // Start is called before the first frame update
-        private void Start()
+        public void Collect()
         {
-            if (flagId != 0 && PlayerManager.Instance.player.PlayerFlag.IsCurrentSceneFlagSet(flagId)) Destroy(gameObject);
+            CollectibleItem.Collect();
+        }
+
+        private void Awake()
+        {
+            SpawnAnimation();
         }
 
         private void Update()
         {
-            if (hopAtSpawn == false)
+            // TODO
+        }
+        
+        private void SpawnAnimation()
+        {
+            var force = 0f;
+            switch (spawnAnimation)
             {
-                StandAndRotate();
+                case EDropSpawnAnimation.STAND:
+                    return;
+                
+                case EDropSpawnAnimation.HOP:
+                    force = 3f;
+                    break;
+                
+                case EDropSpawnAnimation.BIG_HOP:
+                    force = 5f;
+                    break;
             }
-            else
-            {
-                if (_hasHop == false) Hop();
-            }
-
-            // TODO detect collision with player
-            if (false) Collect();
-        }
-
-        public void Collect()
-        {
-            // anim
-
-            // TODO put this in Player.cs
-            /*
-        PlayerManager.Instance.PlayerState.SetPlayerState(PlayerState.EPlayerState.LOOTING);
-        if (this.CollectibleItem.Animation == PlayerState.ECollectAnimation.NONE)
-        {
-            // SoundManager.Instance.PlaySoundEffect(this.CollectibleItem.SoundEffect);
-            // TODO
-        }
-        else
-        {
-            // wait for camera and animation
-            DialogManager.Instance.DisplayDialog(this.CollectibleItem.Dialog);
-        }
-        this.CollectibleItem.Collect();
-        */
-            if (flagId != 0) SetFlag();
-            Destroy(gameObject);
-        }
-
-        private void StandAndRotate()
-        {
-            // TODO
-        }
-
-        private void SetFlag()
-        {
-            PlayerManager.Instance.player.PlayerFlag.SetCurrentSceneFlag(flagId); // TODO handler
-        }
-
-        private void Hop()
-        {
-            // TODO
-            _hasHop = true;
+            var randomDirection = new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)).normalized;
+            rigidbody.AddForce(randomDirection * force, ForceMode.Impulse);
         }
     }
 }
