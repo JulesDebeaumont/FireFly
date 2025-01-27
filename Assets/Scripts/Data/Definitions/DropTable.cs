@@ -1,27 +1,25 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Actors.Environments.CollectibleItems;
-using Data.Definitions.CollectibleItems;
+using Actors.Definitions;
 using Manager;
 using Random = UnityEngine.Random;
 
-namespace Actors.Definitions
+namespace Data.Definitions
 {
     public class DropTable
     {
-        private readonly Dictionary<Type, int> _data;
+        private readonly Dictionary<ECollectibleType, int> _data;
         private readonly EDropModifier _dropModifier;
 
-        public DropTable(Dictionary<Type, int> data, EDropModifier dropModifier)
+        public DropTable(Dictionary<ECollectibleType, int> data, EDropModifier dropModifier)
         {
             _data = data;
             _dropModifier = dropModifier;
         }
 
-        public Type Pick()
+        public ECollectibleType? Pick()
         {
-            var dataCopy = new Dictionary<Type, int>(_data);
+            var dataCopy = new Dictionary<ECollectibleType, int>(_data);
             ApplyPlayerRestrictions(ref dataCopy);
             ApplyModifier(ref dataCopy);
             var nullChancePercentage = 100 - _data.Values.Sum();
@@ -36,14 +34,14 @@ namespace Actors.Definitions
             return null;
         }
         
-        private void ApplyPlayerRestrictions(ref Dictionary<Type, int> data)
+        private void ApplyPlayerRestrictions(ref Dictionary<ECollectibleType, int> data)
         {
             // TODO
             // no bomb bag -> NO Bomb Drop BUT + 10 rupees for example
             // etc...
         }
 
-        private void ApplyModifier(ref Dictionary<Type, int> data)
+        private void ApplyModifier(ref Dictionary<ECollectibleType, int> data)
         {
             switch (_dropModifier)
             {
@@ -51,13 +49,13 @@ namespace Actors.Definitions
                     return;
                     
                 case EDropModifier.REGULAR:
-                    if (data.ContainsKey(typeof(Heart)) && PlayerManager.Instance.player.playerInventory.IsLowHealth())
+                    if (data.ContainsKey(ECollectibleType.HEART) && PlayerManager.Instance.player.playerInventory.IsLowHealth())
                     {
-                        data[typeof(Heart)] += 30;
+                        data[ECollectibleType.HEART] += 30;
                     }
-                    if (data.ContainsKey(typeof(SmallAmber)) && !PlayerManager.Instance.player.playerInventory.IsLowHealth())
+                    if (data.ContainsKey(ECollectibleType.SMALL_AMBER) && !PlayerManager.Instance.player.playerInventory.IsLowHealth())
                     {
-                        data[typeof(SmallAmber)] += 30;
+                        data[ECollectibleType.SMALL_AMBER] += 30;
                     }
                     return;
             }

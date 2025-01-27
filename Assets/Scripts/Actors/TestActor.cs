@@ -1,15 +1,14 @@
-using Actors.Ables;
+using Actors.Composites;
 using Manager;
 using Player;
 using UnityEngine;
 
 namespace Actors
 {
-    public class TestActor : MonoBehaviour, ISpawnResetable
+    public class TestActor : MonoBehaviour
     {
         public Vector3 SpawnResetPosition { get; set; }
         public Quaternion SpawnResetRotation { get; set; }
-        private ISpawnResetable _spawnResetable;
         private bool _isRunning;
 
         private void Awake()
@@ -52,7 +51,6 @@ namespace Actors
 
         protected void OnDisable()
         {
-            _spawnResetable.ResetToSpawnPosition();
             _isRunning = false;
         }
     }

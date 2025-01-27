@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Actors.Ables;
+using Actors.Composites;
 using Actors.Definitions;
 using UnityEngine;
 
@@ -18,14 +18,14 @@ namespace Manager
         private List<DamagableEntry> _damagableEntries = new();
         private List<DamagableEntry> _damagableEntriesToDelete = new();
         
-        public void RegisterEntry(IDamagable damagable)
+        public void RegisterEntry(DamageComposite damagable)
         {
             _damagableEntries.Add(new DamagableEntry(damagable));
         }
         
-        public void RemoveEntry(IDamagable damagable)
+        public void RemoveEntry(int instanceId)
         {
-            var entry = _damagableEntries.Single(entry => entry.Damagable.GetInstanceId() == damagable.GetInstanceId());
+            var entry = _damagableEntries.Single(entry => entry.Damagable.InstanceId == instanceId);
             _damagableEntries.Remove(entry);
         }
 
@@ -84,11 +84,11 @@ namespace Manager
 
         private class DamagableEntry
         {
-            public readonly IDamagable Damagable;
+            public readonly DamageComposite Damagable;
             public float InvincibilityTimestamp;
             public bool HasTakenDamage;
 
-            public DamagableEntry(IDamagable damagable)
+            public DamagableEntry(DamageComposite damagable)
             {
                 Damagable = damagable;
             }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Actors.Ables;
+using Actors.Composites;
 using Actors.Definitions;
 using UnityEngine;
 
@@ -15,17 +15,17 @@ namespace Manager
             Instance = this;
         }
         
-        private List<BreakableEntry> _breakableEntries = new();
-        private List<BreakableEntry> _breakableEntriesToDelete = new();
+        private List<BreakComposite> _breakableEntries = new();
+        private List<BreakComposite> _breakableEntriesToDelete = new();
         
-        public void RegisterEntry(IBreakable breakable)
+        public void RegisterEntry(BreakComposite breakable)
         {
-            _breakableEntries.Add(new BreakableEntry(breakable));
+            _breakableEntries.Add(breakable);
         }
         
-        public void RemoveEntry(IBreakable breakable)
+        public void RemoveEntry(int instanceId)
         {
-            var entryToRemove = _breakableEntries.Single(entry => entry.Breakable.GetInstanceID() == breakable.GetInstanceID());
+            var entryToRemove = _breakableEntries.Single(entry => entry.InstanceId == instanceId);
             _breakableEntries.Remove(entryToRemove);
         }
 
@@ -34,9 +34,9 @@ namespace Manager
             foreach (var breakableEntry in _breakableEntries)
             {
                 // TODO check colliders
-                if (!breakableEntry.Breakable.BreakableTable.CanBreak(damageType)) return;
-                breakableEntry.Breakable.HasBreak = true;
-                if (breakableEntry.Breakable.HasBreak)
+                if (!breakableEntry.BreakableTable.CanBreak(damageType)) return;
+                breakableEntry.HasBreak = true;
+                if (breakableEntry.HasBreak)
                 {
                     _breakableEntriesToDelete.Add(breakableEntry);
                 }
@@ -45,19 +45,9 @@ namespace Manager
             foreach (var breakableEntryToDelete in _breakableEntriesToDelete)
             {
                 _breakableEntries.Remove(breakableEntryToDelete);
-                breakableEntryToDelete.Breakable.OnBreak(damageType);
+                breakableEntryToDelete.OnBreak(damageType);
             }
             _breakableEntriesToDelete.Clear();
-        }
-
-        private class BreakableEntry
-        {
-            public IBreakable Breakable;
-
-            public BreakableEntry(IBreakable breakable)
-            {
-                Breakable = breakable;
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-using Actors.Ables;
+using Actors.Composites;
 using UnityEngine;
 
 namespace Actors.Environments
@@ -10,18 +10,16 @@ namespace Actors.Environments
     {
         public int dialogId = 1;
         private bool _isBroken;
-        private ITalkable _talkable;
+        private TalkComposite _talkComposite;
         private const string DialogFilename = "wooden_sign";
 
         private void Awake()
         {
-            _talkable = new ITalkable(transform, DialogFilename);
         }
 
         private void Update()
         {
-            if (_talkable.PlayerInFrontOfNpc() && Input.GetKey(KeyCode.Y))
-                _talkable.StartDialog(dialogId);
+
         }
 
         protected void OnDisable()
